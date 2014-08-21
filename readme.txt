@@ -87,6 +87,8 @@ Tab | Reset Statistics |:
 5.  Author and post statistic widget on non-single post page, Posts tab Screenshot #5
 6.  Author and post statistic widget on non-single post page, Authors tab Screenshot #6
 7.  Dashboard Settings Page, Style tab Screenshot #7
+8.  Graphical Statistic for Own and All Popular Posts, Popular Posts tab Screenshot #8
+9.  Graphical Statistic of Post Readers by Countries, Visitors per Country tab Screenshot #9
 
 == Frequently Asked Questions ==
 
