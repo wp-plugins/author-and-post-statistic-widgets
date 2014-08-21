@@ -8,33 +8,36 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-APSW is an easy solution to display authors' activity and posts' popularity statistics on your WordPress website. This plugin comes with many smart widgets, which show adaptive statistic information depended on current page.
+APSW is an easy solution to display authors' activity and posts' popularity statistics on your WordPress website. 
 
 == Description ==
 
 APSW is an easy solution to display authors' activity and posts' popularity statistics on your WordPress website. This plugin comes with many smart widgets, which show adaptive statistic information depended on current page.
 
-**Complete list of APSW Pro features:**
+**Complete list of APSW features:**
 
 = FRONT-END =
 
-**Widget: Author & Post Statistics**
+**Widget - Author & Post Statistics**
+
 This is a smart widget with two tabs "Author(s)" and "Posts", which shows different statistic information on different pages.
-If you’re on single post page, in |Author| tab it displays current post’s author avatar, name and his(her) posting activity statistic:
+If you're on single post page, in |Author| tab it displays current post's author avatar, name and his(her) posting activity statistic:
 
 * Total Posts
 * Total Comments
 * Total Categories
 * Number of posts in different categories
 
-And in |Posts| tabs it displays current author’s most popular post titles with number of views or comments.
+And in | Posts | tabs it displays current author's most popular post titles with number of views or comments.
 
-If you’re on non-single post page, for example you’re on category page, it displays in |Author| tab a list of most active authors with number of published posts. And in |Posts| tab it displays most popular post titles with number of views and comments.
+If you're on non-single post page, for example you're on category page, it displays in |Author| tab a list of most active authors with number of published posts. And in |Posts| tab it displays most popular post titles with number of views and comments.
 
-**Widget: Popular Authors**
+**Widget - Popular Authors**
+
 This widget only shows most popular author names with number of published posts.
 
-**Widget: Popular Posts**
+**Widget - Popular Posts**
+
 This widget only shows most popular post titles with number of views or comments.
 
 = DASHBOARD =
@@ -43,30 +46,29 @@ This widget only shows most popular post titles with number of views or comments
 
 Here you can manage all widgets.
 
-- Tab |General|:
+Tab | General |:
 
 * Show author and post statistics in - Tabs or Separate blocks
-* Create statistic for post types - Posts, Pages, etc…
+* Create statistic for post types - Posts, Pages, etc...co
+Tab | Popular Authors |:
 
-- Tab |Popular Authors|:
-
-* Display Author Full Name – yes/no
-* Display Author Avatar – yes/no
-* Show popular author by posts – Count, Views or Comments
+* Display Author Full Name - yes/no
+* Display Author Avatar - yes/no
+* Show popular author by posts - Count, Views or Comments
 * Number of popular authors on widgets
 
-- Tab |Popular Posts|:
+Tab | Popular Posts |:
 
 * Show popular posts by number of views or comments
 * Number of popular posts on widgets
-* View counter for posts – this is the logic of counting post readers, this can be counted based on IP (one time per day) or just based on number of visits (Page Reload) on post page.
+* View counter for posts - this is the logic of counting post readers, this can be counted based on IP (one time per day) or just based on number of visits (Page Reload) on post page.
 
-- Tab |Styles|:
+Tab | Styles |:
 
 * Because of the Author & Post Statistic Widget use jQuery Ui, it has a lot of styles and you can choose which style should be used on displaying this widget.
 * Also you can insert custom CSS
 
-- Tab |Reset Statistics|:
+Tab | Reset Statistics |:
 
 * Here you can remove all statistic information or for certain time period.
 
@@ -94,14 +96,14 @@ Here you can manage all widgets.
 
 == License ==
 
-Copyright: © 2014 [gVectors.com and Authors (Gagik Zakaryan & Hakob Martirosyan)](http://www.gvectors.com/)
+Copyright: ?2014 [gVectors.com and Authors (Gagik Zakaryan & Hakob Martirosyan)](http://www.gvectors.com/)
 Released under the terms of the [GNU General Public License](http://www.gnu.org/licenses/gpl-2.0.html).
 
 = Credits / Additional Acknowledgments =
 
-* Software designed for WordPress®.
+* Software designed for WordPress?
 	- GPL License <http://codex.wordpress.org/GPL>
-	- WordPress® <http://wordpress.org>
+	- WordPress?<http://wordpress.org>
 * JavaScript extensions require jQuery.
 	- GPL License <http://jquery.org/license>
 	- jQuery <http://jquery.com/>
