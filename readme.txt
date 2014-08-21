@@ -98,7 +98,7 @@ Tab | Reset Statistics |:
 
 == License ==
 
-Copyright: ?2014 [gVectors.com and Authors (Gagik Zakaryan & Hakob Martirosyan)](http://www.gvectors.com/)
+Copyright: &copy;2014 [gVectors.com and Authors (Gagik Zakaryan & Hakob Martirosyan)](http://www.gvectors.com/)
 Released under the terms of the [GNU General Public License](http://www.gnu.org/licenses/gpl-2.0.html).
 
 = Credits / Additional Acknowledgments =
