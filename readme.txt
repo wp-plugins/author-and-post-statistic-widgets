@@ -32,34 +32,33 @@ APSW is an easy solution to display authors' activity and popular posts statisti
 * | Free | Dashboard: Widget Styles Settings
 * | Free | Dashboard: Reset Statistics
 * | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab1) | Dashboard: Own Published Posts Statistic
-* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab2) | Dashboard: Own Posts’ Views Statistic
+* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab2) | Dashboard: Own Posts' Views Statistic
 * | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab3) | Dashboard: Own Posts Popularity Statistic by Views and Comments
-* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab4) | Dashboard: Own Posts’ Readers Statistic by Countries
-* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab5) | Dashboard: If you’re the admin, there is also a statistic for all authors activity and posts popularity
+* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab4) | Dashboard: Own Posts' Readers Statistic by Countries
+* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab5) | Dashboard: If you're the admin, there is also a statistic for all authors activity and posts popularity
 
 
-**WIDGET - Author & Popular Post Statistics**
-
+**WIDGET - Author & Popular Post Statistics** :
 This is a smart widget with two tabs | Author(s) | and | Posts |, which shows different statistic information on different pages, there are two cases: 
 
-1. **If you're on a single post page**, 
-    * In | Author | tab it displays current post's author avatar, name and his(her) posting activity statistic:
-        - Total Posts
-        - Total Comments
-        - Total Categories
-        - Number of posts in different categories
-    * And in | Posts | tab it displays current author's most popular posts' titles with number of views or comments.
+**If you're on a single post page**: 
 
-2. **If you're on non-single post page**, for example you're on category page, 
-    * In | Author | tab it displays in tab a list of most active authors with number of published posts
-    * In | Posts | tab it displays most popular post titles with number of views and comments.
+* In | Author | tab it displays current post's author avatar, name and his(her) posting activity statistic:
+    - Total Posts
+    - Total Comments
+    - Total Categories
+    - Number of posts in different categories
+* And in | Posts | tab it displays current author's most popular posts' titles with number of views or comments.
 
-**WIDGET - Popular Authors**
+**If you're on non-single post page**, for example you're on category page, 
 
+* In | Author | tab it displays in tab a list of most active authors with number of published posts
+* In | Posts | tab it displays most popular post titles with number of views and comments.
+
+**WIDGET - Popular Authors** :  
 This widget only shows most popular author names with number of published posts.
 
-**WIDGET - Popular Posts**
-
+**WIDGET - Popular Posts** : 
 This widget only shows most popular post titles with number of views or comments.
 
 = DASHBOARD =
