@@ -1,8 +1,8 @@
 <?php
 
-include_once(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/options/options-serialized.php');
-include_once(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/includes/db-statistic.php');
-include_once(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/includes/helper.php');
+include_once(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/options/options-serialized.php');
+include_once(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/includes/db-statistic.php');
+include_once(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/includes/helper.php');
 
 class Author_Widget extends WP_Widget {
 
@@ -73,7 +73,7 @@ class Author_Widget extends WP_Widget {
 
         echo $before_body;
 
-        include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/author-stats-layout.php');
+        include(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/layouts/author-stats-layout.php');
 
         echo $after_body;
 

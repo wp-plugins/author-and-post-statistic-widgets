@@ -102,33 +102,33 @@ class Statistic_Info {
      * Scripts and styles registration on administration pages
      */
     public function option_page_styles_scripts() {
-        wp_register_style('sw-plugin-css', plugins_url('author-and-post-stat-widgets/files/css/admin-css.css'));
+        wp_register_style('sw-plugin-css', plugins_url('author-and-post-statistic-widgets/files/css/admin-css.css'));
         wp_enqueue_style('sw-plugin-css');
-        wp_enqueue_script('option-scripts', plugins_url('author-and-post-stat-widgets/files/js/admin-js.js'), array('jquery'), '1.0.0', false);
+        wp_enqueue_script('option-scripts', plugins_url('author-and-post-statistic-widgets/files/js/admin-js.js'), array('jquery'), '1.0.0', false);
 
         wp_enqueue_script('jquery-ui-core');
         wp_enqueue_script('jquery-ui-tabs');
         wp_enqueue_script('jquery-ui-dialog');
         wp_enqueue_script('jquery-ui-datepicker');
 
-        wp_enqueue_script('theme-switcher', plugins_url('author-and-post-stat-widgets/files/js/jquery-ui/jquery.themeswitcher.js'), array('jquery', 'jquery-ui-core'), '1.0.0');
-        wp_register_style('jquery-ui-theme',  plugins_url('author-and-post-stat-widgets/files/css/jquery-ui-themes/themes/') . $this->options->active_theme_name . '/jquery-ui.min.css');
+        wp_enqueue_script('theme-switcher', plugins_url('author-and-post-statistic-widgets/files/js/jquery-ui/jquery.themeswitcher.js'), array('jquery', 'jquery-ui-core'), '1.0.0');
+        wp_register_style('jquery-ui-theme',  plugins_url('author-and-post-statistic-widgets/files/css/jquery-ui-themes/themes/') . $this->options->active_theme_name . '/jquery-ui.min.css');
         wp_enqueue_style('jquery-ui-theme');
 
-        wp_enqueue_script('sw-ajax-js', plugins_url('author-and-post-stat-widgets/files/js/ajax-delete.js'), array('jquery'), '1.0.0', false);
+        wp_enqueue_script('sw-ajax-js', plugins_url('author-and-post-statistic-widgets/files/js/ajax-delete.js'), array('jquery'), '1.0.0', false);
     }
 
     /**
      * Styles and scripts registration to use on front page
      */
     public function front_end_styles_scripts() {
-        wp_register_style('sw-frontend-style', plugins_url('author-and-post-stat-widgets/files/css/frontend-css.css'));
+        wp_register_style('sw-frontend-style', plugins_url('author-and-post-statistic-widgets/files/css/frontend-css.css'));
         wp_enqueue_style('sw-frontend-style');
 
         wp_enqueue_script('jquery-ui-core');
         wp_enqueue_script('jquery-ui-tabs');
 
-        wp_register_style('jquery-ui-theme', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/' . $this->options->active_theme_name . '/jquery-ui.css');
+        wp_register_style('jquery-ui-theme', plugins_url('author-and-post-statistic-widgets/files/css/jquery-ui-themes/themes/') . $this->options->active_theme_name . '/jquery-ui.min.css');
         wp_enqueue_style('jquery-ui-theme');
     }
 
@@ -142,7 +142,7 @@ class Statistic_Info {
      */
     public function add_plugin_options_page() {
         if (function_exists('add_options_page')) {
-            add_menu_page('Statistic Widgets', 'Statistic Widgets', 'manage_options', 'stats_options', array(&$this->stats_options, 'options_form'), plugins_url('author-and-post-stat-widgets/files/img/plugin-icon/statistics-icon-20.png'), 4256);
+            add_menu_page('Statistic Widgets', 'Statistic Widgets', 'manage_options', 'stats_options', array(&$this->stats_options, 'options_form'), plugins_url('author-and-post-statistic-widgets/files/img/plugin-icon/statistics-icon-20.png'), 4256);
         }
     }
 
@@ -179,21 +179,21 @@ class Statistic_Info {
     public function show_stats($from, $to, $widget_type) {
         global $post;
         if ($widget_type === 'post') {
-            include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/post-stats-layout.php');
+            include(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/layouts/post-stats-layout.php');
         } else if ($widget_type === 'author') {
-            include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/author-stats-layout.php');
+            include(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/layouts/author-stats-layout.php');
         } else {
             if ($this->options->is_stats_together == 1) {
                 if (is_singular()) {
-                    include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/all-stats-tabbed-single.php');
+                    include(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/layouts/all-stats-tabbed-single.php');
                 } else {
-                    include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/all-stats-tabbed-not-single.php');
+                    include(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/layouts/all-stats-tabbed-not-single.php');
                 }
             } else {
                 if (is_singular()) {
-                    include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/all-stats-separately-single.php');
+                    include(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/layouts/all-stats-separately-single.php');
                 } else {
-                    include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/all-stats-separately-not-single.php');
+                    include(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/layouts/all-stats-separately-not-single.php');
                 }
             }
         }

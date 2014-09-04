@@ -56,7 +56,7 @@ class Stats_Options {
         ?>
         <div class="wrap">
 		
-		<div style="float:left; width:40px; height:40px; margin:10px 10px 20px 0px;"><img src="<?php echo plugins_url('author-and-post-stat-widgets/files/img/plugin-icon/apsw-settings-icon.png'); ?>" style="width:48px;"/></div> <h2><?php _e('Author &amp; Post Statistic Widgets Settings', Statistic_Info::$text_domain ); ?></h2>
+		<div style="float:left; width:40px; height:40px; margin:10px 10px 20px 0px;"><img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/plugin-icon/apsw-settings-icon.png'); ?>" style="width:48px;"/></div> <h2><?php _e('Author &amp; Post Statistic Widgets Settings', Statistic_Info::$text_domain ); ?></h2>
 		<br style="clear:both" />
 		
 		
@@ -70,7 +70,7 @@ class Stats_Options {
 				  <div id="home_left_box2" style="margin:0px auto;">
 					  <div id="innerblock">
 						<div id="gconverter">
-						  <div style="text-align:center;"> <a href="http://www.gvectors.com/author-and-post-statistic-widgets/"><img src="<?php echo plugins_url('author-and-post-stat-widgets/promo/img/apsw-pro.png'); ?>" style="width:100%; min-width:510px;" /></a>
+						  <div style="text-align:center;"> <a href="http://www.gvectors.com/author-and-post-statistic-widgets/"><img src="<?php echo plugins_url('author-and-post-statistic-widgets/promo/img/apsw-pro.png'); ?>" style="width:100%; min-width:510px;" /></a>
 							<p style="padding-top:0px; white-space:nowrap; text-align:left;"><br />
 							  <a href="http://www.gvectors.com/advanced-content-pagination/"> <span style="font-size:16px; font-weight:bold; font-family:Georgia, 'Times New Roman', Times, serif;">Author &amp; Post Statistic Widgets PRO</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.gvectors.com/author-and-post-statistic-widgets/" target="_blank" class="button button-primary">Update to Pro Now!</a> <br />
 							  <span style="font-size:13px; line-height:25px; white-space:nowrap">APSW Pro generates graphical statistic for authors' activity and posts' popularity.</span> </p>
@@ -373,7 +373,7 @@ class Stats_Options {
                     </div>
                     <div style="display: none;">
                         <div id="response_info" >
-                            <img width="100" height="100" src="<?php echo plugins_url('author-and-post-stat-widgets/files/img/loader/ajax-loader-200x200.gif'); ?>" />
+                            <img width="100" height="100" src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/loader/ajax-loader-200x200.gif'); ?>" />
                         </div>
                     </div>
                 </div>
@@ -384,7 +384,7 @@ class Stats_Options {
                         $('#tabs').tabs();
                                                                                                                                                                                                                                                                                                                                  
                         $("#switcher").themeswitcher({
-                            imgpath: "../wp-content/plugins/author-and-post-stat-widgets/files/js/jquery-ui/images/",
+                            imgpath: "../wp-content/plugins/author-and-post-statistic-widgets/files/js/jquery-ui/images/",
                             loadTheme: "<?php echo $this->options->active_theme_name; ?>",
                             height: 285,
                             width: 200

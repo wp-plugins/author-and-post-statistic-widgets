@@ -1,8 +1,8 @@
 <?php
 
-include_once(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/options/options-serialized.php');
-include_once(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/includes/db-statistic.php');
-include_once(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/includes/helper.php');
+include_once(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/options/options-serialized.php');
+include_once(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/includes/db-statistic.php');
+include_once(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/includes/helper.php');
 
 class Statistic_Widget extends WP_Widget {
 
@@ -74,15 +74,15 @@ class Statistic_Widget extends WP_Widget {
 
         if ($this->options->is_stats_together == 1) {
             if (is_singular()) {
-                include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/all-stats-tabbed-single.php');
+                include(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/layouts/all-stats-tabbed-single.php');
             } else {
-                include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/all-stats-tabbed-not-single.php');
+                include(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/layouts/all-stats-tabbed-not-single.php');
             }
         } else {
             if (is_singular()) {
-                include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/all-stats-separately-single.php');
+                include(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/layouts/all-stats-separately-single.php');
             } else {
-                include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/all-stats-separately-not-single.php');
+                include(WP_PLUGIN_DIR . '/author-and-post-statistic-widgets/layouts/all-stats-separately-not-single.php');
             }
         }
         echo $after_body;
