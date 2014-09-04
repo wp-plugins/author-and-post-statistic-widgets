@@ -1,7 +1,7 @@
 <?php
 
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-include_once(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/options/options-serialized.php');
+include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'options' . DIRECTORY_SEPARATOR . 'options-serialized.php');
 
 class Statistic {
 

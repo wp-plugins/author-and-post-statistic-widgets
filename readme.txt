@@ -10,7 +10,7 @@ Requires at least: 2.7.0
 
 Tested up to: 3.9.1
 
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 
 License: GPLv2 or later
 
@@ -113,6 +113,9 @@ Here you can manage all widgets. There are 5 tabs with widget settings options:
 * Support Forum: <http://gvectors.com/questions/>
 
 == Changelog ==
+
+= 1.0.1 =
+Matching Wordpress 4.0 Standards
 
 = 1.0.0 =
 Initial version

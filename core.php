@@ -3,7 +3,7 @@
 /*
   Plugin Name: Author and Post Statistic Widgets
   Description: Adds awesome statistic widgets for displaying authors activity and posts popularity. This plugin displays adaptive statistical information depending on current opened category, post and page. 
-  Version: 1.0.0
+  Version: 1.0.1
   Author: gVectors Theme (Gagik Zakaryan & Hakob Martirosyan)
   Author URI: http://gvectors.com
   Plugin URI: http://gvectors.com/author-and-post-statistic-widgets/
@@ -27,6 +27,8 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
+
+define('APSW_PLUGIN_DIR', plugin_dir_path(__FILE__));
 
 include_once 'options/options-statistics.php';
 include_once 'widget/widget-statistics.php';
@@ -116,6 +118,7 @@ class Statistic_Info {
         wp_enqueue_style('jquery-ui-theme');
 
         wp_enqueue_script('sw-ajax-js', plugins_url('author-and-post-stat-widgets/files/js/ajax-delete.js'), array('jquery'), '1.0.0', false);
+        wp_enqueue_script('sw-cookie-js', plugins_url('author-and-post-stat-widgets/files/js/jquery.cookie.js'), array('jquery'), '1.4.1', false);
     }
 
     /**
@@ -128,7 +131,7 @@ class Statistic_Info {
         wp_enqueue_script('jquery-ui-core');
         wp_enqueue_script('jquery-ui-tabs');
 
-        wp_register_style('jquery-ui-theme', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/' . $this->options->active_theme_name . '/jquery-ui.css');
+        wp_register_style('jquery-ui-theme', plugins_url('author-and-post-stat-widgets/files/css/jquery-ui-themes/themes/') . $this->options->active_theme_name . '/jquery-ui.min.css');
         wp_enqueue_style('jquery-ui-theme');
     }
 

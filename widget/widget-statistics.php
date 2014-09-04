@@ -1,8 +1,8 @@
 <?php
 
-include_once(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/options/options-serialized.php');
-include_once(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/includes/db-statistic.php');
-include_once(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/includes/helper.php');
+include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'options' . DIRECTORY_SEPARATOR . 'options-serialized.php');
+include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'db-statistic.php');
+include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'helper.php');
 
 class Statistic_Widget extends WP_Widget {
 
@@ -10,6 +10,7 @@ class Statistic_Widget extends WP_Widget {
     public $statistic;
 
     public function __construct() {
+
 
         $this->options = new Serialize_Options();
         $this->statistic = new Statistic();
@@ -74,15 +75,15 @@ class Statistic_Widget extends WP_Widget {
 
         if ($this->options->is_stats_together == 1) {
             if (is_singular()) {
-                include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/all-stats-tabbed-single.php');
+                include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'all-stats-tabbed-single.php');
             } else {
-                include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/all-stats-tabbed-not-single.php');
+                include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'all-stats-tabbed-not-single.php');
             }
         } else {
             if (is_singular()) {
-                include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/all-stats-separately-single.php');
+                include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'all-stats-separately-single.php');
             } else {
-                include(WP_PLUGIN_DIR . '/author-and-post-stat-widgets/layouts/all-stats-separately-not-single.php');
+                include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'all-stats-separately-not-single.php');
             }
         }
         echo $after_body;
