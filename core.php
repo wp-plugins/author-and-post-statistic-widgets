@@ -4,7 +4,7 @@
   Plugin Name: Author and Post Statistic Widgets
   Description: Adds awesome statistic widgets for displaying authors activity and posts popularity. This plugin displays adaptive statistical information depending on current opened category, post and page. 
   Version: 1.0.0
-  Author: gVectors Theme (Gagik Zakaryan & Hakob Martirosyan)
+  Author: gVectors Team (Gagik Zakaryan & Hakob Martirosyan)
   Author URI: http://gvectors.com
   Plugin URI: http://gvectors.com/author-and-post-statistic-widgets/
  */
