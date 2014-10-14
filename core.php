@@ -3,8 +3,8 @@
 /*
   Plugin Name: Author and Post Statistic Widgets
   Description: Adds awesome statistic widgets for displaying authors activity and posts popularity. This plugin displays adaptive statistical information depending on current opened category, post and page.
-  Version: 1.1.1
-  Author: gVectors Team (Gagik Zakaryan & Hakob Martirosyan)
+  Version: 1.2.0
+  Author: gVectors Theme (Gagik Zakaryan & Hakob Martirosyan)
   Author URI: http://gvectors.com
   Plugin URI: http://gvectors.com/author-and-post-statistic-widgets/
  */
@@ -36,14 +36,16 @@ include_once 'widget/widget-author.php';
 include_once 'widget/widget-post.php';
 include_once 'includes/db-statistic.php';
 include_once 'includes/helper.php';
+include_once 'apsw-css.php';
 
 class Statistic_Info {
 
-    public static $text_domain = 'stats-info';
+    public static $text_domain = 'apsw';
     public $stats_options;
     public $options;
     public $statistic;
     public $w_author;
+    public $apsw_css;
 
     function __construct() {
         add_action('plugins_loaded', array(&$this, 'load_sw_plugin_text_domain'));
@@ -57,6 +59,11 @@ class Statistic_Info {
         add_action('admin_menu', array(&$this, 'add_plugin_options_page'));
         remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
         add_action('wp_head', array(&$this, 'add_post_view_count'));
+
+        if ($this->options->is_simple_tabs_default) {
+            $this->apsw_css = new APSW_CSS($this->options);
+            add_action('wp_enqueue_scripts', array(&$this->apsw_css, 'load_custom_css'));
+        }
 
         if (function_exists('add_shortcode')) {
             add_shortcode('author_stats', array(&$this, 'author_statistics'));
@@ -119,6 +126,22 @@ class Statistic_Info {
 
         wp_enqueue_script('sw-ajax-js', plugins_url('author-and-post-statistic-widgets/files/js/ajax-delete.js'), array('jquery'), '1.0.0', false);
         wp_enqueue_script('sw-cookie-js', plugins_url('author-and-post-statistic-widgets/files/js/jquery.cookie.js'), array('jquery'), '1.4.1', false);
+
+        if ($this->options->is_simple_tabs_default) {
+            wp_register_style('apsw-modal-css', plugins_url('author-and-post-statistic-widgets/files/third-party/modal-box/modal-box.css'));
+            wp_enqueue_style('apsw-modal-css');
+            wp_register_style('apsw-colorpicker-css', plugins_url('author-and-post-statistic-widgets/files/third-party/colorpicker/css/colorpicker.css'));
+            wp_enqueue_style('apsw-colorpicker-css');
+            wp_enqueue_script('apsw-colorpicker-js', plugins_url('author-and-post-statistic-widgets/files/third-party/colorpicker/js/colorpicker.js'), array('jquery'), '1.0.0', false);
+            wp_enqueue_script('apsw-admin-colorpicker-js', plugins_url('author-and-post-statistic-widgets/files/js/admin-colorpicker.js'), array('jquery'), '1.0.0', false);
+
+
+            $u_agent = $_SERVER['HTTP_USER_AGENT'];
+            if (preg_match('/MSIE/i', $u_agent)) {
+                wp_register_style('apsw-modal-css-ie', plugins_url('author-and-post-statistic-widgets/files/third-party/modal-box/modal-box-ie.css'));
+                wp_enqueue_style('apsw-modal-css-ie');
+            }
+        }
     }
 
     /**
@@ -128,11 +151,16 @@ class Statistic_Info {
         wp_register_style('sw-frontend-style', plugins_url('author-and-post-statistic-widgets/files/css/frontend-css.css'));
         wp_enqueue_style('sw-frontend-style');
 
-        wp_enqueue_script('jquery-ui-core');
-        wp_enqueue_script('jquery-ui-tabs');
 
-        wp_register_style('jquery-ui-theme', plugins_url('author-and-post-statistic-widgets/files/css/jquery-ui-themes/themes/') . $this->options->active_theme_name . '/jquery-ui.min.css');
-        wp_enqueue_style('jquery-ui-theme');
+        // option
+        if ($this->options->is_simple_tabs_default) {
+            wp_enqueue_script('apsw-simple-tabs', plugins_url('author-and-post-statistic-widgets/files/js/simple-tabs.js'), array('jquery'), '1.0.0', false);
+        } else {
+            wp_enqueue_script('jquery-ui-core');
+            wp_enqueue_script('jquery-ui-tabs');
+            wp_register_style('jquery-ui-theme', plugins_url('author-and-post-statistic-widgets/files/css/jquery-ui-themes/themes/') . $this->options->active_theme_name . '/jquery-ui.min.css');
+            wp_enqueue_style('jquery-ui-theme');
+        }
     }
 
     public function frontend_styles() {
@@ -179,25 +207,28 @@ class Statistic_Info {
         exit();
     }
 
-    public function show_stats($from, $to, $widget_type) {
+    public function show_stats_post($from, $to) {
         global $post;
-        if ($widget_type === 'post') {
-            include(APSW_PLUGIN_DIR . '/author-and-post-statistic-widgets/layouts/post-stats-layout.php');
-        } else if ($widget_type === 'author') {
-            include(APSW_PLUGIN_DIR . '/author-and-post-statistic-widgets/layouts/author-stats-layout.php');
-        } else {
-            if ($this->options->is_stats_together == 1) {
-                if (is_singular()) {
-                    include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'author-and-post-statistic-widgets' . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'all-stats-tabbed-single.php');
-                } else {
-                    include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'author-and-post-statistic-widgets' . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'all-stats-tabbed-not-single.php');
-                }
+        include 'layouts/post-stats-layout.php';
+    }
+
+    public function show_stats_author($from, $to) {
+        include 'layouts/author-stats-layout.php';
+    }
+
+    public function show_stats() {
+        global $post;
+        if ($this->options->is_stats_together == 1) {
+            if (is_singular()) {
+                include 'layouts/all-stats-tabbed-single.php';
             } else {
-                if (is_singular()) {
-                    include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'author-and-post-statistic-widgets' . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'all-stats-separately-single.php');
-                } else {
-                    include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'author-and-post-statistic-widgets' . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'all-stats-separately-not-single.php');
-                }
+                include 'layouts/all-stats-tabbed-not-single.php';
+            }
+        } else {
+            if (is_singular()) {
+                include 'layouts/all-stats-separately-single.php';
+            } else {
+                include 'layouts/all-stats-separately-not-single.php';
             }
         }
     }
@@ -206,9 +237,27 @@ class Statistic_Info {
 
 $statistic_info = new Statistic_Info();
 
-function show_stats($from, $to, $widget_type) {
+/**
+ * @param type $from Date - 2010-05-16
+ * @param type $to Date - 2014-05-16
+ */
+function show_stats_post($from, $to) {
     global $statistic_info;
-    $statistic_info->show_stats($from, $to, $widget_type);
+    $statistic_info->show_stats_post($from, $to);
+}
+
+/**
+ * @param type $from Date - 2010-05-16
+ * @param type $to Date - 2014-05-16
+ */
+function show_stats_author($from, $to) {
+    global $statistic_info;
+    $statistic_info->show_stats_author($from, $to);
+}
+
+function show_stats() {
+    global $statistic_info;
+    $statistic_info->show_stats();
 }
 
 ?>

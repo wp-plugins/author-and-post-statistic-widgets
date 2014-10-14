@@ -41,15 +41,22 @@ class Stats_Options {
 
             $this->options->is_stats_together = $_POST['is_stats_together'];
             $this->options->post_types = empty($_POST['post_types']) ? $this->post_types : $_POST['post_types'];
-            $this->options->is_display_author_name = $_POST['is_display_author_name'];
-            $this->options->is_display_author_avatar = $_POST['is_display_author_avatar'];
-            $this->options->is_author_popular_by_post_count = $_POST['is_author_popular_by_post_count'];
-            $this->options->is_popular_posts_by_post_views = $_POST['is_popular_posts_by_post_views'];
-            $this->options->popular_authors_limit = $_POST['popular_authors_limit'];
-            $this->options->is_post_view_by_ip = $_POST['is_post_view_by_ip'];
-            $this->options->popular_posts_limit = $_POST['popular_posts_limit'];
-            $this->options->active_theme_name = $_POST['active_theme_name'];
+            $this->options->is_simple_tabs_default = isset($_POST['is_simple_tabs_default']) ? $_POST['is_simple_tabs_default'] : 0;
+            $this->options->is_display_author_name = isset($_POST['is_display_author_name']) ? $_POST['is_display_author_name'] : 0;
+            $this->options->is_display_author_avatar = isset($_POST['is_display_author_avatar']) ? $_POST['is_display_author_avatar'] : 0;
+            $this->options->is_author_popular_by_post_count = isset($_POST['is_author_popular_by_post_count']) ? $_POST['is_author_popular_by_post_count'] : '1';
+            $this->options->is_popular_posts_by_post_views = isset($_POST['is_popular_posts_by_post_views']) ? $_POST['is_popular_posts_by_post_views'] : '1';
+            $this->options->popular_authors_limit = isset($_POST['popular_authors_limit']) ? $_POST['popular_authors_limit'] : '10';
+            $this->options->is_post_view_by_ip = isset($_POST['is_post_view_by_ip']) ? $_POST['is_post_view_by_ip'] : '1';
+            $this->options->popular_posts_limit = isset($_POST['popular_posts_limit']) ? $_POST['popular_posts_limit'] : '10';
+            $this->options->active_theme_name = isset($_POST['active_theme_name']) ? $_POST['active_theme_name'] : 'smoothness';
             $this->options->custom_css = $_POST['custom_css'];
+            $this->options->apsw_tab_active_bg_color = isset($_POST['apsw_tab_active_bg_color']) ? $_POST['apsw_tab_active_bg_color'] : '#fff';
+            $this->options->apsw_tab_bg_color = isset($_POST['apsw_tab_bg_color']) ? $_POST['apsw_tab_bg_color'] : '#ccc';
+            $this->options->apsw_tab_border_color = isset($_POST['apsw_tab_border_color']) ? $_POST['apsw_tab_border_color'] : '#d4d4d1';
+            $this->options->apsw_tab_active_text_color = isset($_POST['apsw_tab_active_text_color']) ? $_POST['apsw_tab_active_text_color'] : '#2e7da3';
+            $this->options->apsw_tab_text_color = isset($_POST['apsw_tab_text_color']) ? $_POST['apsw_tab_text_color'] : '#fff';
+            $this->options->apsw_tab_hover_text_color = isset($_POST['apsw_tab_hover_text_color']) ? $_POST['apsw_tab_hover_text_color'] : '#21759b';            
 
             $this->options->updateOptions();
         }
@@ -125,251 +132,24 @@ class Stats_Options {
                 ?>
                 <div id="tabs">
                     <ul>
-                        <li><a href="#tabs-1"><?php _e('General', 'statistics_info'); ?></a></li>
-                        <li><a href="#tabs-2"><?php _e('Popular Authors', 'statistics_info'); ?></a></li>
-                        <li><a href="#tabs-3"><?php _e('Popular Posts', 'statistics_info'); ?></a></li>
-                        <li><a href="#tabs-4"><?php _e('View counter for posts', 'statistics_info'); ?></a></li>
-                        <li><a href="#tabs-5"><?php _e('Styles', 'statistics_info'); ?></a></li>
-                        <li><a href="#tabs-6"><?php _e('Reset Statistics', 'statistics_info'); ?></a></li>
-                        <li><a href="#tabs-7"><?php _e('Support', 'statistics_info'); ?></a></li>
+                        <li><a href="#tabs-1"><?php _e('General', Statistic_Info::$text_domain); ?></a></li>
+                        <li><a href="#tabs-2"><?php _e('Popular Authors', Statistic_Info::$text_domain); ?></a></li>
+                        <li><a href="#tabs-3"><?php _e('Popular Posts', Statistic_Info::$text_domain); ?></a></li>
+                        <li><a href="#tabs-4"><?php _e('View counter for posts', Statistic_Info::$text_domain); ?></a></li>
+                        <li><a href="#tabs-5"><?php _e('Styles', Statistic_Info::$text_domain); ?></a></li>
+                        <li><a href="#tabs-6"><?php _e('Reset Statistics', Statistic_Info::$text_domain); ?></a></li>
+                        <li><a href="#tabs-7"><?php _e('Support', Statistic_Info::$text_domain); ?></a></li>
                     </ul>
-                    <div id="tabs-1">
-                        <table class="form-table">
-                            <tbody>
-                                <tr valign="top">
-                                    <th scope="row">
-                                        Show author and post statistics in:
-                                    </th>
-                                    <td>                                
-                                        <label>
-                                            <input type="radio" <?php checked($this->options->is_stats_together == '1') ?> value="1" name="is_stats_together" id="is_stats_tabbed" />
-                                            <span>Tabs</span>
-                                        </label><br/>
-                                        <label>
-                                            <input type="radio" <?php checked($this->options->is_stats_together == '2') ?> value="2" name="is_stats_together" id="is_stats_separate" />
-                                            <span>Separate blocks</span>
-                                        </label>
-                                    </td>
-                                </tr>
 
-                                <tr valign="top">
-                                    <th scope="row">
-                                        Create statistic for post types:
-                                    </th>
-                                    <td>                                
-                                        <?php
-                                        foreach ($this->post_types as $post_type) {
-                                            ?>
-                                            <label for="<?php echo $post_type ?>">
-                                                <input type="checkbox" <?php checked(in_array($post_type, $this->options->post_types)); ?> value="<?php echo $post_type; ?>" name="post_types[]" id="<?php echo $post_type; ?>" />
-                                                <span><?php echo $post_type; ?></span>
-                                            </label><br/>
-                                            <?php
-                                        }
-                                        ?>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-
-                    </div>
-                    <div id="tabs-2">
-                        <table class="form-table">
-                            <tbody>
-                                <tr valign="top">
-                                    <th scope="row">
-                                        Display Author Full Name:
-                                    </th>
-                                    <td>                                
-                                        <label for="is_display_author_name">
-                                            <input type="checkbox" <?php checked($this->options->is_display_author_name == '1') ?> value="<?php echo $this->options->is_display_author_name; ?>" name="is_display_author_name" id="is_display_author_name" />
-                                        </label>
-                                    </td>
-                                </tr>
-
-                                <tr valign="top">
-                                    <th scope="row">
-                                        Display Author Avatar:
-                                    </th>
-                                    <td>                                
-                                        <label for="is_display_author_avatar">
-                                            <input type="checkbox" <?php checked($this->options->is_display_author_avatar == '1') ?> value="<?php echo $this->options->is_display_author_avatar; ?>" name="is_display_author_avatar" id="is_display_author_avatar" />
-                                        </label>
-                                    </td>
-                                </tr>
-
-                                <tr valign="top">
-                                    <th scope="row">Show popular author by posts:</th>
-                                    <td>
-                                        <fieldset>
-                                            <?php
-                                            $is_author_popular_by_post_count = $this->options->is_author_popular_by_post_count;
-                                            ?>
-                                            <label title="by posts count">
-                                                <input type="radio" value="1" <?php checked('1' == $is_author_popular_by_post_count); ?> name="is_author_popular_by_post_count" id="author_popular_by_post_count" class=""/> 
-                                                <span>Count</span>
-                                            </label><br>
-                                            <label title="by posts view">
-                                                <input type="radio" value="2" <?php checked('2' == $is_author_popular_by_post_count); ?> name="is_author_popular_by_post_count" id="author_popular_by_post_view_count" class="" /> 
-                                                <span>Views</span>
-                                            </label><br>
-                                            <label title="by posts comments count">
-                                                <input type="radio" value="3" <?php checked('3' == $is_author_popular_by_post_count); ?> name="is_author_popular_by_post_count" id="author_popular_by_posts_comments_count" class="" /> 
-                                                <span>Comment Count</span>
-                                            </label><br>
-                                        </fieldset>
-                                    </td>
-                                </tr>
-
-                                <tr valign="top">
-                                    <th scope="row">Popular authors limit: </th>
-                                    <td>
-                                        <fieldset>
-                                            <?php
-                                            $popular_authors_limit = $this->options->popular_authors_limit;
-                                            ?>
-                                            <label title="How many popular authors display in widget">
-                                                <input type="text" value="<?php echo $popular_authors_limit; ?>" name="popular_authors_limit" id="popular_authors_limit" class=""/>                                        
-                                            </label><br>                                   
-                                        </fieldset>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="tabs-3">
-                        <table class="form-table">
-                            <tbody>
-                                <tr valign="top">
-                                    <th scope="row">Show popular posts by: </th>
-                                    <td>
-                                        <fieldset>
-                                            <?php
-                                            $is_popular_posts_by_post_views = $this->options->is_popular_posts_by_post_views;
-                                            ?>
-                                            <label title="by post views">
-                                                <input type="radio" value="1" <?php checked('1' == $is_popular_posts_by_post_views); ?> name="is_popular_posts_by_post_views" id="posts_popular_by_post_views" class=""/> 
-                                                <span>Views</span>
-                                            </label><br>
-                                            <label title="by post comments count">
-                                                <input type="radio" value="2" <?php checked('2' == $is_popular_posts_by_post_views); ?> name="is_popular_posts_by_post_views" id="posts_popular_by_post_comments" class="" /> 
-                                                <span>Comment Count</span>
-                                            </label><br>                                    
-                                        </fieldset>
-                                    </td>
-                                </tr>                        
-
-                                <tr valign="top">
-                                    <th scope="row">Popular posts limit: </th>
-                                    <td>
-                                        <fieldset>
-                                            <?php
-                                            $popular_posts_limit = $this->options->popular_posts_limit;
-                                            ?>
-                                            <label title="How many popular posts display in widget">
-                                                <input type="text" value="<?php echo $popular_posts_limit; ?>" name="popular_posts_limit" id="popular_posts_limit" class=""/>                                        
-                                            </label><br>                                   
-                                        </fieldset>
-                                    </td>
-                                </tr>                              
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="tabs-4">
-                        <table class="form-table">
-                            <tbody>
-                                <tr valign="top">
-                                    <th scope="row">Count post view by: </th>
-                                    <td>
-                                        <fieldset>
-                                            <?php
-                                            $is_post_view_by_ip = $this->options->is_post_view_by_ip;
-                                            ?>
-                                            <label title="by ip">
-                                                <input type="radio" value="1" <?php checked('1' == $is_post_view_by_ip); ?> name="is_post_view_by_ip" id="is_post_view_by_ip" class=""/> 
-                                                <span>IP (for each day)</span>
-                                            </label><br>
-                                            <label title="by page reload">
-                                                <input type="radio" value="2" <?php checked('2' == $is_post_view_by_ip); ?> name="is_post_view_by_ip" id="is_post_view_by_page_reload" class="" /> 
-                                                <span>Page Reload</span>
-                                            </label><br>                                    
-                                        </fieldset>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="tabs-5">
-                        <table class="form-table">
-                            <tbody>
-                                <tr valign="top">
-                                    <th scope="row"><?php _e('Jquery UI CSS Theme: ', Statistic_Info::$text_domain); ?></th>
-                                    <td>
-                                        <label for="switcher">
-                                            <div id="switcher" style="display: inline-block;"></div>
-                                            <input type="hidden" name="active_theme_name" id="stats_active_theme" value=""/>
-                                        </label>
-                                    </td>
-                                </tr>
-                                <tr valign="top">
-                                    <th scope="row"><?php _e('Custom CSS to include in header: ', Statistic_Info::$text_domain); ?></th>
-                                    <td>
-                                        <label for="custom_css">
-                                            <textarea cols="50" rows="10" placeholder="<?php _e('Write here your css to include in header: ', Statistic_Info::$text_domain); ?>" id="custom_css" class="custom_css_area" name="custom_css"><?php echo $this->options->custom_css; ?></textarea>
-                                        </label>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="tabs-6">
-                        <table class="form-table">
-                            <tbody>
-                                <tr>
-                                    <th colspan="4" scope="col"><h2><?php _e('Delete Statistics', Statistic_Info::$text_domain); ?></h2></th>
-                            </tr>
-                            <tr valign="top">
-                                <td>
-                                    <fieldset>
-                                        <label for="from" title="<?php _e('From Date', Statistic_Info::$text_domain); ?>">
-                                            <span><?php _e('From Date:', Statistic_Info::$text_domain); ?></span>
-                                            <input type="text" class="fromdate" id="from" name="from" placeholder="<?php _e('Example: 2014-06-25 (Y-m-d)', Statistic_Info::$text_domain); ?>" />
-                                        </label>
-
-                                        <label for="to" title="<?php _e('To Date', Statistic_Info::$text_domain); ?>">
-                                            <span><?php _e('To Date:', Statistic_Info::$text_domain); ?></span>
-                                            <input type="text" class="todate" id="to" name="to" placeholder="<?php _e('Example: 2014-07-25 (Y-m-d)', Statistic_Info::$text_domain); ?>"/>
-                                        </label>
-                                        <label>
-                                            <span><?php _e('Delete All Statistics', Statistic_Info::$text_domain); ?></span>
-                                            <input type="checkbox" id="stats_all" name="all" value="0"/>
-                                        </label>
-                                    </fieldset>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="center">
-                                    <label>
-                                        <input class="button button-secondary" type="button" value="Delete" id="delete_stats_between_dates" />
-                                    </label>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>                        
-                    </div>
-                    <div id="tabs-7">
-                        <table class="form-table">
-                            <tbody>
-                                <tr>
-                                    <td align="center" colspan="2"  style="text-align:left">
-                                        <h3>Need Help?</h3>
-                                        <p>If you need help with this plugin or if you want to make a suggestion, then please visit to our support Q&amp;A forum.
-                                            <a href="http://www.gvectors.com/questions/" class="button button-primary" target="_blank">gVectors Support Forum</a></p>
-                                </tr>
-                            </tbody>
-                        </table>    
-                    </div>
+                    <?php
+                    include 'layouts/settings-general.php';
+                    include 'layouts/settings-popular-authors.php';
+                    include 'layouts/settings-popular-posts.php';
+                    include 'layouts/settings-view-counter.php';
+                    include 'layouts/settings-styles.php';
+                    include 'layouts/settings-reset-statistics.php';
+                    include 'layouts/support.php';
+                    ?>
                     <div style="display: none;">
                         <div id="response_info" >
                             <img width="100" height="100" src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/loader/ajax-loader-200x200.gif'); ?>" />
@@ -379,7 +159,7 @@ class Stats_Options {
 
 
                 <script type="text/javascript">
-                    jQuery(document).ready(function($) {
+                    jQuery(document).ready(function ($) {
                         var statsCurrentTab = $.cookie('statsCurrentTab');
                         if (statsCurrentTab == null) {
                             statsCurrentTab = $('#statsCurrentTab').val();
@@ -387,7 +167,7 @@ class Stats_Options {
                         }
                         $("#tabs").tabs({active: statsCurrentTab});
 
-                        $('#tabs a').click(function(e) {
+                        $('#tabs a').click(function (e) {
                             var curTab = $('.ui-tabs-active');
                             statsCurrentTab = curTab.index();
                             $.cookie('statsCurrentTab', statsCurrentTab, {expires: 7});
@@ -401,13 +181,13 @@ class Stats_Options {
                             width: 200
                         });
 
-                        $(function() {
+                        $(function () {
                             $("#from").datepicker({
                                 dateFormat: 'yy-mm-dd',
                                 defaultDate: "+1w",
                                 changeMonth: true,
                                 numberOfMonths: 1,
-                                onClose: function(selectedDate) {
+                                onClose: function (selectedDate) {
                                     $("#to").datepicker("option", "minDate", selectedDate);
                                 }
                             });
@@ -416,7 +196,7 @@ class Stats_Options {
                                 defaultDate: "+1w",
                                 changeMonth: true,
                                 numberOfMonths: 1,
-                                onClose: function(selectedDate) {
+                                onClose: function (selectedDate) {
                                     $("#from").datepicker("option", "maxDate", selectedDate);
                                 }
                             });

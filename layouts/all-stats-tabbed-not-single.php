@@ -1,6 +1,6 @@
 <div style="padding-bottom:10px;" id="" class="stats_tabs">
-    <ul class="css-tabs">
-        <li><a href="#tabs-1" class="current"><?php _e('Authors', Statistic_Info::$text_domain) ?></a></li>
+    <ul class="css-tabs tabs-menu">
+        <li class="current"><a href="#tabs-1" class="current"><?php _e('Authors', Statistic_Info::$text_domain) ?></a></li>
         <li><a href="#tabs-2"><?php _e('Posts', Statistic_Info::$text_domain) ?></a></li>
     </ul>     
     <?php
@@ -15,132 +15,140 @@
     $authors_data = '';
     $posts_data = '';
     ?>
-    <div id="tabs-1">
-        <span class="inner-title"><?php _e('Popular Authors', Statistic_Info::$text_domain); ?></span>      
-        <ul class="stats-author-list">
-            <?php
-            if ($this->options->is_author_popular_by_post_count == 1) {
-                $authors_data = $this->statistic->get_popular_authors_by_posts_count($blog_reg_date, $now, $authors_limit);
-                foreach ($authors_data as $author_data) {
-                    $author_id = $author_data['author_id'];
-                    $author_posts_count = $author_data['posts_count'];
-                    $author_user_name = $author_data['user_name'];
-                    ?>
-                    <li class="stats-author-posts-count">
-                        <a href="<?php echo get_author_posts_url($author_id); ?>" title="<?php _e('View all posts by ' . $author_user_name); ?>">
-                            <span class="stats-label">
-                                <?php echo $author_user_name; ?>
-                            </span>
-                        </a>
-                        <span class="stats-value">                                
-                            <?php echo ($author_posts_count == 1) ? $author_posts_count . __(' post', Statistic_Info::$text_domain) : $author_posts_count . __(' posts', Statistic_Info::$text_domain); ?>
-                        </span>
-
-                    </li>
-                    <?php
-                }
-            } elseif ($this->options->is_author_popular_by_post_count == 2) {
-                $authors_data = $this->statistic->get_popular_authors_by_posts_views_count($blog_reg_date, $now, $authors_limit);
-                foreach ($authors_data as $author_data) {
-                    $author_id = $author_data['author_id'];
-                    $author_posts_views_count = $author_data['view_count'];
-                    $author_user_name = $author_data['user_name']
-                    ?>
-                    <li class="stats-author-posts-count">
-                        <a href="<?php echo get_author_posts_url($author_id); ?>" title="<?php _e('View all posts by ' . $author_user_name); ?>">
-                            <span class="stats-label">
-                                <?php echo $author_user_name; ?>
-                            </span>
-                        </a>
-                        <span class="stats-value">                         
-                            <?php echo ($author_posts_views_count == 1) ? __($author_posts_views_count . ' view', Statistic_Info::$text_domain) : __($author_posts_views_count . ' views', Statistic_Info::$text_domain) ?>
-                        </span>
-
-                    </li>
-                    <?php
-                }
-            } else {
-                $authors_data = $this->statistic->get_popular_authors_by_comments_count($blog_reg_date, $now, $authors_limit);
-                foreach ($authors_data as $author_data) {
-                    $author_id = $author_data['author_id'];
-                    $author_posts_comments_count = $author_data['c_count'];
-                    $author_user_name = $author_data['user_name'];
-                    ?>
-                    <li class="stats-author-posts-count">
-                        <a href="<?php echo get_author_posts_url($author_id); ?>" title="<?php _e('View all posts by ' . $author_user_name); ?>">
-                            <span class="stats-label">
-                                <?php echo $author_user_name; ?>
-                            </span>
-                        </a>
-                        <span class="stats-value" title="<?php _e('All posts comments count', Statistic_Info::$text_domain) ?>">                         
-                            <?php echo ($author_posts_comments_count == 1) ? __($author_posts_comments_count . ' comment', Statistic_Info::$text_domain) : __($author_posts_comments_count . ' comments', Statistic_Info::$text_domain) ?>
-                        </span>
-
-                    </li>
-                    <?php
-                }
-            }
-            ?>
-        </ul>
-    </div>
-    <div id="tabs-2">
-        <span class="inner-title"><?php _e('Popular Posts', Statistic_Info::$text_domain); ?></span>
-        <ul class="stats-posts-list">
-            <?php
-            if ($this->options->is_popular_posts_by_post_views == 1) {
-                $posts_data = $this->statistic->get_popular_posts_by_view_count($blog_reg_date, $now, $posts_limit);
-                foreach ($posts_data as $post_data) {
-                    $post_id = $post_data['post_id'];
-                    $post_views_count = $post_data['v_count'];
-                    $post_title = $post_data['p_title'];
-                    ?>
-                    <li class="stats-post-views-count">
-                        <a href="<?php echo get_permalink($post_id); ?>" title="<?php _e('View ' . $post_title); ?>">
-                            <span class="stats-label">
-                                <?php echo Helper::sub_string_by_space($post_title, 2); ?>
-                            </span>
-                        </a>
-                        <span class="stats-value">
-                            <?php echo ($post_views_count == 1) ? __($post_views_count . ' view', Statistic_Info::$text_domain) : __($post_views_count . ' views', Statistic_Info::$text_domain) ?>
-                        </span>
-                    </li>
-                    <?php
-                }
-            } else {
-                $posts_data = $this->statistic->get_popular_posts_by_commment_count($blog_reg_date, $now, $posts_limit);
-                foreach ($posts_data as $post_data) {
-                    $post_id = $post_data['c_post'];
-                    $post_comment_count = $post_data['c_count'];
-                    $post_title = $post_data['p_title'];
-                    $comment_status = $post_data['c_status'];
-                    ?>
-                    <li class="stats-post-views-count">
-                        <a href="<?php echo get_permalink($post_id); ?>" title="<?php _e('View ' . $post_title); ?>">
-                            <span class="stats-label">
-                                <?php echo Helper::sub_string_by_space($post_title, 2); ?>
-                            </span>
-                        </a>
-                        <?php if ($comment_status === "open") { ?>
-                            <a href="<?php echo get_comments_link($post_id); ?>" title="<?php _e('Comment on ' . $post_title, Statistic_Info::$text_domain); ?>">                               
-                                <span class="stats-value">
-                                    <?php echo ($post_comment_count == 1) ? __($post_comment_count . ' comment', Statistic_Info::$text_domain) : __($post_comment_count . ' comments', Statistic_Info::$text_domain) ?>
+    <?php if ($this->options->is_simple_tabs_default) { ?>
+        <div class="tab">
+        <?php } ?>
+        <div id="tabs-1" class="tab-content">
+            <span class="inner-title"><?php _e('Popular Authors', Statistic_Info::$text_domain); ?></span>      
+            <ul class="stats-author-list">
+                <?php
+                if ($this->options->is_author_popular_by_post_count == 1) {
+                    $authors_data = $this->statistic->get_popular_authors_by_posts_count($blog_reg_date, $now, $authors_limit);
+                    foreach ($authors_data as $author_data) {
+                        $author_id = $author_data['author_id'];
+                        $author_posts_count = $author_data['posts_count'];
+                        $author_user_name = $author_data['user_name'];
+                        ?>
+                        <li class="stats-author-posts-count">
+                            <a href="<?php echo get_author_posts_url($author_id); ?>" title="<?php _e('View all posts by ' . $author_user_name); ?>">
+                                <span class="stats-label">
+                                    <?php echo $author_user_name; ?>
                                 </span>
                             </a>
-                        <?php } else { ?>
-                            <span class="stats-value" title="<?php _e('Comments are closed on this post', Statistic_Info::$text_domain); ?>">
-                                <?php echo ($post_comment_count == 1) ? __($post_comment_count . ' comment', Statistic_Info::$text_domain) : __($post_comment_count . ' comments', Statistic_Info::$text_domain) ?>
+                            <span class="stats-value">                                
+                                <?php echo ($author_posts_count == 1) ? $author_posts_count . __(' post', Statistic_Info::$text_domain) : $author_posts_count . __(' posts', Statistic_Info::$text_domain); ?>
                             </span>
-                        <?php } ?>
-                    </li>
-                    <?php
+
+                        </li>
+                        <?php
+                    }
+                } elseif ($this->options->is_author_popular_by_post_count == 2) {
+                    $authors_data = $this->statistic->get_popular_authors_by_posts_views_count($blog_reg_date, $now, $authors_limit);
+                    foreach ($authors_data as $author_data) {
+                        $author_id = $author_data['author_id'];
+                        $author_posts_views_count = $author_data['view_count'];
+                        $author_user_name = $author_data['user_name']
+                        ?>
+                        <li class="stats-author-posts-count">
+                            <a href="<?php echo get_author_posts_url($author_id); ?>" title="<?php _e('View all posts by ' . $author_user_name); ?>">
+                                <span class="stats-label">
+                                    <?php echo $author_user_name; ?>
+                                </span>
+                            </a>
+                            <span class="stats-value">                         
+                                <?php echo ($author_posts_views_count == 1) ? __($author_posts_views_count . ' view', Statistic_Info::$text_domain) : __($author_posts_views_count . ' views', Statistic_Info::$text_domain) ?>
+                            </span>
+
+                        </li>
+                        <?php
+                    }
+                } else {
+                    $authors_data = $this->statistic->get_popular_authors_by_comments_count($blog_reg_date, $now, $authors_limit);
+                    foreach ($authors_data as $author_data) {
+                        $author_id = $author_data['author_id'];
+                        $author_posts_comments_count = $author_data['c_count'];
+                        $author_user_name = $author_data['user_name'];
+                        ?>
+                        <li class="stats-author-posts-count">
+                            <a href="<?php echo get_author_posts_url($author_id); ?>" title="<?php _e('View all posts by ' . $author_user_name); ?>">
+                                <span class="stats-label">
+                                    <?php echo $author_user_name; ?>
+                                </span>
+                            </a>
+                            <span class="stats-value" title="<?php _e('All posts comments count', Statistic_Info::$text_domain) ?>">                         
+                                <?php echo ($author_posts_comments_count == 1) ? __($author_posts_comments_count . ' comment', Statistic_Info::$text_domain) : __($author_posts_comments_count . ' comments', Statistic_Info::$text_domain) ?>
+                            </span>
+
+                        </li>
+                        <?php
+                    }
                 }
-            }
-            ?>
-        </ul>
-    </div>
+                ?>
+            </ul>
+        </div>
+        <div id="tabs-2" class="tab-content">
+            <span class="inner-title"><?php _e('Popular Posts', Statistic_Info::$text_domain); ?></span>
+            <ul class="stats-posts-list">
+                <?php
+                if ($this->options->is_popular_posts_by_post_views == 1) {
+                    $posts_data = $this->statistic->get_popular_posts_by_view_count($blog_reg_date, $now, $posts_limit);
+                    foreach ($posts_data as $post_data) {
+                        $post_id = $post_data['post_id'];
+                        $post_views_count = $post_data['v_count'];
+                        $post_title = $post_data['p_title'];
+                        ?>
+                        <li class="stats-post-views-count">
+                            <a href="<?php echo get_permalink($post_id); ?>" title="<?php _e('View ' . $post_title); ?>">
+                                <span class="stats-label">
+                                    <?php echo Helper::sub_string_by_space($post_title, 2); ?>
+                                </span>
+                            </a>
+                            <span class="stats-value">
+                                <?php echo ($post_views_count == 1) ? __($post_views_count . ' view', Statistic_Info::$text_domain) : __($post_views_count . ' views', Statistic_Info::$text_domain) ?>
+                            </span>
+                        </li>
+                        <?php
+                    }
+                } else {
+                    $posts_data = $this->statistic->get_popular_posts_by_commment_count($blog_reg_date, $now, $posts_limit);
+                    foreach ($posts_data as $post_data) {
+                        $post_id = $post_data['c_post'];
+                        $post_comment_count = $post_data['c_count'];
+                        $post_title = $post_data['p_title'];
+                        $comment_status = $post_data['c_status'];
+                        ?>
+                        <li class="stats-post-views-count">
+                            <a href="<?php echo get_permalink($post_id); ?>" title="<?php _e('View ' . $post_title); ?>">
+                                <span class="stats-label">
+                                    <?php echo Helper::sub_string_by_space($post_title, 2); ?>
+                                </span>
+                            </a>
+                            <?php if ($comment_status === "open") { ?>
+                                <a href="<?php echo get_comments_link($post_id); ?>" title="<?php _e('Comment on ' . $post_title, Statistic_Info::$text_domain); ?>">                               
+                                    <span class="stats-value">
+                                        <?php echo ($post_comment_count == 1) ? __($post_comment_count . ' comment', Statistic_Info::$text_domain) : __($post_comment_count . ' comments', Statistic_Info::$text_domain) ?>
+                                    </span>
+                                </a>
+                            <?php } else { ?>
+                                <span class="stats-value" title="<?php _e('Comments are closed on this post', Statistic_Info::$text_domain); ?>">
+                                    <?php echo ($post_comment_count == 1) ? __($post_comment_count . ' comment', Statistic_Info::$text_domain) : __($post_comment_count . ' comments', Statistic_Info::$text_domain) ?>
+                                </span>
+                            <?php } ?>
+                        </li>
+                        <?php
+                    }
+                }
+                ?>
+            </ul>
+        </div>
+        <?php if ($this->options->is_simple_tabs_default) { ?>
+        </div>
+    <?php } ?>
 </div>
-<script>
-    jQuery(function() {
-        jQuery('.stats_tabs').tabs();                 
-    });
-</script>
+<?php if (!$this->options->is_simple_tabs_default) { ?>
+    <script>
+        jQuery(function () {
+            jQuery('.stats_tabs').tabs();
+        });
+    </script>
+<?php } ?>

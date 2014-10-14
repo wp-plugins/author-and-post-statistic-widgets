@@ -37,6 +37,12 @@ class Statistic_Widget extends WP_Widget {
         $widget_custom_args = $instance['widget_custom_args'] ? 'true' : 'false';
         $title_custom_args = $instance['title_custom_args'] ? 'true' : 'false';
 
+        $before_widget = '';
+        $after_widget = '';
+        $before_title = '';
+        $after_title = '';
+
+
         if ($instance['widget_custom_args'] == 'on') :
             $before_widget = $instance['before_widget'];
             $after_widget = $instance['after_widget'];
