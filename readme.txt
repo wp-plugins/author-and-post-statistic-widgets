@@ -120,10 +120,10 @@ Here you can manage all widgets. There are 5 tabs with widget settings options:
 == Changelog ==
 
 = 1.3.0 =
-Add public functions to show statistics 
+Added public functions to show statistics 
 
 = 1.2.0 =
-Add simple tabs for front-end
+Added simple tabs for widgets
 
 = 1.1.1 =
 Matching Wordpress 4.0 Standards
