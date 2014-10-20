@@ -38,9 +38,9 @@ APSW is an easy solution to display authors' activity and popular posts statisti
 * | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab5) | Dashboard: If you're the admin, there is also a statistic for all authors activity and posts popularity
 
 Also you can locate APSW widget content in any place of your template files using these functions:
-*`<?php function show_stats_post($from, $to) ?>` - Displays post stat for certain period of time ($from and $to are dates)
-*`<?php function show_stats_author($from, $to) ?>` - Displays author stat for certain period of time ($from and $to are dates)
-*`<?php function show_stats() ?>` - Displays full statistic info for authors and posts.
+* `<?php function show_stats_post($from, $to) ?>` - Displays post stat for certain period of time ($from and $to are dates)
+* `<?php function show_stats_author($from, $to) ?>` - Displays author stat for certain period of time ($from and $to are dates)
+* `<?php function show_stats() ?>` - Displays full statistic info for authors and posts.
 
 **WIDGET - Author & Popular Post Statistics** :
 This is a smart widget with two tabs | Author(s) | and | Posts |, which shows different statistic information on different pages, there are two cases: 
