@@ -10,7 +10,7 @@ Requires at least: 2.7.0
 
 Tested up to: 4.0
 
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 
 License: GPLv2 or later
 
@@ -118,6 +118,9 @@ Here you can manage all widgets. There are 5 tabs with widget settings options:
 * Support Forum: <http://gvectors.com/questions/>
 
 == Changelog ==
+
+= 1.3.0 =
+Add public functions to show statistics 
 
 = 1.2.0 =
 Add simple tabs for front-end
