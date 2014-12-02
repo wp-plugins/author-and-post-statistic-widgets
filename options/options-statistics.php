@@ -123,7 +123,7 @@ class Stats_Options {
                 </tr>
             </table>
 
-            <form action="<?php echo $_SERVER['PHP_SELF']; ?>?page=<?php echo $this->options->stats_option_page_slug; ?>&updated=true" method="post" name="<?php echo $this->options->stats_option_page_slug; ?>">
+            <form action="<?php echo admin_url(); ?>admin.php?page=<?php echo $this->options->stats_option_page_slug; ?>&updated=true" method="post" name="<?php echo $this->options->stats_option_page_slug; ?>">
 
                 <?php
                 if (function_exists('wp_nonce_field')) {

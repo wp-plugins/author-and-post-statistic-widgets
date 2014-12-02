@@ -70,7 +70,7 @@
 .stats_tabs .sw_author_info {
     display: inline-block;
     margin: 10px 0 0 10px;
-    width: 100%;
+    width: 92%;
 }
 
 .stats_tabs .sw_author_avatar, 
@@ -79,9 +79,7 @@
 }
 
 .stats_tabs .sw_author_name {
-    height: 48px;
     margin-left: 10px;
-    overflow: hidden;
 }
 
 .stats_tabs ul.ui-tabs-nav {

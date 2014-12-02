@@ -8,9 +8,9 @@ Tags: popular authors widget, popular post widget, author widget, post widget, a
 
 Requires at least: 2.7.0
 
-Tested up to: 4.0
+Tested up to: 4.0.1
 
-Stable tag: 1.3.0
+Stable tag: 1.3.1
 
 License: GPLv2 or later
 
@@ -37,23 +37,18 @@ APSW is an easy solution to display authors' activity and popular posts statisti
 * | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab4) | Dashboard: Own Posts' Readers Statistic by Countries
 * | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab5) | Dashboard: If you're the admin, there is also a statistic for all authors activity and posts popularity
 
-Also you can locate APSW widget content in any place of your template files using these functions:
-* `<?php function show_stats_post($from, $to) ?>` - Displays post stat for certain period of time ($from and $to are dates)
-* `<?php function show_stats_author($from, $to) ?>` - Displays author stat for certain period of time ($from and $to are dates)
-* `<?php function show_stats() ?>` - Displays full statistic info for authors and posts.
 
 **WIDGET - Author & Popular Post Statistics** :
 This is a smart widget with two tabs | Author(s) | and | Posts |, which shows different statistic information on different pages, there are two cases: 
 
 **If you're on a single post page**: 
 
-In | Author | tab it displays current post's author avatar, name and his(her) posting activity statistic:
-- Total Posts
-- Total Comments
-- Total Categories
-- Number of posts in different categories
-
-And in | Posts | tab it displays current author's most popular posts' titles with number of views or comments.
+* In | Author | tab it displays current post's author avatar, name and his(her) posting activity statistic:
+    - Total Posts
+    - Total Comments
+    - Total Categories
+    - Number of posts in different categories
+* And in | Posts | tab it displays current author's most popular posts' titles with number of views or comments.
 
 **If you're on non-single post page**, for example you're on category page, 
 
@@ -118,12 +113,14 @@ Here you can manage all widgets. There are 5 tabs with widget settings options:
 * Support Forum: <http://gvectors.com/questions/>
 
 == Changelog ==
+= 1.3.1 =
+* Fixed Bug: Problem with options page redirection on Wordpress multi-sites
 
 = 1.3.0 =
-Added public functions to show statistics 
+Added Feature: Public functions to show statistics directly from template file
 
 = 1.2.0 =
-Added simple tabs for widgets
+Added Feature: Simple tabs for widgets on front-end
 
 = 1.1.1 =
 Matching Wordpress 4.0 Standards
