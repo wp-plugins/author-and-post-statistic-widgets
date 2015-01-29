@@ -132,7 +132,7 @@ class Statistic {
      * return popular authors id's by author posts count
      */
     public function get_popular_authors_by_posts_count($start_time, $end_time, $limit = null) {
-        $select_query = 'SELECT posts.`post_author` AS `author_id`, COUNT(posts.`post_author`) AS `posts_count`, users.`display_name` as `user_name` FROM `' . $this->db->prefix . 'posts` AS `posts` INNER JOIN `' . $this->db->prefix . 'users` AS `users` ON posts.`post_author` = users.`ID` WHERE posts.`post_status` = "publish" AND posts.`post_type` IN(' . $this->post_types . ') AND DATE(posts.`post_date`) BETWEEN %s AND %s GROUP BY author_id ORDER BY posts_count DESC LIMIT %d;';
+        $select_query = 'SELECT posts.`post_author` AS `author_id`, COUNT(posts.`post_author`) AS `posts_count`, users.`display_name` as `user_name` FROM `' . $this->db->prefix . 'posts` AS `posts` INNER JOIN `' . $this->db->base_prefix . 'users` AS `users` ON posts.`post_author` = users.`ID` WHERE posts.`post_status` = "publish" AND posts.`post_type` IN(' . $this->post_types . ') AND DATE(posts.`post_date`) BETWEEN %s AND %s GROUP BY author_id ORDER BY posts_count DESC LIMIT %d;';
         $select_query = $this->db->prepare($select_query, $start_time, $end_time, $limit);
 //        exit($select_query);
         $author_data = $this->db->get_results($select_query, ARRAY_A);
@@ -143,7 +143,7 @@ class Statistic {
      * return popular authors by author posts views count
      */
     public function get_popular_authors_by_posts_views_count($start_time, $end_time, $limit) {
-        $select_query = 'SELECT SUM(stats.`view_count`) AS `view_count`, users.`display_name` AS `user_name`, posts.`post_author` AS `author_id` FROM `' . $this->stats_table . '` AS `stats` INNER JOIN `' . $this->db->prefix . 'posts` AS `posts` ON posts.`ID` = stats.`post_id` INNER JOIN `' . $this->db->prefix . 'users` AS `users` ON users.`ID` = posts.`post_author` WHERE stats.`view_count` >= 1 AND posts.`post_status` = "publish" AND posts.`post_type` IN(' . $this->post_types . ') AND DATE(posts.`post_date`) BETWEEN %s AND %s GROUP BY `author_id` ORDER BY `view_count` DESC LIMIT %d;';
+        $select_query = 'SELECT SUM(stats.`view_count`) AS `view_count`, users.`display_name` AS `user_name`, posts.`post_author` AS `author_id` FROM `' . $this->stats_table . '` AS `stats` INNER JOIN `' . $this->db->prefix . 'posts` AS `posts` ON posts.`ID` = stats.`post_id` INNER JOIN `' . $this->db->base_prefix . 'users` AS `users` ON users.`ID` = posts.`post_author` WHERE stats.`view_count` >= 1 AND posts.`post_status` = "publish" AND posts.`post_type` IN(' . $this->post_types . ') AND DATE(posts.`post_date`) BETWEEN %s AND %s GROUP BY `author_id` ORDER BY `view_count` DESC LIMIT %d;';
         $select_query = $this->db->prepare($select_query, $start_time, $end_time, $limit);
         $author_data = $this->db->get_results($select_query, ARRAY_A);
         return $author_data;
@@ -153,7 +153,7 @@ class Statistic {
      * return popular authors id's by author posts comments count
      */
     public function get_popular_authors_by_comments_count($start_time, $end_time, $limit) {
-        $select_query = 'SELECT posts.`post_author` AS `author_id`, users.`display_name` AS `user_name`, COUNT(comments.`comment_ID`) AS c_count FROM `' . $this->db->prefix . 'posts` AS `posts` INNER JOIN `' . $this->db->prefix . 'users` AS `users` ON users.`ID` = posts.`post_author` INNER JOIN `' . $this->db->prefix . 'comments` AS `comments` ON posts.`ID` = comments.`comment_post_ID` WHERE posts.`post_status` = "publish" AND posts.`post_type` IN(' . $this->post_types . ') AND comments.`comment_approved` = 1 AND DATE(comments.`comment_date`) BETWEEN %s AND %s GROUP BY `author_id` ORDER BY `c_count` DESC LIMIT %d;';
+        $select_query = 'SELECT posts.`post_author` AS `author_id`, users.`display_name` AS `user_name`, COUNT(comments.`comment_ID`) AS c_count FROM `' . $this->db->prefix . 'posts` AS `posts` INNER JOIN `' . $this->db->base_prefix . 'users` AS `users` ON users.`ID` = posts.`post_author` INNER JOIN `' . $this->db->prefix . 'comments` AS `comments` ON posts.`ID` = comments.`comment_post_ID` WHERE posts.`post_status` = "publish" AND posts.`post_type` IN(' . $this->post_types . ') AND comments.`comment_approved` = 1 AND DATE(comments.`comment_date`) BETWEEN %s AND %s GROUP BY `author_id` ORDER BY `c_count` DESC LIMIT %d;';
         $select_query = $this->db->prepare($select_query, $start_time, $end_time, $limit);
         $popular_authors_data = $this->db->get_results($select_query, ARRAY_A);
         return $popular_authors_data;
