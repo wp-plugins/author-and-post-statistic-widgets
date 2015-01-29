@@ -1,0 +1,87 @@
+.stats_tabs * {
+    box-sizing: initial;
+}
+
+.stats_tabs .stats-block {
+    min-height: 100px;
+    border: 2px solid #ddd;
+    margin-bottom: 10px;
+    padding: 3px;
+}
+
+.stats-author-block {
+
+}
+
+.stats-post-block {
+
+}
+
+.inner-title {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    padding: 10px 0 5px 0;
+}
+
+.stats_tabs ul.stats-posts-list, ul.stats-author-list {
+    list-style-type: none;
+    margin: 5px !important;
+    padding: 0 !important;
+}
+
+.stats_tabs ul.stats-author-list > li, 
+.stats_tabs ul.stats-posts-list > li {
+    border-bottom: 1px dotted #343434;
+    margin: 5px 0;
+    text-align: right;
+}
+
+.stats_tabs ul.stats-author-list > li span.stats-label,
+.stats_tabs ul.stats-posts-list > li span.stats-label {
+    float: left;
+}
+.stats_tabs ul.stats-author-list li span.stats-value, 
+.stats_tabs ul.stats-posts-list li span.stats-value {
+
+}
+
+.stats_tabs ul.nested-list {
+    list-style-type: none;
+    margin: 10px 0 10px 30px;
+}
+
+.stats_tabs ul.nested-list li {
+    border-bottom: 1px solid #ddd;
+    margin: 5px 0;
+}
+
+.stats_tabs ul.tags-list {
+    overflow: hidden;
+}
+
+.stats_tabs ul.tags-list li {
+    display: inline-block;
+    border: none;
+    float: left;
+    margin-right: 3px;
+}
+
+.stats_tabs .sw_author_info {
+    display: inline-block;
+    margin: 10px 0 0 10px;
+    width: 92%;
+}
+
+.stats_tabs .sw_author_avatar, 
+.stats_tabs .sw_author_name {
+    display: inline-block;
+}
+
+.stats_tabs .sw_author_name {
+    margin-left: 10px;
+}
+
+.stats_tabs ul.ui-tabs-nav {
+    font-size: 12px;
+}
