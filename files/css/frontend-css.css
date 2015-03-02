@@ -1,0 +1,178 @@
+.stats_tabs * {
+    box-sizing: initial;
+}
+
+.stats_tabs .stats-block {
+    min-height: 100px;
+    border: 2px solid #ddd;
+    margin-bottom: 10px;
+    padding: 3px;
+}
+
+.stats_tabs ul.tabs-menu li {list-style-type: none;}
+
+.stats_tabs a, .separate-wrapper a {text-decoration: none; display:inline!important; }
+.widget .stats_tabs li img,
+.widget .separate-wrapper li img{
+    margin:0px;
+    width:auto;
+    height:auto;
+    padding:0px;
+    float:none;
+    padding-right:2px;
+}
+.widget .separate-wrapper li{
+    padding:1px !important;
+}
+.stats-author-block {}
+.stats-author-block .stats-value {float: right;}
+
+.stats-post-block {}
+.stats-post-block .stats-value {float: right;}
+
+.inner-title {
+    text-align: center;
+    width: 100%;
+    display: inline-block;
+    padding: 10px 0 5px 0;
+}
+
+.stats_tabs ul.stats-posts-list, ul.stats-author-list {
+    list-style-type: none;
+    margin: 5px !important;
+    padding: 0 !important;
+}
+
+.stats_tabs ul.stats-author-list > li, 
+.stats_tabs ul.stats-posts-list > li {
+    border-bottom: 1px dotted #ccc !important;
+    margin: 5px 0;
+    text-align: right;
+    list-style:none;
+}
+
+.stats_tabs ul.stats-author-list > li span.stats-label,
+.stats_tabs ul.stats-posts-list > li span.stats-label {
+    float: left;
+}
+.stats_tabs ul.stats-author-list li span.stats-value, 
+.stats_tabs ul.stats-posts-list li span.stats-value {
+
+}
+
+.stats_tabs ul.nested-list {
+    list-style-type: none;
+    margin: 10px 0 10px 30px;
+}
+
+.stats_tabs ul.nested-list li {
+    border-top: 1px dotted #ddd !important;
+    margin: 5px 0;
+}
+
+.stats_tabs ul.tags-list {
+    overflow: hidden;
+}
+
+.stats_tabs ul.tags-list li {
+    display: inline-block;
+    border: none;
+    float: left;
+    margin-right: 3px;
+}
+
+.stats_tabs .sw_author_info {
+    display: inline-block;
+    margin: 10px 0 0 10px;
+    width: 92%;
+}
+
+.stats_tabs .sw_author_avatar, 
+.stats_tabs .sw_author_name {
+    display: inline-block;
+}
+
+.stats_tabs .sw_author_name,
+.separate-wrapper .sw_author_name {    
+    display: inline-block;
+    height: 48px;
+    line-height: 24px;
+    margin-left: 15px;
+    vertical-align: top;
+}
+
+.stats_tabs ul.ui-tabs-nav {
+    font-size: 12px;
+}
+
+.separate-wrapper .sw_author_avatar {
+    display: inline-block;
+    width: 50px;
+}
+
+
+/*.separate-wrapper .sw_author_name {
+    display: inline-block;
+    height: 48px;
+    line-height: 24px;
+    margin-left: 15px;
+    vertical-align: top;
+}*/
+
+.separate-wrapper ul.stats-popular-authors-list li,
+.separate-wrapper ul.stats-popular-posts-list li{ clear: both; }
+
+.separate-wrapper .stats-value,
+.separate-wrapper ul.stats-popular-authors-list li div.stats-value, 
+.separate-wrapper ul.stats-popular-posts-list li div.stats-value{
+    float: right;    
+    min-width: 20px;
+    text-align: center;
+    white-space:nowrap;
+}
+.separate-wrapper .stats-value,
+.separate-wrapper ul.stats-popular-authors-list .apsw-comments-num,
+.separate-wrapper ul.stats-popular-authors-list .apsw-posts-num,
+.separate-wrapper ul.stats-popular-posts-list .apsw-comments-num,
+.separate-wrapper ul.stats-popular-posts-list .apsw-views-num{
+    font-size:13px;
+    font-family:Arial, Helvetica, sans-serif;
+    line-height:14px;
+    padding:2px 0px 0px 0px;
+    text-decoration:none;
+    height:auto;
+    width:auto;
+    border:none;
+}
+.apsw-views-img, .apsw-posts-img, .apsw-comments-img{
+    border:none!important; box-shadow:none!important; border-radius:0px!important; clear:both!important; vertical-align:middle!important;
+}
+.separate-wrapper ul.stats-popular-authors-list .apsw-comments-img{
+    border:none; box-shadow:none; border-radius:0px; clear:both; vertical-align:middle; padding-right:4px; display:inline;
+}
+.separate-wrapper ul.stats-popular-authors-list .apsw-posts-img{
+    border:none; box-shadow:none; border-radius:0px; clear:both; vertical-align:middle; padding-right:2px; display:inline;
+}
+
+.separate-wrapper ul.stats-popular-posts-list .apsw-comments-img{
+    border:none; box-shadow:none; border-radius:0px; clear:both; vertical-align:middle; padding-right:4px; display:inline;
+}
+.separate-wrapper ul.stats-popular-posts-list .apsw-views-img{
+    border:none; box-shadow:none; border-radius:0px; clear:both; vertical-align:middle; padding-right:3px; display:inline;
+}
+/*
+.separate-wrapper ul.stats-popular-authors-list li span.stats-posts-count,
+.separate-wrapper ul.stats-popular-posts-list li span.stats-views-count {background: #ddd;}
+.separate-wrapper ul.stats-popular-authors-list li span.stats-comments-count,
+.separate-wrapper ul.stats-popular-posts-list li span.stats-comments-count {background: #ddd;}
+*/
+.apsw_views_count_wrapper { display:block; clear:both; float:none; margin:25px 1px 15px 1px; white-space:nowrap; min-width:160px; max-width:200px; }
+.apsw_views_all_time { border-bottom:#CCCCCC 1px dotted; clear:both; padding:5px 3px 3px 3px; font-size:13px }
+.apsw_views_daily { border-bottom:#CCCCCC 1px dotted; clear:both; padding:5px 3px 3px 3px; font-size:13px }
+
+.apsw_post_views_title { float:left; }
+.apsw_post_views_value { float: right;}
+.apsw-stat-img-views_all, .apsw-stat-img-views_today{ padding-right:2px; padding-bottom: 2px; border:none!important; box-shadow:none!important; border-radius:0px!important; display:inline!important; clear:both!important; vertical-align:middle!important; padding-right: 0px 3px 0px 0px!important; }
+
+
+
