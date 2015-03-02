@@ -4,7 +4,7 @@ include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'options' . DIRECTORY_SEPAR
 include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'apsw-db-helper.php');
 include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'apsw-helper.php');
 
-class APSW_Author_Widget extends WP_Widget {
+class APSW_Popular_Posts_List extends WP_Widget {
 
     public $apsw_options_serialized;
     public $apsw_db_helper;
@@ -17,12 +17,12 @@ class APSW_Author_Widget extends WP_Widget {
          * the widget class name and description
          */
         $widget_ops = array(
-            'classname' => 'author_widget',
-            'description' => __('This Widget displays popular authors statistic information', APSW_Core::$text_domain)
+            'classname' => 'popular_posts_list_widget',
+            'description' => __('This Widget displays popular posts list on all pages', APSW_Core::$text_domain)
         );
 
         $control_ops = array();
-        $this->WP_Widget('author_stats_widget', __('APSW - Popular Authors', APSW_Core::$text_domain), $widget_ops, $control_ops);
+        $this->WP_Widget('popular_posts_list_widget', __('APSW - Popular Posts List', APSW_Core::$text_domain), $widget_ops, $control_ops);
     }
 
     /**
@@ -32,9 +32,8 @@ class APSW_Author_Widget extends WP_Widget {
         extract($args);
 
         $title = apply_filters('widget_title', $instance['title']);
-        $from = $instance['from'];
-        $to = $instance['to'];
-        
+        $date_interval = $instance['apsw_date_interval'];
+
         if ($instance['apsw_widget_custom_args'] == '1') {
             $before_widget = $instance['before_widget'];
             $after_widget = $instance['after_widget'];
@@ -67,11 +66,9 @@ class APSW_Author_Widget extends WP_Widget {
             echo $before_title . strip_tags($title) . $after_title;
         }
 
-        global $post;
-
         echo $before_body;
 
-        include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'author-stats-layout.php');
+        include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'popular-posts-list.php');
 
         echo $after_body;
 
@@ -85,8 +82,7 @@ class APSW_Author_Widget extends WP_Widget {
     function update($new_instance, $old_instance) {
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
-        $instance['from'] = $new_instance['from'];
-        $instance['to'] = $new_instance['to'];
+        $instance['apsw_date_interval'] = strip_tags($new_instance['apsw_date_interval']);
         $instance['apsw_widget_custom_args'] = $new_instance['apsw_widget_custom_args'];
         $instance['apsw_title_custom_args'] = $new_instance['apsw_title_custom_args'];
         $instance['apsw_body_custom_args'] = $new_instance['apsw_body_custom_args'];
@@ -105,15 +101,14 @@ class APSW_Author_Widget extends WP_Widget {
     function form($instance) {
         //Set up some default widget settings.
         $defaults = array(
-            'title' => __('Popular Authors', APSW_Core::$text_domain),
-            'from' => '',
-            'to' => '',
+            'title' => __('Popular Posts List', APSW_Core::$text_domain),
+            'apsw_date_interval' => '1',
             'apsw_widget_custom_args' => '',
             'apsw_title_custom_args' => '',
             'apsw_body_custom_args' => ''
         );
         $instance = wp_parse_args((array) $instance, $defaults);
-        include 'form/author-statistics-widget-form.php';
+        include 'form/popular-posts-list-form.php';
     }
 
 }

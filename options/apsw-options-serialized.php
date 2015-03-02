@@ -1,8 +1,8 @@
 <?php
 
-class Serialize_Options {
+class APSW_Options_Serialize {
 
-    public $stats_option_page_slug = 'stats_options';
+    public $apsw_options_page_slug = 'stats_options';
 
     /* ===== GENERAL SETTINGS ===== */
 
@@ -20,6 +20,11 @@ class Serialize_Options {
      * post types for statistics
      */
     public $post_types = array('post', 'page');
+
+    /*
+     * Custom taxonomies for statistics
+     */
+    public $custom_taxonomy_types = array();
 
     /**
      * is jquery tabs by default
@@ -77,6 +82,11 @@ class Serialize_Options {
      */
     public $is_post_view_by_ip;
 
+    /**
+     * show post views count below the post content;
+     */
+    public $is_display_daily_views;
+
     /* ===== STYLES SETTINGS ===== */
     public $active_theme_name;
     public $custom_css;
@@ -90,14 +100,15 @@ class Serialize_Options {
     public $apsw_tab_hover_text_color;
 
     function __construct() {
-        $this->addOptions();
-        $this->initOptions(get_option($this->stats_option_page_slug));
+        $this->add_options();
+        $this->init_options(get_option($this->apsw_options_page_slug));
     }
 
-    public function addOptions() {
+    public function add_options() {
         $options = array(
             'is_stats_together' => '1', // default - show together
             'post_types' => $this->post_types, // include all post types
+            'custom_taxonomy_types' => $this->custom_taxonomy_types, // default empty
             'is_simple_tabs_default' => '0', // default - simple tabs
             'is_display_author_name' => '1', // default display name
             'is_display_author_avatar' => '1', // default display avatar
@@ -106,6 +117,7 @@ class Serialize_Options {
             'popular_authors_limit' => '10', // by default display 10 authors
             'popular_posts_limit' => '10', // by default display 10 posts
             'is_post_view_by_ip' => '1', // default - by ip
+            'is_display_daily_views' => '1', // default - display views count
             'active_theme_name' => 'smoothness', // default - by ip
             'custom_css' => '', // default - by ip
             'apsw_tab_active_bg_color' => '#fff',
@@ -115,13 +127,14 @@ class Serialize_Options {
             'apsw_tab_text_color' => '#fff',
             'apsw_tab_hover_text_color' => '#21759b',
         );
-        add_option($this->stats_option_page_slug, serialize($options));
+        add_option($this->apsw_options_page_slug, serialize($options));
     }
 
-    public function initOptions($serialize_options) {
+    public function init_options($serialize_options) {
         $options = unserialize($serialize_options);
         $this->is_stats_together = $options['is_stats_together'];
         $this->post_types = $options['post_types'];
+        $this->custom_taxonomy_types = isset($options['custom_taxonomy_types']) ? $options['custom_taxonomy_types'] : array();
         $this->is_simple_tabs_default = $options['is_simple_tabs_default'];
         $this->is_display_author_name = $options['is_display_author_name'];
         $this->is_display_author_avatar = $options['is_display_author_avatar'];
@@ -130,6 +143,7 @@ class Serialize_Options {
         $this->popular_authors_limit = $options['popular_authors_limit'];
         $this->popular_posts_limit = $options['popular_posts_limit'];
         $this->is_post_view_by_ip = $options['is_post_view_by_ip'];
+        $this->is_display_daily_views = isset($options['is_display_daily_views']) ? $options['is_display_daily_views'] : 0;
         $this->active_theme_name = $options['active_theme_name'];
         $this->custom_css = $options['custom_css'];
         $this->apsw_tab_active_bg_color = $options['apsw_tab_active_bg_color'];
@@ -140,14 +154,15 @@ class Serialize_Options {
         $this->apsw_tab_hover_text_color = $options['apsw_tab_hover_text_color'];
     }
 
-    public function updateOptions() {
-        update_option($this->stats_option_page_slug, serialize($this->toArray()));
+    public function update_options() {
+        update_option($this->apsw_options_page_slug, serialize($this->to_array()));
     }
 
-    public function toArray() {
+    public function to_array() {
         $options = array(
             'is_stats_together' => $this->is_stats_together,
             'post_types' => $this->post_types,
+            'custom_taxonomy_types' => $this->custom_taxonomy_types,
             'is_simple_tabs_default' => $this->is_simple_tabs_default,
             'is_display_author_name' => $this->is_display_author_name,
             'is_display_author_avatar' => $this->is_display_author_avatar,
@@ -156,6 +171,7 @@ class Serialize_Options {
             'popular_authors_limit' => $this->popular_authors_limit,
             'popular_posts_limit' => $this->popular_posts_limit,
             'is_post_view_by_ip' => $this->is_post_view_by_ip,
+            'is_display_daily_views' => $this->is_display_daily_views,
             'active_theme_name' => $this->active_theme_name,
             'custom_css' => $this->custom_css,
             'apsw_tab_active_bg_color' => $this->apsw_tab_active_bg_color,
@@ -170,6 +186,10 @@ class Serialize_Options {
 
     public function set_post_types($post_types) {
         $this->post_types = $post_types;
+    }
+
+    public function set_taxonomy_types($taxonomy_types) {
+        $this->custom_taxonomy_types = $taxonomy_types;
     }
 
 }

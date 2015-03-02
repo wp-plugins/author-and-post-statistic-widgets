@@ -2,7 +2,7 @@
     <table class="form-table">
         <tbody>
             <tr valign="top">
-                <th scope="row"><?php _e('Jquery UI CSS Theme: ', Statistic_Info::$text_domain); ?></th>
+                <th scope="row"><?php _e('Jquery UI CSS Theme: ', APSW_Core::$text_domain); ?></th>
                 <td>
                     <label for="switcher">
                         <div id="switcher" style="display: inline-block;"></div>
@@ -11,25 +11,25 @@
                 </td>
             </tr>
             <tr valign="top">
-                <th scope="row"><?php _e('Custom CSS to include in header: ', Statistic_Info::$text_domain); ?></th>
+                <th scope="row"><?php _e('Custom CSS to include in header:', APSW_Core::$text_domain); ?> </th>
                 <td>
                     <label for="custom_css">
-                        <textarea cols="50" rows="10" placeholder="<?php _e('Write here your css to include in header: ', Statistic_Info::$text_domain); ?>" id="custom_css" class="custom_css_area" name="custom_css"><?php echo $this->options->custom_css; ?></textarea>
+                        <textarea cols="50" rows="10" placeholder="<?php _e('Write here your css to include in header:', APSW_Core::$text_domain); ?>" id="custom_css" class="custom_css_area" name="custom_css"> <?php echo $this->apsw_options_serialized->custom_css; ?></textarea>
                     </label>
                 </td>
             </tr>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Use Simple Tabs', Statistic_Info::$text_domain) ?>:
+                    <?php _e('Use Simple Tabs', APSW_Core::$text_domain) ?>:
                 </th>
                 <td>                                
                     <label for="is_simple_tabs_default">
-                        <input type="checkbox" <?php checked($this->options->is_simple_tabs_default == 1); ?> value="<?php echo $this->options->is_simple_tabs_default; ?>" name="is_simple_tabs_default" id="is_simple_tabs_default" />
+                        <input type="checkbox" <?php checked($this->apsw_options_serialized->is_simple_tabs_default == 1); ?> value="1" name="is_simple_tabs_default" id="is_simple_tabs_default" />
                     </label>
                 </td>
             </tr>
 
-            <?php if ($this->options->is_simple_tabs_default) { ?>
+            <?php if ($this->apsw_options_serialized->is_simple_tabs_default) { ?>
 
                 <tr id="apsw_simple_tabs_styles">
                     <td colspan="2">
@@ -38,10 +38,10 @@
 
                                 <tr valign="top">
                                     <th scope="row">
-                                        <label for="apsw_tab_active_bg_color"><?php _e('Active Tab Background Color', Statistic_Info::$text_domain); ?>: </label>
+                                        <label for="apsw_tab_active_bg_color"><?php _e('Active Tab Background Color', APSW_Core::$text_domain); ?>: </label>
                                     </th>
                                     <td>
-                                        <input type="text" class="regular-text" value="<?php echo $this->options->apsw_tab_active_bg_color; ?>" id="apsw_tab_active_bg_color" name="apsw_tab_active_bg_color" placeholder="<?php _e('Example: #f0000f', Statistic_Info::$text_domain); ?>"/>
+                                        <input type="text" class="regular-text" value="<?php echo $this->apsw_options_serialized->apsw_tab_active_bg_color; ?>" id="apsw_tab_active_bg_color" name="apsw_tab_active_bg_color" placeholder="<?php _e('Example: #f0000f', APSW_Core::$text_domain); ?>"/>
                                     </td>
 
                                     <td class="picker_img_cell">
@@ -62,10 +62,10 @@
 
                                 <tr valign="top">
                                     <th scope="row">
-                                        <label for="apsw_tab_bg_color"><?php _e('Tab Background Color', Statistic_Info::$text_domain); ?>: </label>
+                                        <label for="apsw_tab_bg_color"><?php _e('Tab Background Color', APSW_Core::$text_domain); ?>: </label>
                                     </th>
                                     <td>
-                                        <input type="text" class="regular-text" value="<?php echo $this->options->apsw_tab_bg_color; ?>" id="apsw_tab_bg_color" name="apsw_tab_bg_color" placeholder="<?php _e('Example: #f0000f', Statistic_Info::$text_domain); ?>"/>
+                                        <input type="text" class="regular-text" value="<?php echo $this->apsw_options_serialized->apsw_tab_bg_color; ?>" id="apsw_tab_bg_color" name="apsw_tab_bg_color" placeholder="<?php _e('Example: #f0000f', APSW_Core::$text_domain); ?>"/>
                                     </td>
 
                                     <td class="picker_img_cell">
@@ -86,10 +86,10 @@
 
                                 <tr valign="top">
                                     <th scope="row">
-                                        <label for="apsw_tab_border_color"><?php _e('Tab Border Color', Statistic_Info::$text_domain); ?>: </label>
+                                        <label for="apsw_tab_border_color"><?php _e('Tab Border Color', APSW_Core::$text_domain); ?>: </label>
                                     </th>
                                     <td>
-                                        <input type="text" class="regular-text" value="<?php echo $this->options->apsw_tab_border_color; ?>" id="apsw_tab_border_color" name="apsw_tab_border_color" placeholder="<?php _e('Example: #f0000f', Statistic_Info::$text_domain); ?>"/>
+                                        <input type="text" class="regular-text" value="<?php echo $this->apsw_options_serialized->apsw_tab_border_color; ?>" id="apsw_tab_border_color" name="apsw_tab_border_color" placeholder="<?php _e('Example: #f0000f', APSW_Core::$text_domain); ?>"/>
                                     </td>
 
                                     <td class="picker_img_cell">
@@ -110,10 +110,10 @@
 
                                 <tr valign="top">
                                     <th scope="row">
-                                        <label for="apsw_tab_active_text_color"><?php _e('Active Tab Title Color', Statistic_Info::$text_domain); ?>: </label>
+                                        <label for="apsw_tab_active_text_color"><?php _e('Active Tab Title Color', APSW_Core::$text_domain); ?>: </label>
                                     </th>
                                     <td>
-                                        <input type="text" class="regular-text" value="<?php echo $this->options->apsw_tab_active_text_color; ?>" id="apsw_tab_active_text_color" name="apsw_tab_active_text_color" placeholder="<?php _e('Example: #f0000f', Statistic_Info::$text_domain); ?>"/>
+                                        <input type="text" class="regular-text" value="<?php echo $this->apsw_options_serialized->apsw_tab_active_text_color; ?>" id="apsw_tab_active_text_color" name="apsw_tab_active_text_color" placeholder="<?php _e('Example: #f0000f', APSW_Core::$text_domain); ?>"/>
                                     </td>
 
                                     <td class="picker_img_cell">
@@ -134,10 +134,10 @@
                                 
                                 <tr valign="top">
                                     <th scope="row">
-                                        <label for="apsw_tab_text_color"><?php _e('Tab Title Color', Statistic_Info::$text_domain); ?>: </label>
+                                        <label for="apsw_tab_text_color"><?php _e('Tab Title Color', APSW_Core::$text_domain); ?>: </label>
                                     </th>
                                     <td>
-                                        <input type="text" class="regular-text" value="<?php echo $this->options->apsw_tab_text_color; ?>" id="apsw_tab_text_color" name="apsw_tab_text_color" placeholder="<?php _e('Example: #f0000f', Statistic_Info::$text_domain); ?>"/>
+                                        <input type="text" class="regular-text" value="<?php echo $this->apsw_options_serialized->apsw_tab_text_color; ?>" id="apsw_tab_text_color" name="apsw_tab_text_color" placeholder="<?php _e('Example: #f0000f', APSW_Core::$text_domain); ?>"/>
                                     </td>
 
                                     <td class="picker_img_cell">
@@ -158,10 +158,10 @@
                                 
                                 <tr valign="top">
                                     <th scope="row">
-                                        <label for="apsw_tab_hover_text_color"><?php _e('Tab Hover Title Color', Statistic_Info::$text_domain); ?>: </label>
+                                        <label for="apsw_tab_hover_text_color"><?php _e('Tab Hover Title Color', APSW_Core::$text_domain); ?>: </label>
                                     </th>
                                     <td>
-                                        <input type="text" class="regular-text" value="<?php echo $this->options->apsw_tab_hover_text_color; ?>" id="apsw_tab_hover_text_color" name="apsw_tab_hover_text_color" placeholder="<?php _e('Example: #f0000f', Statistic_Info::$text_domain); ?>"/>
+                                        <input type="text" class="regular-text" value="<?php echo $this->apsw_options_serialized->apsw_tab_hover_text_color; ?>" id="apsw_tab_hover_text_color" name="apsw_tab_hover_text_color" placeholder="<?php _e('Example: #f0000f', APSW_Core::$text_domain); ?>"/>
                                     </td>
 
                                     <td class="picker_img_cell">

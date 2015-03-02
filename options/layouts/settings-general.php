@@ -3,38 +3,61 @@
         <tbody>
             <tr valign="top">
                 <th scope="row">
-                    Show author and post statistics in:
+                    <?php _e('Show author and post statistics in:', APSW_Core::$text_domain); ?>
                 </th>
                 <td>                                
                     <label>
-                        <input type="radio" <?php checked($this->options->is_stats_together == '1') ?> value="1" name="is_stats_together" id="is_stats_tabbed" />
-                        <span>Tabs</span>
+                        <input type="radio" <?php checked($this->apsw_options_serialized->is_stats_together == '1') ?> value="1" name="is_stats_together" id="is_stats_tabbed" />
+                        <span><?php _e('Tabs', APSW_Core::$text_domain); ?></span>
                     </label><br/>
                     <label>
-                        <input type="radio" <?php checked($this->options->is_stats_together == '2') ?> value="2" name="is_stats_together" id="is_stats_separate" />
-                        <span>Separate blocks</span>
+                        <input type="radio" <?php checked($this->apsw_options_serialized->is_stats_together == '2') ?> value="2" name="is_stats_together" id="is_stats_separate" />
+                        <span><?php _e('Separate blocks', APSW_Core::$text_domain); ?></span>
                     </label>
                 </td>
             </tr>
 
             <tr valign="top">
                 <th scope="row">
-                    Create statistic for post types:
+                    <?php _e('Create statistic for post and taxonomy types:', APSW_Core::$text_domain); ?>
                 </th>
                 <td>                                
                     <?php
-                    foreach ($this->post_types as $post_type) {
+                    foreach ($all_post_types as $post_type) {
+                        $post_type_checked = in_array($post_type['post_type'], $this->apsw_options_serialized->post_types);
+                        $taxonomy_css = ($post_type_checked) ? 'block' : 'none';
                         ?>
-                        <label for="<?php echo $post_type ?>">
-                            <input type="checkbox" <?php checked(in_array($post_type, $this->options->post_types)); ?> value="<?php echo $post_type; ?>" name="post_types[]" id="<?php echo $post_type; ?>" />
-                            <span><?php echo $post_type; ?></span>
-                        </label><br/>
+                        <div class="post_type_wrapper">
+                            <label for="apsw_<?php echo $post_type['post_type']; ?>">
+                                <input type="checkbox" <?php checked($post_type_checked); ?> value="<?php echo $post_type['post_type']; ?>" name="post_types[]" id="apsw_<?php echo $post_type['post_type']; ?>" class="apsw_post_taxonomy_types" />
+                                <span><?php echo $post_type['post_type']; ?></span>
+                            </label>
+                            <?php
+                            if ($post_type['taxonomies']) {
+                                ?>
+                                <div class="taxonomy_type_wrapper" style="display: <?php echo $taxonomy_css; ?>;">
+                                    <?php
+//                                    $step = 1;
+                                    foreach ($post_type['taxonomies'] as $taxonomies) {
+                                        ?>
+                                        <label for="apsw_<?php echo $taxonomies['taxonomy']; ?>">
+                                            <input type="checkbox" <?php checked(in_array($taxonomies['taxonomy'], $this->apsw_options_serialized->custom_taxonomy_types)); ?> value="<?php echo $taxonomies['taxonomy']; ?>" name="custom_taxonomy_types[]" id="apsw_<?php echo $taxonomies['taxonomy']; ?>" />
+                                            <span><?php echo $taxonomies['taxonomy']; ?></span>
+                                        </label><br/>
+                                        <?php
+//                                        $count++;
+                                    }
+                                    ?>
+                                </div>
+                                <?php
+                            }
+                            ?>
+                        </div>
                         <?php
                     }
                     ?>
                 </td>
             </tr>
-
         </tbody>
     </table>
 

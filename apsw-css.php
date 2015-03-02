@@ -71,9 +71,9 @@ class APSW_CSS {
                 width: auto;
             }
 
-            .stats_tabs .tab-content {
-                width: 100%;
+            .stats_tabs .tab-content {                
                 display: none;
+                padding: 10px;
             }
 
             .stats_tabs #tabs-1 {

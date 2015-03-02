@@ -28,3 +28,6 @@
 #tabs > div.color-light h2 {
     color: #fff;
 }
+
+.post_type_wrapper {margin: 7px 0;}
+.taxonomy_type_wrapper {margin-left: 30px; display: none;}

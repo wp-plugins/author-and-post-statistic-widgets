@@ -1,26 +1,10 @@
 jQuery(document).ready(function ($) {
-
-    $('#is_simple_tabs_default').change(function () {
+    
+    $('.apsw_post_taxonomy_types').change(function () {
         if ($(this).is(':checked')) {
-            $(this).val('1');
+            $(this).parent().next('.taxonomy_type_wrapper').css('display', 'block');
         } else {
-            $(this).val('0');
-        }
-    });
-
-    $('#is_display_author_name').change(function () {
-        if ($(this).is(':checked')) {
-            $(this).val('1');
-        } else {
-            $(this).val('0');
-        }
-    });
-
-    $('#is_display_author_avatar').change(function () {
-        if ($(this).is(':checked')) {
-            $(this).val('1');
-        } else {
-            $(this).val('0');
+            $(this).parent().next('.taxonomy_type_wrapper').css('display', 'none');
         }
     });
 

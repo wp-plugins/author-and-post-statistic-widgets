@@ -1,29 +1,27 @@
 <?php
 
-include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'options' . DIRECTORY_SEPARATOR . 'options-serialized.php');
-include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'db-statistic.php');
-include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'helper.php');
+include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'options' . DIRECTORY_SEPARATOR . 'apsw-options-serialized.php');
+include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'apsw-db-helper.php');
+include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'apsw-helper.php');
 
-class Statistic_Widget extends WP_Widget {
+class APSW_Statistic_Widget extends WP_Widget {
 
-    public $options;
-    public $statistic;
+    public $apsw_options_serialized;
+    public $apsw_db_helper;
 
     public function __construct() {
-
-
-        $this->options = new Serialize_Options();
-        $this->statistic = new Statistic();
+        $this->apsw_options_serialized = new APSW_Options_Serialize();
+        $this->apsw_db_helper = new APSW_DB_Helper();
         /**
          * the widget class name and description
          */
         $widget_ops = array(
             'classname' => 'all_stats_widget',
-            'description' => __('This Widget displays author and post statistic information.', Statistic_Info::$text_domain)
+            'description' => __('This Widget displays author and post statistic information.', APSW_Core::$text_domain)
         );
 
         $control_ops = array();
-        $this->WP_Widget('a_stats_widget', __('APSW - Author &amp; Post Statistics', Statistic_Info::$text_domain), $widget_ops, $control_ops);
+        $this->WP_Widget('a_stats_widget', __('APSW - Author &amp; Post Statistics', APSW_Core::$text_domain), $widget_ops, $control_ops);
     }
 
     /**
@@ -34,8 +32,6 @@ class Statistic_Widget extends WP_Widget {
 
         $title = apply_filters('widget_title', $instance['title']);
         $body = $instance['body'];
-        $widget_custom_args = $instance['widget_custom_args'] ? 'true' : 'false';
-        $title_custom_args = $instance['title_custom_args'] ? 'true' : 'false';
 
         $before_widget = '';
         $after_widget = '';
@@ -43,29 +39,29 @@ class Statistic_Widget extends WP_Widget {
         $after_title = '';
 
 
-        if ($instance['widget_custom_args'] == 'on') :
+        if ($instance['apsw_widget_custom_args'] == '1') {
             $before_widget = $instance['before_widget'];
             $after_widget = $instance['after_widget'];
-        else :
+        } else {
             $before_widget = $args['before_widget'];
             $after_widget = $args['after_widget'];
-        endif;
+        }
 
-        if ($instance['title_custom_args'] == 'on') :
+        if ($instance['apsw_title_custom_args'] == '1') {
             $before_title = $instance['before_title'];
             $after_title = $instance['after_title'];
-        else :
+        } else {
             $before_title = $args['before_title'];
             $after_title = $args['after_title'];
-        endif;
+        }
 
-        if ($instance['body_custom_args'] == 'on') :
+        if ($instance['apsw_body_custom_args'] == '1') {
             $before_body = $instance['before_body'];
             $after_body = $instance['after_body'];
-        else:
+        } else {
             $before_body = '';
             $after_body = '';
-        endif;
+        }
 
 
         // Widget 
@@ -73,13 +69,13 @@ class Statistic_Widget extends WP_Widget {
 
         if (!empty($title)) {
             echo $before_title . strip_tags($title) . $after_title;
-        };
+        }
 
         global $post;
 
         echo $before_body;
 
-        if ($this->options->is_stats_together == 1) {
+        if ($this->apsw_options_serialized->is_stats_together == 1) {
             if (is_singular()) {
                 include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'all-stats-tabbed-single.php');
             } else {
@@ -105,9 +101,9 @@ class Statistic_Widget extends WP_Widget {
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['body'] = strip_tags($new_instance['body']);
-        $instance['widget_custom_args'] = $new_instance['widget_custom_args'];
-        $instance['title_custom_args'] = $new_instance['title_custom_args'];
-        $instance['body_custom_args'] = $new_instance['body_custom_args'];
+        $instance['apsw_widget_custom_args'] = $new_instance['apsw_widget_custom_args'];
+        $instance['apsw_title_custom_args'] = $new_instance['apsw_title_custom_args'];
+        $instance['apsw_body_custom_args'] = $new_instance['apsw_body_custom_args'];
         $instance['before_widget'] = $new_instance['before_widget'];
         $instance['after_widget'] = $new_instance['after_widget'];
         $instance['before_title'] = $new_instance['before_title'];
@@ -123,16 +119,15 @@ class Statistic_Widget extends WP_Widget {
     function form($instance) {
         //Set up some default widget settings.
         $defaults = array(
-            'title' => __('Author &amp; Post Statistics', Statistic_Info::$text_domain),
-            'body' => __('The Widget Body', Statistic_Info::$text_domain),
-            'widget_custom_args' => 'off',
-            'title_custom_args' => 'off',
-            'body_custom_args' => 'off'
+            'title' => __('Author &amp; Post Statistics', APSW_Core::$text_domain),
+            'body' => __('The Widget Body', APSW_Core::$text_domain),
+            'apsw_widget_custom_args' => '',
+            'apsw_title_custom_args' => '',
+            'apsw_body_custom_args' => ''
         );
         $instance = wp_parse_args((array) $instance, $defaults);
         include 'form/all-statistics-widget-form.php';
     }
 
 }
-
 ?>

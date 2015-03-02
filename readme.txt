@@ -4,8 +4,8 @@ Contributors: gVectors Team
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U22KJYA4VVBME
 Tags: popular authors widget, popular post widget, author widget, post widget, author activity, statistics, statistic widget, post statistic, post views, author, post, widget, author posts, author comments, user activity, popular posts, popular authors
 Requires at least: 2.7.0
-Tested up to: 4.1
-Stable tag: 1.3.2
+Tested up to: 4.1.1
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,8 +17,11 @@ APSW is an easy solution to display authors' activity and popular posts statisti
 
 = Features =
 * | Free | Widget - Author & Popular Post Statistics
-* | Free | Widget - Popular Authors
-* | Free | Widget - Popular Posts
+* | Free | Dynamic Widget - Popular Authors
+* | Free | Dynamic Widget - Popular Posts
+* | Free | General Widget - Popular Authors
+* | Free | General Widget - Popular Posts
+* | Free | Page views statistic under post content
 * | Free | Dashboard: General Settings
 * | Free | Dashboard: Popular Authors Widget Settings
 * | Free | Dashboard: Popular Posts Widget Settings
@@ -89,15 +92,16 @@ Here you can manage all widgets. There are 5 tabs with widget settings options:
 
 == Screenshots ==
 
-1.  Author and post statistic widget on non-single post page Screenshot #1
-2.  Popular authors and posts widgets Screenshot #2
-3.  Author and post statistic widget on single post page, Author tab Screenshot #3
-4.  Author and post statistic widget on single post page, Posts tab Screenshot #4
-5.  Author and post statistic widget on non-single post page, Posts tab Screenshot #5
-6.  Author and post statistic widget on non-single post page, Authors tab Screenshot #6
-7.  Dashboard Settings Page, Style tab Screenshot #7
-8.  Graphical Statistic for Own and All Popular Posts, Popular Posts tab Screenshot #8
-9.  Graphical Statistic of Post Readers by Countries, Visitors per Country tab Screenshot #9
+1.  Author and post statistic widget (Author View) Screenshot #1
+2.  Author and post statistic widget (Posts View) Screenshot #2
+3.  General Widget - Popular Posts Screenshot #3
+4.  General Widget - Popular Authors Screenshot #4
+5.  General Widget - Popular Posts Screenshot #5
+6.  General Widget - Popular Authors Screenshot #6
+7.  General Widget Settings - Popular Authors and Posts Screenshot #7
+8.  Dynamic Widget Settings - Popular Authors and Posts Screenshot #8
+9.  Page views statistic under post content #9
+10. Graphical Statistic for Own and All Popular Posts, Popular Posts tab Screenshot #8
 
 == Frequently Asked Questions ==
 
@@ -107,6 +111,14 @@ Here you can manage all widgets. There are 5 tabs with widget settings options:
 
 == Changelog ==
 
+= 1.4.0 =
+* Added: General Widget for Popular Authors with dynamic period of stat date
+* Added: General Widget for Popular Posts with dynamic period of stat date
+* Added: Widget display settings for custom post types
+* Added: "Page Views" statistic information under post content
+* Added: Language translation support with .mo and .po files
+* Fixed Bug: Correction with some statistic information and incomplete cat/post lists
+
 = 1.3.2 =
 * Fixed Bug: Problem with "Popular Authors" widget on Wordpress multi-sites
 
@@ -114,10 +126,10 @@ Here you can manage all widgets. There are 5 tabs with widget settings options:
 * Fixed Bug: Problem with options page redirection on Wordpress multi-sites
 
 = 1.3.0 =
-Added Feature: Public functions to show statistics directly from template file
+Added: Public functions to show statistics directly from template file
 
 = 1.2.0 =
-Added Feature: Simple tabs for widgets on front-end
+Added: Simple tabs for widgets on front-end
 
 = 1.1.1 =
 Matching Wordpress 4.0 Standards
