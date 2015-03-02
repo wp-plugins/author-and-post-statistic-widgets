@@ -101,7 +101,6 @@ Here you can manage all widgets. There are 5 tabs with widget settings options:
 7.  General Widget Settings - Popular Authors and Posts Screenshot #7
 8.  Dynamic Widget Settings - Popular Authors and Posts Screenshot #8
 9.  Page views statistic under post content #9
-10. Graphical Statistic for Own and All Popular Posts, Popular Posts tab Screenshot #8
 
 == Frequently Asked Questions ==
 
