@@ -37,7 +37,6 @@
                                 ?>
                                 <div class="taxonomy_type_wrapper" style="display: <?php echo $taxonomy_css; ?>;">
                                     <?php
-//                                    $step = 1;
                                     foreach ($post_type['taxonomies'] as $taxonomies) {
                                         ?>
                                         <label for="apsw_<?php echo $taxonomies['taxonomy']; ?>">
@@ -45,7 +44,6 @@
                                             <span><?php echo $taxonomies['taxonomy']; ?></span>
                                         </label><br/>
                                         <?php
-//                                        $count++;
                                     }
                                     ?>
                                 </div>

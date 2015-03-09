@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: popular authors widget, popular post widget, author widget, post widget, author activity, statistics, statistic widget, post statistic, post views, author, post, widget, author posts, author comments, user activity, popular posts, popular authors
 Requires at least: 2.7.0
 Tested up to: 4.1.1
-Stable tag: 1.4.0
+Stable tag: 1.4.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,6 +101,7 @@ Here you can manage all widgets. There are 5 tabs with widget settings options:
 7.  General Widget Settings - Popular Authors and Posts Screenshot #7
 8.  Dynamic Widget Settings - Popular Authors and Posts Screenshot #8
 9.  Page views statistic under post content #9
+10. Graphical Statistic for Own and All Popular Posts, Popular Posts tab Screenshot #8
 
 == Frequently Asked Questions ==
 
@@ -109,6 +110,12 @@ Here you can manage all widgets. There are 5 tabs with widget settings options:
 * Support Forum: <http://gvectors.com/questions/>
 
 == Changelog ==
+
+= 1.4.1 =
+* Added: "Settings" link on plugins page
+* Changed: "Popular Authors" widget to "Active Users" widget
+* Changed: "Active Users" logic by "comments count"
+* Changed: "Simple Tabs" option ON by default
 
 = 1.4.0 =
 * Added: General Widget for Popular Authors with dynamic period of stat date

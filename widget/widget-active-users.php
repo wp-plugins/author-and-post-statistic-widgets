@@ -4,7 +4,7 @@ include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'options' . DIRECTORY_SEPAR
 include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'apsw-db-helper.php');
 include_once(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'includes' . DIRECTORY_SEPARATOR . 'apsw-helper.php');
 
-class APSW_Author_Widget extends WP_Widget {
+class APSW_Active_Users_Widget extends WP_Widget {
 
     public $apsw_options_serialized;
     public $apsw_db_helper;
@@ -18,11 +18,11 @@ class APSW_Author_Widget extends WP_Widget {
          */
         $widget_ops = array(
             'classname' => 'author_widget',
-            'description' => __('This Widget displays popular authors statistic information', APSW_Core::$text_domain)
+            'description' => __('This Widget displays active users statistic information', APSW_Core::$text_domain)
         );
 
         $control_ops = array();
-        $this->WP_Widget('author_stats_widget', __('APSW - Popular Authors', APSW_Core::$text_domain), $widget_ops, $control_ops);
+        $this->WP_Widget('active_users_widget', __('APSW - Active Users', APSW_Core::$text_domain), $widget_ops, $control_ops);
     }
 
     /**
@@ -71,7 +71,7 @@ class APSW_Author_Widget extends WP_Widget {
 
         echo $before_body;
 
-        include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'author-stats-layout.php');
+        include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'active-users-layout.php');
 
         echo $after_body;
 
@@ -105,7 +105,7 @@ class APSW_Author_Widget extends WP_Widget {
     function form($instance) {
         //Set up some default widget settings.
         $defaults = array(
-            'title' => __('Popular Authors', APSW_Core::$text_domain),
+            'title' => __('Active Users', APSW_Core::$text_domain),
             'from' => '',
             'to' => '',
             'apsw_widget_custom_args' => '',
@@ -113,7 +113,7 @@ class APSW_Author_Widget extends WP_Widget {
             'apsw_body_custom_args' => ''
         );
         $instance = wp_parse_args((array) $instance, $defaults);
-        include 'form/author-statistics-widget-form.php';
+        include 'form/active-users-widget-form.php';
     }
 
 }

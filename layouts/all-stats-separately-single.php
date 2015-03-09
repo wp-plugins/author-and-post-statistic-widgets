@@ -50,7 +50,7 @@
             </li>
             <li class="stats-author-comments-count">
                 <span class="stats-label"><?php _e('Total Comments', APSW_Core::$text_domain); ?></span>
-                <span class="stats-value"><?php echo $this->apsw_db_helper->get_all_comment_count($post->post_author); ?></span>
+                <span class="stats-value"><?php echo $this->apsw_db_helper->get_comments_count_by_author($post->post_author); ?></span>
             </li>
             <li class="stats-author-categories-count">
                 <span class="stats-label"><?php _e('Total Categories', APSW_Core::$text_domain); ?></span>
@@ -108,8 +108,7 @@
                             </span>
                         </a>
                         <span class="stats-value">
-                        	<?php echo $post_views_count ?> <img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />
-                            <?php //echo ($post_views_count == 1) ? $post_views_count . ' ' . __('view', APSW_Core::$text_domain) : $post_views_count . ' ' . __('views', APSW_Core::$text_domain); ?>
+                            <?php echo $post_views_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />
                         </span>
                     </li>
                     <?php

@@ -21,12 +21,9 @@ class APSW_Options {
      * Builds options page
      */
     public function options_form() {
-//        $all_post_types = get_post_types('', 'names');
-        $all_post_types = $this->apsw_db_helper->get_published_post_types();        
+        $all_post_types = $this->apsw_db_helper->get_published_post_types();
         foreach ($all_post_types as $post_type) {
-//            if ($post_type != 'attachment' && $post_type != 'revision' && $post_type != 'nav_menu_item') {
             $this->post_types[] = $post_type['post_type'];
-//            }
 
             if ($post_type['taxonomies']) {
                 foreach ($post_type['taxonomies'] as $taxonomies) {
@@ -35,14 +32,7 @@ class APSW_Options {
             }
         }
 
-//        $all_taxonomy_types = get_taxonomies();
-//        foreach ($all_post_types as $post_type) {
-//            if ($tax_type != 'nav_menu' && $tax_type != 'category' && $tax_type != 'post_tag' && $tax_type != 'link_category' && $tax_type != 'post_format') {
-//            $this->custom_taxonomy_types[] = $tax_type;
-//            }
-//        }
-
-        if (empty($this->apsw_options_serialized->post_types)) {
+        if (!$this->apsw_options_serialized->post_types) {
             $this->apsw_options_serialized->post_types = $this->post_types;
         }
 
@@ -57,7 +47,7 @@ class APSW_Options {
             }
 
             $this->apsw_options_serialized->is_stats_together = $_POST['is_stats_together'];
-            $this->apsw_options_serialized->post_types = empty($_POST['post_types']) ? $this->post_types : $_POST['post_types'];
+            $this->apsw_options_serialized->post_types = !$_POST['post_types'] ? $this->post_types : $_POST['post_types'];
             $this->apsw_options_serialized->custom_taxonomy_types = isset($_POST['custom_taxonomy_types']) ? $_POST['custom_taxonomy_types'] : array();
             $this->apsw_options_serialized->is_simple_tabs_default = isset($_POST['is_simple_tabs_default']) ? $_POST['is_simple_tabs_default'] : 0;
             $this->apsw_options_serialized->is_display_author_name = isset($_POST['is_display_author_name']) ? $_POST['is_display_author_name'] : 0;
@@ -69,7 +59,7 @@ class APSW_Options {
             $this->apsw_options_serialized->is_display_daily_views = isset($_POST['is_display_daily_views']) ? $_POST['is_display_daily_views'] : '0';
             $this->apsw_options_serialized->popular_posts_limit = (isset($_POST['popular_posts_limit']) && intval($_POST['popular_posts_limit']) && intval($_POST['popular_posts_limit']) > 0) ? intval($_POST['popular_posts_limit']) : '10';
             $this->apsw_options_serialized->active_theme_name = isset($_POST['active_theme_name']) ? $_POST['active_theme_name'] : 'smoothness';
-            $this->apsw_options_serialized->custom_css = $_POST['custom_css'];
+            $this->apsw_options_serialized->custom_css = isset($_POST['custom_css']) ? $_POST['custom_css'] : '';
             $this->apsw_options_serialized->apsw_tab_active_bg_color = isset($_POST['apsw_tab_active_bg_color']) ? $_POST['apsw_tab_active_bg_color'] : '#fff';
             $this->apsw_options_serialized->apsw_tab_bg_color = isset($_POST['apsw_tab_bg_color']) ? $_POST['apsw_tab_bg_color'] : '#ccc';
             $this->apsw_options_serialized->apsw_tab_border_color = isset($_POST['apsw_tab_border_color']) ? $_POST['apsw_tab_border_color'] : '#d4d4d1';
@@ -82,7 +72,7 @@ class APSW_Options {
         ?>
         <div class="wrap">
             <input type="hidden" id="statsCurrentTab" name="statsCurrentTab" value="0"/>
-            <div style="float:left; width:40px; height:40px; margin:10px 10px 20px 0px;"><img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/plugin-icon/apsw-settings-icon.png'); ?>" style="width:48px;"/></div> <h2><?php _e('Author &amp; Post Statistic Widgets Settings', APSW_Core::$text_domain); ?></h2>
+            <div style="float:left; width:40px; height:40px; margin:10px 10px 20px 0px;"><img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/plugin-icon/apsw-settings-icon.png'); ?>" style="width:48px;"/></div> <h2><?php _e('Author &amp; Post Statistic Widgets Settings', APSW_Core::$text_domain); ?></h2>
             <br style="clear:both" />
 
             <?php include 'layouts/go-to-pro.php'; ?>
@@ -97,7 +87,7 @@ class APSW_Options {
                 <div id="tabs">
                     <ul>
                         <li><a href="#tabs-1"><?php _e('General', APSW_Core::$text_domain); ?></a></li>
-                        <li><a href="#tabs-2"><?php _e('Popular Authors', APSW_Core::$text_domain); ?></a></li>
+                        <li><a href="#tabs-2"><?php _e('Active Users', APSW_Core::$text_domain); ?></a></li>
                         <li><a href="#tabs-3"><?php _e('Popular Posts', APSW_Core::$text_domain); ?></a></li>
                         <li><a href="#tabs-4"><?php _e('View counter for posts', APSW_Core::$text_domain); ?></a></li>
                         <li><a href="#tabs-5"><?php _e('Styles', APSW_Core::$text_domain); ?></a></li>
@@ -107,7 +97,7 @@ class APSW_Options {
 
                     <?php
                     include 'layouts/settings-general.php';
-                    include 'layouts/settings-popular-authors.php';
+                    include 'layouts/settings-active-users.php';
                     include 'layouts/settings-popular-posts.php';
                     include 'layouts/settings-view-counter.php';
                     include 'layouts/settings-styles.php';
@@ -116,11 +106,10 @@ class APSW_Options {
                     ?>
                     <div style="display: none;">
                         <div id="response_info" >
-                            <img width="100" height="100" src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/loader/ajax-loader-200x200.gif'); ?>" />
+                            <img width="100" height="100" src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/loader/ajax-loader-200x200.gif'); ?>" />
                         </div>
                     </div>
                 </div>
-
 
                 <script type="text/javascript">
                     jQuery(document).ready(function ($) {

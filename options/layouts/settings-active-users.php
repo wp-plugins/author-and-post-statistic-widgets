@@ -3,7 +3,7 @@
         <tbody>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Display Author Full Name:', APSW_Core::$text_domain); ?>
+                    <?php _e('Display user full name:', APSW_Core::$text_domain); ?>
                 </th>
                 <td>                                
                     <label for="is_display_author_name">
@@ -14,7 +14,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Display Author Avatar:', APSW_Core::$text_domain); ?>
+                    <?php _e('Display user avatar:', APSW_Core::$text_domain); ?>
                 </th>
                 <td>                                
                     <label for="is_display_author_avatar">
@@ -24,7 +24,7 @@
             </tr>
 
             <tr valign="top">
-                <th scope="row"><?php _e('Show popular author by posts:', APSW_Core::$text_domain); ?></th>
+                <th scope="row"><?php _e('Show active users by posts:', APSW_Core::$text_domain); ?></th>
                 <td>
                     <fieldset>
                         <?php
@@ -47,13 +47,13 @@
             </tr>
 
             <tr valign="top">
-                <th scope="row"><?php _e('Popular authors limit:', APSW_Core::$text_domain); ?> </th>
+                <th scope="row"><?php _e('Active users limit:', APSW_Core::$text_domain); ?> </th>
                 <td>
                     <fieldset>
                         <?php
                         $popular_authors_limit = $this->apsw_options_serialized->popular_authors_limit;
                         ?>
-                        <label title="How many popular authors display in widget">
+                        <label title="How many acitve users display in widget">
                             <input type="text" value="<?php echo $popular_authors_limit; ?>" name="popular_authors_limit" id="popular_authors_limit" class=""/>
                         </label><br>                                   
                     </fieldset>

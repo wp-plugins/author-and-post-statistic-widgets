@@ -36,7 +36,7 @@
                                 </span>
                             </a>
                             <span class="stats-value">       
-                            	<?php echo $author_posts_count ?> <img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_posts.png') ?>" title="<?php _e('posts', APSW_Core::$text_domain) ?>" alt="<?php _e('posts', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-posts-img" />                                
+                            	<?php echo $author_posts_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_posts.png') ?>" title="<?php _e('posts', APSW_Core::$text_domain) ?>" alt="<?php _e('posts', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-posts-img" />                                
                             </span>
 
                         </li>
@@ -56,7 +56,7 @@
                                 </span>
                             </a>
                             <span class="stats-value">
-                            	<?php echo $author_posts_views_count ?> <img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />                                
+                            	<?php echo $author_posts_views_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />
                             </span>
 
                         </li>
@@ -66,7 +66,7 @@
                     $authors_data = $this->apsw_db_helper->get_popular_authors_by_comments_count($blog_reg_date, $now, $authors_limit);
                     foreach ($authors_data as $author_data) {
                         $author_id = $author_data['author_id'];
-                        $author_posts_comments_count = $author_data['c_count'];
+                        $author_comments_count = $author_data['c_count'];
                         $author_user_name = $author_data['user_name'];
                         ?>
                         <li class="stats-author-posts-count">
@@ -75,8 +75,8 @@
                                     <?php echo $author_user_name; ?>
                                 </span>
                             </a>
-                            <span class="stats-value">
-                                <?php echo ($author_posts_comments_count == 1) ? $author_posts_comments_count . ' ' . __('comment', APSW_Core::$text_domain) : $author_posts_comments_count . ' ' . __('comments', APSW_Core::$text_domain); ?>
+                            <span class="stats-value">                                
+                                <?php echo $author_comments_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_comments.png') ?>" title="<?php _e('comments', APSW_Core::$text_domain) ?>" alt="<?php _e('comments', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-comments-img" />
                             </span>
                         </li>
                         <?php
@@ -103,7 +103,7 @@
                                 </span>
                             </a>
                             <span class="stats-value">
-                            	<?php echo $post_views_count ?> <img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />                                
+                            	<?php echo $post_views_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />                                
                             </span>
                         </li>
                         <?php
@@ -125,12 +125,12 @@
                             <?php if ($comment_status === "open") { ?>
                                 <a href="<?php echo get_comments_link($post_id); ?>" title="<?php echo __('Comment on', APSW_Core::$text_domain) . ' ' . $post_title; ?>">
                                     <span class="stats-value">                                       
-                                        <?php echo $post_comment_count ?> <img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_comments.png') ?>" title="<?php _e('comments', APSW_Core::$text_domain) ?>" alt="<?php _e('comments', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-comments-img" />
+                                        <?php echo $post_comment_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_comments.png') ?>" title="<?php _e('comments', APSW_Core::$text_domain) ?>" alt="<?php _e('comments', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-comments-img" />
                                     </span>
                                 </a>
                             <?php } else { ?>
                                 <span class="stats-value" title="<?php _e('Comments are closed on this post', APSW_Core::$text_domain); ?>">
-                                    <?php echo $post_comment_count ?> <img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_comments.png') ?>" title="<?php _e('comments', APSW_Core::$text_domain) ?>" alt="<?php _e('comments', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-comments-img" />
+                                    <?php echo $post_comment_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_comments.png') ?>" title="<?php _e('comments', APSW_Core::$text_domain) ?>" alt="<?php _e('comments', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-comments-img" />
                                 </span>
                             <?php } ?>
                         </li>

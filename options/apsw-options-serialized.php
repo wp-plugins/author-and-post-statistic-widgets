@@ -109,7 +109,7 @@ class APSW_Options_Serialize {
             'is_stats_together' => '1', // default - show together
             'post_types' => $this->post_types, // include all post types
             'custom_taxonomy_types' => $this->custom_taxonomy_types, // default empty
-            'is_simple_tabs_default' => '0', // default - simple tabs
+            'is_simple_tabs_default' => '1', // default - simple tabs
             'is_display_author_name' => '1', // default display name
             'is_display_author_avatar' => '1', // default display avatar
             'is_author_popular_by_post_count' => '1', // default - by count
@@ -118,8 +118,8 @@ class APSW_Options_Serialize {
             'popular_posts_limit' => '10', // by default display 10 posts
             'is_post_view_by_ip' => '1', // default - by ip
             'is_display_daily_views' => '1', // default - display views count
-            'active_theme_name' => 'smoothness', // default - by ip
-            'custom_css' => '', // default - by ip
+            'active_theme_name' => 'smoothness', // default - smoothness
+            'custom_css' => '', // default - empty
             'apsw_tab_active_bg_color' => '#fff',
             'apsw_tab_bg_color' => '#ccc',
             'apsw_tab_border_color' => '#d4d4d1',
@@ -144,14 +144,14 @@ class APSW_Options_Serialize {
         $this->popular_posts_limit = $options['popular_posts_limit'];
         $this->is_post_view_by_ip = $options['is_post_view_by_ip'];
         $this->is_display_daily_views = isset($options['is_display_daily_views']) ? $options['is_display_daily_views'] : 0;
-        $this->active_theme_name = $options['active_theme_name'];
+        $this->active_theme_name = isset($options['active_theme_name']) ? $options['active_theme_name'] : 'smoothness';
         $this->custom_css = $options['custom_css'];
-        $this->apsw_tab_active_bg_color = $options['apsw_tab_active_bg_color'];
-        $this->apsw_tab_bg_color = $options['apsw_tab_bg_color'];
-        $this->apsw_tab_border_color = $options['apsw_tab_border_color'];
-        $this->apsw_tab_active_text_color = $options['apsw_tab_active_text_color'];
-        $this->apsw_tab_text_color = $options['apsw_tab_text_color'];
-        $this->apsw_tab_hover_text_color = $options['apsw_tab_hover_text_color'];
+        $this->apsw_tab_active_bg_color = isset($options['apsw_tab_active_bg_color']) ? $options['apsw_tab_active_bg_color'] : '#fff';
+        $this->apsw_tab_bg_color = isset($options['apsw_tab_bg_color']) ? $options['apsw_tab_bg_color'] : '#ccc';
+        $this->apsw_tab_border_color = isset($options['apsw_tab_border_color']) ? $options['apsw_tab_border_color'] : '#d4d4d1';
+        $this->apsw_tab_active_text_color = isset($options['apsw_tab_active_text_color']) ? $options['apsw_tab_active_text_color'] : '#2e7da3';
+        $this->apsw_tab_text_color = isset($options['apsw_tab_text_color']) ? $options['apsw_tab_text_color'] : '#fff';
+        $this->apsw_tab_hover_text_color = isset($options['apsw_tab_hover_text_color']) ? $options['apsw_tab_hover_text_color'] : '#21759b';
     }
 
     public function update_options() {

@@ -8,7 +8,7 @@
                         <div id="home_left_box2" style="margin:0px auto;">
                             <div id="innerblock">
                                 <div id="gconverter">
-                                    <div style="text-align:center;"> <a href="http://www.gvectors.com/author-and-post-statistic-widgets/"><img src="<?php echo plugins_url('author-and-post-statistic-widgets/promo/img/apsw-pro.png'); ?>" style="width:100%; min-width:510px;" /></a>
+                                    <div style="text-align:center;"> <a href="http://www.gvectors.com/author-and-post-statistic-widgets/"><img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/promo/img/apsw-pro.png'); ?>" style="width:100%; min-width:510px;" /></a>
                                         <p style="padding-top:0px; white-space:nowrap; text-align:left;"><br />
                                             <a href="http://www.gvectors.com/advanced-content-pagination/"> <span style="font-size:16px; font-weight:bold; font-family:Georgia, 'Times New Roman', Times, serif;">Author &amp; Post Statistic Widgets PRO</span> &nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.gvectors.com/author-and-post-statistic-widgets/" target="_blank" class="button button-primary">Update to Pro Now!</a> <br />
                                                 <span style="font-size:13px; line-height:25px; white-space:nowrap">APSW Pro generates graphical statistic for authors' activity and posts' popularity.</span> </p>

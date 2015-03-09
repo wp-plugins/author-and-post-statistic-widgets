@@ -26,11 +26,11 @@ $to = $interval['to'];
                     </a>
 
                     <div class="stats-value stats-comments-count" title="<?php echo __('Post comments count', APSW_Core::$text_domain); ?>">
-                    	<img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_comments.png') ?>" align="absmiddle" class="apsw-comments-img" /><span class="apsw-comments-num"><?php echo ($post_comments_count) ? $post_comments_count : 0; ?></span>
+                    	<img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_comments.png') ?>" align="absmiddle" class="apsw-comments-img" /><span class="apsw-comments-num"><?php echo ($post_comments_count) ? $post_comments_count : 0; ?></span>
                     </div>                    
 
                     <div class="stats-value stats-views-count" title="<?php echo __('Post views count', APSW_Core::$text_domain); ?>">
-                        <img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" /><span class="apsw-views-num"><?php echo ($post_views_count) ? $post_views_count : 0; ?></span>
+                        <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" /><span class="apsw-views-num"><?php echo ($post_views_count) ? $post_views_count : 0; ?></span>
                         &nbsp;
                     </div>
 

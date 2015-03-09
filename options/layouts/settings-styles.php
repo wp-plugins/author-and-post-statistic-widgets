@@ -46,7 +46,7 @@
 
                                     <td class="picker_img_cell">
                                         <a href="#apsw_openModal1">
-                                            <img class="apsw_colorpicker_img1" src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/colorpicker_icon_22.png'); ?>" />
+                                            <img class="apsw_colorpicker_img1" src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/colorpicker_icon_22.png'); ?>" />
                                         </a>
                                     </td>
                                     <td class="color_picker">
@@ -70,7 +70,7 @@
 
                                     <td class="picker_img_cell">
                                         <a href="#apsw_openModal2">
-                                            <img class="apsw_colorpicker_img2" src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/colorpicker_icon_22.png'); ?>" />
+                                            <img class="apsw_colorpicker_img2" src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/colorpicker_icon_22.png'); ?>" />
                                         </a>
                                     </td>
                                     <td class="color_picker">
@@ -94,7 +94,7 @@
 
                                     <td class="picker_img_cell">
                                         <a href="#apsw_openModal3">
-                                            <img class="apsw_colorpicker_img3" src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/colorpicker_icon_22.png'); ?>" />
+                                            <img class="apsw_colorpicker_img3" src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/colorpicker_icon_22.png'); ?>" />
                                         </a>
                                     </td>
                                     <td class="color_picker">
@@ -118,7 +118,7 @@
 
                                     <td class="picker_img_cell">
                                         <a href="#apsw_openModal4">
-                                            <img class="apsw_colorpicker_img4" src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/colorpicker_icon_22.png'); ?>" />
+                                            <img class="apsw_colorpicker_img4" src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/colorpicker_icon_22.png'); ?>" />
                                         </a>
                                     </td>
                                     <td class="color_picker">
@@ -142,7 +142,7 @@
 
                                     <td class="picker_img_cell">
                                         <a href="#apsw_openModal5">
-                                            <img class="apsw_colorpicker_img5" src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/colorpicker_icon_22.png'); ?>" />
+                                            <img class="apsw_colorpicker_img5" src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/colorpicker_icon_22.png'); ?>" />
                                         </a>
                                     </td>
                                     <td class="color_picker">
@@ -166,7 +166,7 @@
 
                                     <td class="picker_img_cell">
                                         <a href="#apsw_openModal6">
-                                            <img class="apsw_colorpicker_img6" src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/colorpicker_icon_22.png'); ?>" />
+                                            <img class="apsw_colorpicker_img6" src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/colorpicker_icon_22.png'); ?>" />
                                         </a>
                                     </td>
                                     <td class="color_picker">

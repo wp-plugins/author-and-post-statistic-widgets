@@ -29,8 +29,7 @@
                                 </span>
                             </a>
                             <span class="stats-value">
-                            	<?php echo $author_posts_count ?> <img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_posts.png') ?>" title="<?php _e('posts', APSW_Core::$text_domain) ?>" alt="<?php _e('posts', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-posts-img" />
-                                <?php //echo ($author_posts_count == 1) ? $author_posts_count . ' ' . __('post', APSW_Core::$text_domain) : $author_posts_count . ' ' . __('posts', APSW_Core::$text_domain); ?>
+                            	<?php echo $author_posts_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_posts.png') ?>" title="<?php _e('posts', APSW_Core::$text_domain) ?>" alt="<?php _e('posts', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-posts-img" />                                
                             </span>
                         </li>
                         <?php
@@ -57,7 +56,7 @@
                                 </span>
                             </a>
                             <span class="stats-value">
-                            	<?php echo $author_posts_views_count ?> <img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />
+                            	<?php echo $author_posts_views_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />
                                 <?php echo ($author_posts_views_count == 1) ? $author_posts_views_count . ' ' . __('view', APSW_Core::$text_domain) : $author_posts_views_count . ' ' . __('views', APSW_Core::$text_domain); ?>
                             </span>
                         </li>
@@ -121,7 +120,7 @@
                                 </span>
                             </a>
                             <span class="stats-value" title="<?php _e('Post views count:', APSW_Core::$text_domain) . ' ' . $post_views_count; ?>">
-                            	<?php echo $post_views_count ?> <img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />
+                            	<?php echo $post_views_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />
                                 <?php //echo ($post_views_count == 1) ? $post_views_count . ' ' . __('view', APSW_Core::$text_domain) : $post_views_count . ' ' . __('views', APSW_Core::$text_domain) ?>
                             </span>
                         </li>

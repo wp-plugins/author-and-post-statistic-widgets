@@ -34,7 +34,7 @@
                                 </span>
                             </a>
                             <span class="stats-value">
-                            	<?php echo $post_views_count; ?> <img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />
+                            	<?php echo $post_views_count; ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />
                             </span>
                         </li>
                         <?php
@@ -64,12 +64,12 @@
                             <?php if ($comment_status === "open") { ?>
                                 <a href="<?php echo get_comments_link($post_id); ?>" title="<?php echo __('Comment on', APSW_Core::$text_domain) . ' ' . $post_title; ?>">
                                     <span class="stats-value">
-                                        <?php echo $post_comment_count; ?> <img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_comments.png') ?>" title="<?php _e('comments', APSW_Core::$text_domain) ?>" alt="<?php _e('comments', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-comments-img" />
+                                        <?php echo $post_comment_count; ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_comments.png') ?>" title="<?php _e('comments', APSW_Core::$text_domain) ?>" alt="<?php _e('comments', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-comments-img" />
                                     </span>
                                 </a>
                             <?php } else { ?>
                                 <span class="stats-value" title="<?php echo __('Comments are closed on this post', APSW_Core::$text_domain); ?>">
-                                    <?php echo $post_comment_count; ?> <img src="<?php echo plugins_url('author-and-post-statistic-widgets/files/img/icon_comments.png') ?>" title="<?php _e('comments', APSW_Core::$text_domain) ?>" alt="<?php _e('comments', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-comments-img" />
+                                    <?php echo $post_comment_count; ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_comments.png') ?>" title="<?php _e('comments', APSW_Core::$text_domain) ?>" alt="<?php _e('comments', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-comments-img" />
                                 </span>
                             <?php } ?>
                         </li>
