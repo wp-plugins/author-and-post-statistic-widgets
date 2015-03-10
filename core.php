@@ -3,7 +3,7 @@
 /*
   Plugin Name: Author and Post Statistic Widgets
   Description: Adds awesome statistic widgets for displaying authors activity and posts popularity. This plugin displays adaptive statistical information depending on current opened category, post and page.
-  Version: 1.4.1
+  Version: 1.4.2
   Author: gVectors Team (Gagik Zakaryan & Hakob Martirosyan)
   Author URI: http://gvectors.com
   Plugin URI: http://gvectors.com/author-and-post-statistic-widgets/
@@ -79,7 +79,7 @@ class APSW_Core {
         if ($this->apsw_options_serialized->is_display_daily_views) {
             add_filter('the_content', array(&$this, 'apsw_display_daily_views'));
         }
-        
+
         $plugin = plugin_basename(__FILE__);
         add_filter("plugin_action_links_$plugin", array(&$this, 'apsw_add_plugin_settings_link'));
 
@@ -103,7 +103,7 @@ class APSW_Core {
     private function apsw_add_new_options() {
         $this->apsw_options_serialized->init_options(get_option($this->apsw_options_serialized->apsw_options_page_slug));
         $apsw_new_options = $this->apsw_options_serialized->to_array();
-        update_option($this->apsw_options_serialized->apsw_options_page_slug, serialize($apsw_new_options));
+        update_option($this->apsw_options_serialized->apsw_options_page_slug, $apsw_new_options);
     }
 
     /*

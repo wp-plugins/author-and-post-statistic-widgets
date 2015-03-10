@@ -127,11 +127,11 @@ class APSW_Options_Serialize {
             'apsw_tab_text_color' => '#fff',
             'apsw_tab_hover_text_color' => '#21759b',
         );
-        add_option($this->apsw_options_page_slug, serialize($options));
+        add_option($this->apsw_options_page_slug, $options);
     }
 
     public function init_options($serialize_options) {
-        $options = unserialize($serialize_options);
+        $options = $serialize_options;
         $this->is_stats_together = $options['is_stats_together'];
         $this->post_types = $options['post_types'];
         $this->custom_taxonomy_types = isset($options['custom_taxonomy_types']) ? $options['custom_taxonomy_types'] : array();
@@ -155,7 +155,7 @@ class APSW_Options_Serialize {
     }
 
     public function update_options() {
-        update_option($this->apsw_options_page_slug, serialize($this->to_array()));
+        update_option($this->apsw_options_page_slug, $this->to_array());
     }
 
     public function to_array() {
