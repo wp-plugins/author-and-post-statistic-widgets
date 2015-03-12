@@ -1,0 +1,33 @@
+.graphic_center {
+    margin-top: -80px !important;
+}
+
+.graphic_type_header {
+    vertical-align: middle !important;
+}
+
+.upper {
+    text-transform: uppercase;
+}
+
+.stats_tr_bordered {
+    border-bottom: 1px solid #999999;
+}
+
+#response_info {
+    text-align: center;
+}
+
+.ui-dialog-titlebar {
+    display: none !important;
+}
+
+#tabs > div.color-light tr, 
+#tabs > div.color-light td,
+#tabs > div.color-light th,
+#tabs > div.color-light h2 {
+    color: #fff;
+}
+
+.post_type_wrapper {margin: 7px 0;}
+.taxonomy_type_wrapper {margin-left: 30px; display: none;}
