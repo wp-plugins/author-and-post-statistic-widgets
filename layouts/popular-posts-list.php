@@ -21,7 +21,7 @@ $to = $interval['to'];
                 <li class="stats-popular-post-list">
                     <a href="<?php echo get_permalink($post_id); ?>" title="<?php echo __('View ', APSW_Core::$text_domain) . ' ' . $post_title; ?>">
                         <span class="stats-label">
-                            <?php echo APSW_Helper::sub_string_by_space($post_title, 2); ?>
+                            <?php echo APSW_Helper::sub_string_by_space($post_title, 15); ?>
                         </span>
                     </a>
 

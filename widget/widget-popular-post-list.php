@@ -102,7 +102,7 @@ class APSW_Popular_Posts_List extends WP_Widget {
         //Set up some default widget settings.
         $defaults = array(
             'title' => __('Popular Posts List', APSW_Core::$text_domain),
-            'apsw_date_interval' => '1',
+            'apsw_date_interval' => '7',
             'apsw_widget_custom_args' => '',
             'apsw_title_custom_args' => '',
             'apsw_body_custom_args' => ''

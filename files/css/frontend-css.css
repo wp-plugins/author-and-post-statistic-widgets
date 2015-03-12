@@ -9,6 +9,11 @@
     padding: 3px;
 }
 
+.stats-block ul {padding: 10px;}
+
+.stats-author-block {}
+.stats-post-block {}
+
 .stats_tabs ul.tabs-menu li {list-style-type: none;}
 
 .stats_tabs a, .separate-wrapper a {text-decoration: none; display:inline!important; }
@@ -39,8 +44,8 @@
 
 .stats_tabs ul.stats-posts-list, ul.stats-author-list {
     list-style-type: none;
-    margin: 5px !important;
-    padding: 0 !important;
+/*    margin: 5px !important;
+    padding: 0 !important;*/
 }
 
 .stats_tabs ul.stats-author-list > li, 

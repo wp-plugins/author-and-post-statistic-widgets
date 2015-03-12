@@ -110,7 +110,7 @@
                                 <li>
                                     <span class="stats-label">
                                         <a href="<?php echo get_term_link($key, $value['taxonomy']); ?>" title="<?php echo __('View all posts under', APSW_Core::$text_domain) . ' ' . $value['name']; ?>">
-                                            <?php echo APSW_Helper::sub_string_by_space($value['name'], 2); ?>&nbsp; 
+                                            <?php echo APSW_Helper::sub_string_by_space($value['name'], 15); ?>&nbsp; 
                                         </a>
                                     </span>
                                     <span class="stats-value"><?php echo $value['count']; ?></span>
@@ -135,7 +135,7 @@
                         <li class="stats-post-views-count">
                             <a href="<?php echo get_permalink($post_id); ?>" title="<?php echo __('View', APSW_Core::$text_domain) . ' ' . $post_title; ?>">
                                 <span class="stats-label">
-                                    <?php echo APSW_Helper::sub_string_by_space($post_title, 2); ?>
+                                    <?php echo APSW_Helper::sub_string_by_space($post_title, 15); ?>
                                 </span>
                             </a>
                             <span class="stats-value">
@@ -155,7 +155,7 @@
                         <li class="stats-post-views-count">
                             <a href="<?php echo get_permalink($post_id); ?>" title="<?php echo __('View', APSW_Core::$text_domain) . ' ' . $post_title; ?>">
                                 <span class="stats-label">
-                                    <?php echo APSW_Helper::sub_string_by_space($post_title, 2); ?>
+                                    <?php echo APSW_Helper::sub_string_by_space($post_title, 15); ?>
                                 </span>
                             </a>
                             <?php if ($comment_status === "open") { ?>

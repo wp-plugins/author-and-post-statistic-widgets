@@ -76,9 +76,19 @@ class APSW_Options {
             <br style="clear:both" />
 
             <?php include 'layouts/go-to-pro.php'; ?>
+            
+            <?php 
+            if (isset($_GET['reset_options']) && $_GET['reset_options'] == 1) {
+                delete_option($this->apsw_options_serialized->apsw_options_page_slug);
+                $this->apsw_options_serialized->post_types = array('post', 'page');
+                $this->apsw_options_serialized->custom_taxonomy_types = array();
+                $this->apsw_options_serialized->add_options();
+                $this->apsw_options_serialized->init_options(get_option($this->apsw_options_serialized->apsw_options_page_slug));
+            }
+            ?>
 
-            <form action="<?php echo admin_url(); ?>admin.php?page=<?php echo $this->apsw_options_serialized->apsw_options_page_slug; ?>&updated=true" method="post" name="<?php echo $this->apsw_options_serialized->apsw_options_page_slug; ?>">
-
+            <form action="<?php echo admin_url(); ?>admin.php?page=<?php echo $this->apsw_options_serialized->apsw_options_page_slug; ?>&updated=true" method="post" name="<?php echo $this->apsw_options_serialized->apsw_options_page_slug; ?>">               
+                
                 <?php
                 if (function_exists('wp_nonce_field')) {
                     wp_nonce_field('stats_options_form');
@@ -164,6 +174,7 @@ class APSW_Options {
                             <td>
                                 <p class="submit">
                                     <input type="submit" id="stats_save_options" class="button button-primary" name="submit" value="<?php _e('Save Changes') ?>" />
+                                    <a class="button button-primary" href="<?php echo admin_url(); ?>admin.php?page=<?php echo $this->apsw_options_serialized->apsw_options_page_slug; ?>&reset_options=1"><?php _e('Reset Options', APSW_Core::$text_domain); ?></a>
                                 </p>
                             </td>
                         </tr>

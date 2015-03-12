@@ -2,23 +2,29 @@
 
 class APSW_Helper {
 
-    public static function sub_string_by_space($text, $count = 2) {
+    /**
+     * return words substringed by letters count
+     */
+    public static function sub_string_by_space($text, $count) {
         $text_arr = explode(' ', $text);
         $new_text = '';
         if (count($text_arr) > 2) {
-            for ($i = 0; $i < $count; $i++) {
+            for ($i = 0; $i < count($text_arr); $i++) {
                 $new_text .= $text_arr[$i] . ' ';
             }
-            return $new_text . '...';
-        } else {
-            return $text;
+            $new_text = substr($new_text, 0, $count);
+            if (strlen($text) >= $count) {
+                $new_text .= '...';
+            }
+            $text = $new_text;
         }
+        return $text;
     }
 
     public static function init_string_from_array($array) {
         $result = '';
         $count = 0;
-        if (empty($array))
+        if (!$array)
             return $result;
         foreach ($array as $value) {
             $result .= '"' . $value . '"';

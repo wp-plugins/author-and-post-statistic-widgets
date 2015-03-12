@@ -3,7 +3,7 @@
 /*
   Plugin Name: Author and Post Statistic Widgets
   Description: Adds awesome statistic widgets for displaying authors activity and posts popularity. This plugin displays adaptive statistical information depending on current opened category, post and page.
-  Version: 1.4.2
+  Version: 1.4.3
   Author: gVectors Team (Gagik Zakaryan & Hakob Martirosyan)
   Author URI: http://gvectors.com
   Plugin URI: http://gvectors.com/author-and-post-statistic-widgets/
@@ -91,7 +91,7 @@ class APSW_Core {
         $apsw_version = (!get_option($this->apsw_version) ) ? '1.0.0' : get_option($this->apsw_version);
         $apsw_plugin_data = get_plugin_data(__FILE__);
         if (version_compare($apsw_plugin_data['Version'], $apsw_version, '>')) {
-            $this->apsw_add_new_options();
+            $this->apsw_add_new_options($apsw_version);
             if ($apsw_version === '1.0.0') {
                 add_option($this->apsw_version, $apsw_plugin_data['Version']);
             } else {
@@ -100,10 +100,15 @@ class APSW_Core {
         }
     }
 
-    private function apsw_add_new_options() {
-        $this->apsw_options_serialized->init_options(get_option($this->apsw_options_serialized->apsw_options_page_slug));
-        $apsw_new_options = $this->apsw_options_serialized->to_array();
-        update_option($this->apsw_options_serialized->apsw_options_page_slug, $apsw_new_options);
+    private function apsw_add_new_options($apsw_version) {
+        if (version_compare($apsw_version, '1.4.2', '<=')) {
+            delete_option($this->apsw_options_serialized->apsw_options_page_slug);
+            $this->apsw_options_serialized->add_options();            
+        } else {
+            $this->apsw_options_serialized->init_options(get_option($this->apsw_options_serialized->apsw_options_page_slug));
+            $apsw_new_options = $this->apsw_options_serialized->to_array();
+            update_option($this->apsw_options_serialized->apsw_options_page_slug, $apsw_new_options);
+        }
     }
 
     /*
