@@ -24,16 +24,18 @@ class APSW_Helper {
     public static function init_string_from_array($array) {
         $result = '';
         $count = 0;
-        if (!$array)
-            return $result;
-        foreach ($array as $value) {
-            $result .= '"' . $value . '"';
-            if ($count < count($array) - 1) {
-                $result .= ',';
+        if (!$array) {
+            return '"post","page"';
+        } else {
+            foreach ($array as $value) {
+                $result .= '"' . $value . '"';
+                if ($count < count($array) - 1) {
+                    $result .= ',';
+                }
+                $count++;
             }
-            $count++;
+            return $result;
         }
-        return $result;
     }
 
     public static function get_real_ip_addr() {
