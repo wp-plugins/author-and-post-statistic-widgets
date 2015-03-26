@@ -1,7 +1,7 @@
-<div style="padding-bottom:10px;" id="" class="stats_tabs">
-    <ul class="css-tabs tabs-menu">
-        <li class="current"><a href="#tabs-1" class="current"><?php _e('Authors', APSW_Core::$text_domain) ?></a></li>
-        <li><a href="#tabs-2"><?php _e('Posts', APSW_Core::$text_domain) ?></a></li>
+<div style="padding-bottom:10px;" id="allStatisticNSTab" class="stats_tabs">
+    <ul class="css-tabs tabs-menu resp-tabs-list hor_1">
+        <li><?php _e('Authors', APSW_Core::$text_domain) ?></li>
+        <li><?php _e('Posts', APSW_Core::$text_domain) ?></li>
     </ul>     
     <?php
     $blogusers = get_users('orderby=registered&order=asc');
@@ -15,10 +15,8 @@
     $authors_data = '';
     $posts_data = '';
     ?>
-    <?php if ($this->apsw_options_serialized->is_simple_tabs_default) { ?>
-        <div class="tab">
-        <?php } ?>
-        <div id="tabs-1" class="tab-content">
+    <div class="resp-tabs-container hor_1">
+        <div><!-- Author Tab -->
             <span class="inner-title"><?php _e('Popular Authors', APSW_Core::$text_domain); ?></span>      
             <ul class="stats-author-list">
                 <?php
@@ -28,15 +26,16 @@
                         $author_id = $author_data['author_id'];
                         $author_posts_count = $author_data['posts_count'];
                         $author_user_name = $author_data['user_name'];
+                        $author_profile_url = APSW_Helper::get_profile_url(get_user_by('id', $author_id));
                         ?>
                         <li class="stats-author-posts-count">
-                            <a href="<?php echo get_author_posts_url($author_id); ?>" title="<?php echo __('View all posts by', APSW_Core::$text_domain) . ' ' . $author_user_name; ?>">
+                            <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$text_domain); ?>">
                                 <span class="stats-label">
                                     <?php echo $author_user_name; ?>
                                 </span>
                             </a>
                             <span class="stats-value">       
-                            	<?php echo $author_posts_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_posts.png') ?>" title="<?php _e('posts', APSW_Core::$text_domain) ?>" alt="<?php _e('posts', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-posts-img" />                                
+                                <?php echo $author_posts_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_posts.png') ?>" title="<?php _e('posts', APSW_Core::$text_domain) ?>" alt="<?php _e('posts', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-posts-img" />                                
                             </span>
 
                         </li>
@@ -47,16 +46,17 @@
                     foreach ($authors_data as $author_data) {
                         $author_id = $author_data['author_id'];
                         $author_posts_views_count = $author_data['view_count'];
-                        $author_user_name = $author_data['user_name']
+                        $author_user_name = $author_data['user_name'];
+                        $author_profile_url = APSW_Helper::get_profile_url(get_user_by('id', $author_id));
                         ?>
                         <li class="stats-author-posts-count">
-                            <a href="<?php echo get_author_posts_url($author_id); ?>" title="<?php echo __('View all posts by', APSW_Core::$text_domain) . ' ' . $author_user_name; ?>">
+                            <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$text_domain); ?>">
                                 <span class="stats-label">
                                     <?php echo $author_user_name; ?>
                                 </span>
                             </a>
                             <span class="stats-value">
-                            	<?php echo $author_posts_views_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />
+                                <?php echo $author_posts_views_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />
                             </span>
 
                         </li>
@@ -68,9 +68,10 @@
                         $author_id = $author_data['author_id'];
                         $author_comments_count = $author_data['c_count'];
                         $author_user_name = $author_data['user_name'];
+                        $author_profile_url = APSW_Helper::get_profile_url(get_user_by('id', $author_id));
                         ?>
                         <li class="stats-author-posts-count">
-                            <a href="<?php echo get_author_posts_url($author_id); ?>" title="<?php echo __('View all posts by') . ' ' . $author_user_name; ?>">
+                            <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page'); ?>">
                                 <span class="stats-label">
                                     <?php echo $author_user_name; ?>
                                 </span>
@@ -85,7 +86,7 @@
                 ?>
             </ul>
         </div>
-        <div id="tabs-2" class="tab-content">
+        <div><!-- Post Tab -->
             <span class="inner-title"><?php _e('Popular Posts', APSW_Core::$text_domain); ?></span>
             <ul class="stats-posts-list">
                 <?php
@@ -103,7 +104,7 @@
                                 </span>
                             </a>
                             <span class="stats-value">
-                            	<?php echo $post_views_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />                                
+                                <?php echo $post_views_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />                                
                             </span>
                         </li>
                         <?php
@@ -140,14 +141,15 @@
                 ?>
             </ul>
         </div>
-        <?php if ($this->apsw_options_serialized->is_simple_tabs_default) { ?>
-        </div>
-    <?php } ?>
+    </div>
 </div>
-<?php if (!$this->apsw_options_serialized->is_simple_tabs_default) { ?>
-    <script>
-        jQuery(function () {
-            jQuery('.stats_tabs').tabs();
+<script>
+    jQuery(function ($) {
+        $('#allStatisticNSTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true, // 100% fit in a container
+            tabidentify: 'hor_1' // The tab groups identifier
         });
-    </script>
-<?php } ?>
+    });
+</script>

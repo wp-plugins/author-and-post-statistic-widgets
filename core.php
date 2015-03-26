@@ -3,7 +3,7 @@
 /*
   Plugin Name: Author and Post Statistic Widgets
   Description: Adds awesome statistic widgets for displaying authors activity and posts popularity. This plugin displays adaptive statistical information depending on current opened category, post and page.
-  Version: 1.4.4
+  Version: 1.4.5
   Author: gVectors Team (Gagik Zakaryan & Hakob Martirosyan)
   Author URI: http://gvectors.com
   Plugin URI: http://gvectors.com/author-and-post-statistic-widgets/
@@ -58,6 +58,7 @@ class APSW_Core {
         $this->apsw_db_helper = new APSW_DB_Helper();
         $this->apsw_options = new APSW_Options($this->apsw_db_helper);
         $this->apsw_options_serialized = $this->apsw_options->get_default_options();
+
         register_activation_hook(__FILE__, array($this, 'create_tables'));
         add_action('admin_enqueue_scripts', array(&$this, 'option_page_styles_scripts'));
         add_action('widgets_init', array(&$this, 'init_widgets'));
@@ -66,10 +67,8 @@ class APSW_Core {
         remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
         add_action('wp_head', array(&$this, 'add_post_view_count'));
 
-        if ($this->apsw_options_serialized->is_simple_tabs_default) {
-            $this->apsw_css = new APSW_CSS($this->apsw_options_serialized);
-            add_action('wp_enqueue_scripts', array(&$this->apsw_css, 'load_custom_css'));
-        }
+        $this->apsw_css = new APSW_CSS($this->apsw_options_serialized);
+        add_action('wp_enqueue_scripts', array(&$this->apsw_css, 'load_custom_css'));
 
         if (function_exists('add_shortcode')) {
             add_shortcode('author_stats', array(&$this, 'author_statistics'));
@@ -103,7 +102,7 @@ class APSW_Core {
     private function apsw_add_new_options($apsw_version) {
         if (version_compare($apsw_version, '1.4.2', '<=')) {
             delete_option($this->apsw_options_serialized->apsw_options_page_slug);
-            $this->apsw_options_serialized->add_options();            
+            $this->apsw_options_serialized->add_options();
         } else {
             $this->apsw_options_serialized->init_options(get_option($this->apsw_options_serialized->apsw_options_page_slug));
             $apsw_new_options = $this->apsw_options_serialized->to_array();
@@ -170,72 +169,48 @@ class APSW_Core {
      */
     public function add_post_view_count() {
         global $post;
-        $post_id = '';
-        if (!is_singular()) {
-            return;
+        if (is_singular()) {
+            $ip = APSW_Helper::get_real_ip_addr();
+            $this->apsw_db_helper->add_view_count($post->ID, current_time('Y-m-d'), $ip);
         }
-        if (empty($post_id)) {
-            $post_id = $post->ID;
-        }
-        $ip = APSW_Helper::get_real_ip_addr();
-        $this->apsw_db_helper->add_view_count($post_id, current_time('Y-m-d'), $ip);
     }
 
     /**
      * Scripts and styles registration on administration pages
      */
     public function option_page_styles_scripts() {
-        wp_register_style('sw-plugin-css', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/css/admin-css.css'));
-        wp_enqueue_style('sw-plugin-css');
-        wp_enqueue_script('option-scripts', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/admin-js.js'), array('jquery'), '1.0.0', false);
+        wp_register_style('apsw-admin-css', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/css/admin-css.css'), null, get_option($this->apsw_version));
+        wp_enqueue_style('apsw-admin-css');
+        wp_enqueue_script('apsw-admin-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/admin-js.js'), array('jquery'), get_option($this->apsw_version), false);
 
         wp_enqueue_script('jquery-ui-core');
-        wp_enqueue_script('jquery-ui-tabs');
         wp_enqueue_script('jquery-ui-dialog');
         wp_enqueue_script('jquery-ui-datepicker');
 
-        wp_enqueue_script('theme-switcher', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/jquery-ui/jquery.themeswitcher.js'), array('jquery', 'jquery-ui-core'), '1.0.0');
-        wp_register_style('jquery-ui-theme', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/css/jquery-ui-themes/themes/') . $this->apsw_options_serialized->active_theme_name . '/jquery-ui.min.css');
-        wp_enqueue_style('jquery-ui-theme');
+        wp_register_style('jquery-ui-theme-options', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/third-party/jquery-ui-themes/smoothness/jquery-ui.min.css'), null, get_option($this->apsw_version));
+        wp_enqueue_style('jquery-ui-theme-options');
 
-        wp_enqueue_script('sw-ajax-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/ajax-delete.js'), array('jquery'), '1.0.0', false);
-        wp_enqueue_script('sw-cookie-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/jquery.cookie.js'), array('jquery'), '1.4.1', false);
-        wp_enqueue_script('apsw-widgets-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/widgets-js.js'), array('jquery'), '1.0.0', false);
+        wp_enqueue_script('apsw-ajax-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/ajax-delete.js'), array('jquery'), get_option($this->apsw_version), false);
+        wp_enqueue_script('apsw-cookie-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/jquery.cookie.js'), array('jquery'), '1.4.1', false);
+        wp_enqueue_script('apsw-widgets-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/widgets-js.js'), array('jquery'), get_option($this->apsw_version), false);
 
-        if ($this->apsw_options_serialized->is_simple_tabs_default) {
-            wp_register_style('apsw-modal-css', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/third-party/modal-box/modal-box.css'));
-            wp_enqueue_style('apsw-modal-css');
-            wp_register_style('apsw-colorpicker-css', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/third-party/colorpicker/css/colorpicker.css'));
-            wp_enqueue_style('apsw-colorpicker-css');
-            wp_enqueue_script('apsw-colorpicker-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/third-party/colorpicker/js/colorpicker.js'), array('jquery'), '1.0.0', false);
-            wp_enqueue_script('apsw-admin-colorpicker-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/admin-colorpicker.js'), array('jquery'), '1.0.0', false);
-
-
-            $u_agent = $_SERVER['HTTP_USER_AGENT'];
-            if (preg_match('/MSIE/i', $u_agent)) {
-                wp_register_style('apsw-modal-css-ie', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/third-party/modal-box/modal-box-ie.css'));
-                wp_enqueue_style('apsw-modal-css-ie');
-            }
-        }
+        wp_enqueue_script('apsw-easy-responsive-tabs-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/third-party/easy-responsive-tabs/js/easy-responsive-tabs.js'), array('jquery'), get_option($this->apsw_version));
+        wp_register_style('apsw-easy-responsive-tabs-css', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/third-party/easy-responsive-tabs/css/easy-responsive-tabs.css'), null, get_option($this->apsw_version));
+        wp_enqueue_style('apsw-easy-responsive-tabs-css');
     }
 
     /**
      * Styles and scripts registration to use on front page
      */
     public function front_end_styles_scripts() {
-        wp_register_style('sw-frontend-style', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/css/frontend-css.css'), null, get_option($this->apsw_version));
-        wp_enqueue_style('sw-frontend-style');
-
-
-        // option
-        if ($this->apsw_options_serialized->is_simple_tabs_default) {
-            wp_enqueue_script('apsw-simple-tabs', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/simple-tabs.js'), array('jquery'), '1.0.0', false);
-        } else {
-            wp_enqueue_script('jquery-ui-core');
-            wp_enqueue_script('jquery-ui-tabs');
-            wp_register_style('jquery-ui-theme', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/css/jquery-ui-themes/themes/') . $this->apsw_options_serialized->active_theme_name . '/jquery-ui.min.css');
-            wp_enqueue_style('jquery-ui-theme');
+        if ($this->apsw_options_serialized->is_stats_together) {
+            wp_enqueue_script('apsw-easy-responsive-tabs-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/third-party/easy-responsive-tabs/js/easy-responsive-tabs.js'), array('jquery'), get_option($this->apsw_version));
+            wp_register_style('apsw-easy-responsive-tabs-css', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/third-party/easy-responsive-tabs/css/easy-responsive-tabs.css'), null, get_option($this->apsw_version));
+            wp_enqueue_style('apsw-easy-responsive-tabs-css');
         }
+
+        wp_register_style('apsw-frontend-style', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/css/frontend-css.css'), null, get_option($this->apsw_version));
+        wp_enqueue_style('apsw-frontend-style');
     }
 
     public function frontend_styles() {
@@ -265,42 +240,38 @@ class APSW_Core {
      */
 
     public function delete_stats() {
-        $all = 0;
-        $from = 0;
-        $to = 0;
-
-        if (isset($_POST['all'])) {
-            $all = $_POST['all'];
-        }
-        if (isset($_POST['from'])) {
-            $from = $_POST['from'];
-        }
-        if (isset($_POST['to'])) {
-            $to = $_POST['to'];
-        }
-        echo ($this->apsw_db_helper->delete_statistics($all, $from, $to) ? _e('Statistical data has been removed', APSW_Core::$text_domain) : _e('Failed to delete statistical data', APSW_Core::$text_domain));
+        $all = isset($_POST['all']) ? $_POST['all'] : 0;
+        $from = isset($_POST['from']) ? $_POST['from'] : APSW_Helper::get_blog_reg_date();
+        $to = isset($_POST['to']) ? $_POST['to'] : APSW_Helper::get_now();
+        echo ($this->apsw_db_helper->delete_statistics($all, $from, $to) ? __('Statistic data has been removed', APSW_Core::$text_domain) : __('Failed to delete statistic data', APSW_Core::$text_domain));
         exit();
     }
 
-    public function show_stats_post($from, $to) {
+    public function show_post_statistics($from, $to) {
         global $post;
         include 'layouts/post-stats-layout.php';
     }
 
-    public function show_stats_author($from, $to) {
-        include 'layouts/author-stats-layout.php';
+    public function show_active_users_statistics($from, $to) {
+        include 'layouts/active-users-layout.php';
     }
 
-    public function show_stats() {
+    public function show_all_statistics() {
         global $post;
+        global $current_user;
+        get_currentuserinfo();
+
+        $apsw_user_id = is_user_logged_in() ? $current_user->ID : $post->post_author;
+        $apsw_user = get_user_by('id', $apsw_user_id);
+
         if ($this->apsw_options_serialized->is_stats_together == 1) {
-            if (is_singular()) {
+            if (is_singular() || ($this->apsw_options_serialized->is_stats_on_all_pages && is_user_logged_in())) {
                 include 'layouts/all-stats-tabbed-single.php';
             } else {
                 include 'layouts/all-stats-tabbed-not-single.php';
             }
         } else {
-            if (is_singular()) {
+            if (is_singular() || ($this->apsw_options_serialized->is_stats_on_all_pages && is_user_logged_in())) {
                 include 'layouts/all-stats-separately-single.php';
             } else {
                 include 'layouts/all-stats-separately-not-single.php';
@@ -324,15 +295,15 @@ class APSW_Core {
 
 }
 
-$statistic_info = new APSW_Core();
+$apsw_core = new APSW_Core();
 
 /**
  * @param type $from Date - 2010-05-16
  * @param type $to Date - 2014-05-16
  */
 function show_stats_post($from, $to) {
-    global $statistic_info;
-    $statistic_info->show_stats_post($from, $to);
+    global $apsw_core;
+    $apsw_core->show_post_statistics($from, $to);
 }
 
 /**
@@ -340,13 +311,13 @@ function show_stats_post($from, $to) {
  * @param type $to Date - 2014-05-16
  */
 function show_stats_author($from, $to) {
-    global $statistic_info;
-    $statistic_info->show_stats_author($from, $to);
+    global $apsw_core;
+    $apsw_core->show_active_users_statistics($from, $to);
 }
 
 function show_stats() {
-    global $statistic_info;
-    $statistic_info->show_stats();
+    global $apsw_core;
+    $apsw_core->show_all_statistics();
 }
 
 ?>

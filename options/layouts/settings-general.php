@@ -1,4 +1,4 @@
-<div id="tabs-1">
+<div>
     <table class="form-table">
         <tbody>
             <tr valign="top">
@@ -16,6 +16,17 @@
                     </label>
                 </td>
             </tr>
+
+            <tr valign="top">
+                <th scope="row">
+                    <?php _e('Display author/user statistic on all pages', APSW_Core::$text_domain); ?>
+                </th>
+                <td>       
+                    <label for="apsw_is_stats_on_all_pages">
+                        <input type="checkbox" <?php checked($this->apsw_options_serialized->is_stats_on_all_pages == '1'); ?> value="1" name="is_stats_on_all_pages" id="apsw_is_stats_on_all_pages" />
+                    </label>
+                </td>
+            </tr>            
 
             <tr valign="top">
                 <th scope="row">
@@ -58,5 +69,4 @@
             </tr>
         </tbody>
     </table>
-
 </div>

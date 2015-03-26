@@ -53,7 +53,7 @@
                         <?php
                         $popular_authors_limit = $this->apsw_options_serialized->popular_authors_limit;
                         ?>
-                        <label title="How many acitve users display in widget">
+                        <label title="How many active users display in widget">
                             <input type="text" value="<?php echo $popular_authors_limit; ?>" name="popular_authors_limit" id="popular_authors_limit" class=""/>
                         </label><br>                                   
                     </fieldset>

@@ -1,4 +1,4 @@
-<div id="tabs-3">
+<div>
     <table class="form-table">
         <tbody>
             <tr valign="top">

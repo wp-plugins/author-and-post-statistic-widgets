@@ -12,7 +12,7 @@ class APSW_Helper {
             for ($i = 0; $i < count($text_arr); $i++) {
                 $new_text .= $text_arr[$i] . ' ';
             }
-            $new_text = substr($new_text, 0, $count);
+            $new_text = mb_substr($new_text, 0, $count);
             if (strlen($text) >= $count) {
                 $new_text .= '...';
             }
@@ -24,17 +24,21 @@ class APSW_Helper {
     public static function init_string_from_array($array) {
         $result = '';
         $count = 0;
-        if (!$array) {
-            return '"post","page"';
-        } else {
-            foreach ($array as $value) {
-                $result .= '"' . $value . '"';
-                if ($count < count($array) - 1) {
-                    $result .= ',';
+        if (is_array($array)) {
+            if (!$array || count($array) == 0) {
+                return '"post","page"';
+            } else {
+                foreach ($array as $value) {
+                    $result .= '"' . $value . '"';
+                    if ($count < count($array) - 1) {
+                        $result .= ',';
+                    }
+                    $count++;
                 }
-                $count++;
+                return $result;
             }
-            return $result;
+        } else {
+            return '"post","page"';
         }
     }
 
@@ -98,6 +102,40 @@ class APSW_Helper {
                 break;
         }
         return $interval;
+    }
+
+    /**
+     * get profile url for certain user
+     */
+    public static function get_profile_url($user) {
+        $wc_profile_url = '';
+        $wc_profile_url_filter = '';
+        if ($user) {
+            if (class_exists('BuddyPress')) {
+                $wc_profile_url = bp_core_get_user_domain($user->ID);
+            } else if (class_exists('XooUserUltra')) {
+                global $xoouserultra;
+                $wc_profile_url = $xoouserultra->userpanel->get_user_profile_permalink($user->ID);
+            } else if (class_exists('userpro_api')) {
+                global $userpro;
+                $wc_profile_url = $userpro->permalink($user->ID);
+            } else if (class_exists('UM_API')) {
+                $wc_profile_url = apply_filters('get_comment_author_link', $wc_profile_url);
+                $dom = new DOMDocument;
+                $dom->loadHTML($wc_profile_url);
+                $node = $dom->getElementsByTagName('a')->item(0);
+                $wc_profile_url = $node->getAttribute( 'href' );
+            } else {
+                if (count_user_posts($user->ID)) {
+                    $wc_profile_url = get_author_posts_url($user->ID);
+                }
+            }
+            $user_id = $user->ID;
+            $wc_profile_url_data = apply_filters('apsw_profil_url', array('user_id' => $user_id, 'permalink' => ''));
+
+            $wc_profile_url_filter = $wc_profile_url_data['permalink'];
+        }
+        return $wc_profile_url_filter ? $wc_profile_url_filter : $wc_profile_url;
     }
 
 }

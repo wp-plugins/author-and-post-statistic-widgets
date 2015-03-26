@@ -17,9 +17,10 @@ $to = $interval['to'];
                 $author_user_name = $popular_author['user_name'];
                 $author_posts_count = $popular_author['posts_count'];
                 $author_comments_count = $popular_author['comments_count'];
+                $author_profile_url = APSW_Helper::get_profile_url(get_user_by('id', $author_id));
                 ?>
                 <li class="stats-popular-author-list">
-                    <a href="<?php echo get_author_posts_url($author_id); ?>" title="<?php echo __('View all posts by', APSW_Core::$text_domain) . ' ' . $author_user_name; ?>">
+                    <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$text_domain); ?>">
                         <span class="stats-label">
                             <?php echo $author_user_name; ?>
                         </span>

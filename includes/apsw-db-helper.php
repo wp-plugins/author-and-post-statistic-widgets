@@ -16,7 +16,7 @@ class APSW_DB_Helper {
         $this->ips_table = $this->db->prefix . 'sw_ips';
         $this->stats_table = $this->db->prefix . 'sw_statistics';
         $this->apsw_options_serialized = new APSW_Options_Serialize();
-        $this->post_types = APSW_Helper::init_string_from_array($this->apsw_options_serialized->post_types);
+        $this->post_types = APSW_Helper::init_string_from_array($this->apsw_options_serialized->post_types);        
     }
 
     /**

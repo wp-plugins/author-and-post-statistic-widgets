@@ -26,9 +26,10 @@
                         $author_id = $author_data['author_id'];
                         $author_posts_count = $author_data['posts_count'];
                         $author_user_name = $author_data['user_name'];
+                        $author_profile_url = APSW_Helper::get_profile_url(get_user_by('id', $author_id));
                         ?>
                         <li class="stats-author-posts-count">
-                            <a href="<?php echo get_author_posts_url($author_id); ?>" title="<?php echo __('View all posts by', APSW_Core::$text_domain) . ' ' . $author_user_name; ?>">
+                            <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$text_domain); ?>">
                                 <span class="stats-label">
                                     <?php echo $author_user_name; ?>
                                 </span>
@@ -53,16 +54,17 @@
                     foreach ($authors_data as $author_data) {
                         $author_id = $author_data['author_id'];
                         $author_posts_views_count = $author_data['view_count'];
-                        $author_user_name = $author_data['user_name']
+                        $author_user_name = $author_data['user_name'];
+                        $author_profile_url = APSW_Helper::get_profile_url(get_user_by('id', $author_id));
                         ?>
                         <li class="stats-author-posts-count">
-                            <a href="<?php echo get_author_posts_url($author_id); ?>" title="<?php echo __('View all posts by', APSW_Core::$text_domain) . ' ' . $author_user_name; ?>">
+                            <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$text_domain); ?>">
                                 <span class="stats-label">
                                     <?php echo $author_user_name; ?>
                                 </span>
                             </a>
                             <span class="stats-value" title="<?php echo __('Posts views:', APSW_Core::$text_domain) . ' ' . $author_posts_views_count; ?>">
-                            	<?php echo $author_posts_views_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />                                
+                                <?php echo $author_posts_views_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />                                
                             </span>
 
                         </li>
@@ -82,9 +84,10 @@
                         $author_id = $author_data['author_id'];
                         $author_posts_comments_count = $author_data['c_count'];
                         $author_user_name = $author_data['user_name'];
+                        $author_profile_url = APSW_Helper::get_profile_url(get_user_by('id', $author_id));
                         ?>
                         <li class="stats-author-posts-count">
-                            <a href="<?php echo get_author_posts_url($author_id); ?>" title="<?php echo __('View all posts by', APSW_Core::$text_domain) . ' ' . $author_user_name; ?>">
+                            <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$text_domain); ?>">
                                 <span class="stats-label">
                                     <?php echo $author_user_name; ?>
                                 </span>

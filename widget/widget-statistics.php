@@ -28,7 +28,13 @@ class APSW_Statistic_Widget extends WP_Widget {
      * Initialize The Widget
      */
     public function widget($args, $instance) {
+        global $post;
+        global $current_user;
+        get_currentuserinfo();
+
         extract($args);
+        $apsw_user_id = is_user_logged_in() ? $current_user->ID : $post->post_author;
+        $apsw_user = get_user_by('id', $apsw_user_id);
 
         $title = apply_filters('widget_title', $instance['title']);
         $body = $instance['body'];
@@ -71,18 +77,16 @@ class APSW_Statistic_Widget extends WP_Widget {
             echo $before_title . strip_tags($title) . $after_title;
         }
 
-        global $post;
-
         echo $before_body;
 
         if ($this->apsw_options_serialized->is_stats_together == 1) {
-            if (is_singular()) {
+            if (is_singular() || ($this->apsw_options_serialized->is_stats_on_all_pages && is_user_logged_in())) {
                 include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'all-stats-tabbed-single.php');
             } else {
                 include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'all-stats-tabbed-not-single.php');
             }
         } else {
-            if (is_singular()) {
+            if (is_singular() || ($this->apsw_options_serialized->is_stats_on_all_pages && is_user_logged_in())) {
                 include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'all-stats-separately-single.php');
             } else {
                 include(APSW_PLUGIN_DIR . DIRECTORY_SEPARATOR . 'layouts' . DIRECTORY_SEPARATOR . 'all-stats-separately-not-single.php');
@@ -130,4 +134,5 @@ class APSW_Statistic_Widget extends WP_Widget {
     }
 
 }
+
 ?>
