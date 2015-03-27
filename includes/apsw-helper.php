@@ -121,10 +121,11 @@ class APSW_Helper {
                 $wc_profile_url = $userpro->permalink($user->ID);
             } else if (class_exists('UM_API')) {
                 $wc_profile_url = apply_filters('get_comment_author_link', $wc_profile_url);
-                $dom = new DOMDocument;
-                $dom->loadHTML($wc_profile_url);
-                $node = $dom->getElementsByTagName('a')->item(0);
-                $wc_profile_url = $node->getAttribute( 'href' );
+                if (preg_match('|<a[^\<\>]*href=[\'\"]+([^\"\']+)[\'\"]+[^\<\>]*>|is', $wc_profile_url, $wc_profile_arr)) {
+                    $wc_profile_url = $wc_profile_arr[1];
+                } else {
+                    $wc_profile_url = '';
+                }
             } else {
                 if (count_user_posts($user->ID)) {
                     $wc_profile_url = get_author_posts_url($user->ID);
