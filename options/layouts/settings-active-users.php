@@ -3,7 +3,7 @@
         <tbody>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Display user full name:', APSW_Core::$text_domain); ?>
+                    <?php _e('Display user full name:', APSW_Core::$APSW_TEXT_DOMAIN); ?>
                 </th>
                 <td>                                
                     <label for="is_display_author_name">
@@ -14,7 +14,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Display user avatar:', APSW_Core::$text_domain); ?>
+                    <?php _e('Display user avatar:', APSW_Core::$APSW_TEXT_DOMAIN); ?>
                 </th>
                 <td>                                
                     <label for="is_display_author_avatar">
@@ -24,7 +24,7 @@
             </tr>
 
             <tr valign="top">
-                <th scope="row"><?php _e('Show active users by posts:', APSW_Core::$text_domain); ?></th>
+                <th scope="row"><?php _e('Show active users by posts:', APSW_Core::$APSW_TEXT_DOMAIN); ?></th>
                 <td>
                     <fieldset>
                         <?php
@@ -32,22 +32,22 @@
                         ?>
                         <label title="by posts count">
                             <input type="radio" value="1" <?php checked('1' == $is_author_popular_by_post_count); ?> name="is_author_popular_by_post_count" id="author_popular_by_post_count" class=""/> 
-                            <span><?php _e('Count', APSW_Core::$text_domain); ?></span>
+                            <span><?php _e('Count', APSW_Core::$APSW_TEXT_DOMAIN); ?></span>
                         </label><br>
                         <label title="by posts view">
                             <input type="radio" value="2" <?php checked('2' == $is_author_popular_by_post_count); ?> name="is_author_popular_by_post_count" id="author_popular_by_post_view_count" class="" /> 
-                            <span><?php _e('Views', APSW_Core::$text_domain); ?></span>
+                            <span><?php _e('Views', APSW_Core::$APSW_TEXT_DOMAIN); ?></span>
                         </label><br>
                         <label title="by posts comments count">
                             <input type="radio" value="3" <?php checked('3' == $is_author_popular_by_post_count); ?> name="is_author_popular_by_post_count" id="author_popular_by_posts_comments_count" class="" /> 
-                            <span><?php _e('Comment Count', APSW_Core::$text_domain); ?></span>
+                            <span><?php _e('Comment Count', APSW_Core::$APSW_TEXT_DOMAIN); ?></span>
                         </label><br>
                     </fieldset>
                 </td>
             </tr>
 
             <tr valign="top">
-                <th scope="row"><?php _e('Active users limit:', APSW_Core::$text_domain); ?> </th>
+                <th scope="row"><?php _e('Active users limit:', APSW_Core::$APSW_TEXT_DOMAIN); ?> </th>
                 <td>
                     <fieldset>
                         <?php

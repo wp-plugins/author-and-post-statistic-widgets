@@ -17,11 +17,11 @@ class APSW_Statistic_Widget extends WP_Widget {
          */
         $widget_ops = array(
             'classname' => 'all_stats_widget',
-            'description' => __('This Widget displays author and post statistic information.', APSW_Core::$text_domain)
+            'description' => __('This Widget displays author and post statistic information.', APSW_Core::$APSW_TEXT_DOMAIN)
         );
 
         $control_ops = array();
-        $this->WP_Widget('a_stats_widget', __('APSW - Author &amp; Post Statistics', APSW_Core::$text_domain), $widget_ops, $control_ops);
+        $this->WP_Widget('a_stats_widget', __('APSW - Author &amp; Post Statistics', APSW_Core::$APSW_TEXT_DOMAIN), $widget_ops, $control_ops);
     }
 
     /**
@@ -37,36 +37,30 @@ class APSW_Statistic_Widget extends WP_Widget {
         $apsw_user = get_user_by('id', $apsw_user_id);
 
         $title = apply_filters('widget_title', $instance['title']);
-        $body = $instance['body'];
 
-        $before_widget = '';
-        $after_widget = '';
-        $before_title = '';
-        $after_title = '';
+        $before_widget = $args['before_widget'];
+        $after_widget = $args['after_widget'];
+        $before_title = $args['before_title'];
+        $after_title = $args['after_title'];
+        $before_body = '';
+        $after_body = '';
 
+        if ($this->apsw_options_serialized->is_display_custom_html_for_widgets) {
 
-        if ($instance['apsw_widget_custom_args'] == '1') {
-            $before_widget = $instance['before_widget'];
-            $after_widget = $instance['after_widget'];
-        } else {
-            $before_widget = $args['before_widget'];
-            $after_widget = $args['after_widget'];
-        }
+            if ($instance['apsw_widget_custom_args'] == '1') {
+                $before_widget = $instance['before_widget'];
+                $after_widget = $instance['after_widget'];
+            }
 
-        if ($instance['apsw_title_custom_args'] == '1') {
-            $before_title = $instance['before_title'];
-            $after_title = $instance['after_title'];
-        } else {
-            $before_title = $args['before_title'];
-            $after_title = $args['after_title'];
-        }
+            if ($instance['apsw_title_custom_args'] == '1') {
+                $before_title = $instance['before_title'];
+                $after_title = $instance['after_title'];
+            }
 
-        if ($instance['apsw_body_custom_args'] == '1') {
-            $before_body = $instance['before_body'];
-            $after_body = $instance['after_body'];
-        } else {
-            $before_body = '';
-            $after_body = '';
+            if ($instance['apsw_body_custom_args'] == '1') {
+                $before_body = $instance['before_body'];
+                $after_body = $instance['after_body'];
+            }
         }
 
 
@@ -105,15 +99,17 @@ class APSW_Statistic_Widget extends WP_Widget {
         $instance = $old_instance;
         $instance['title'] = strip_tags($new_instance['title']);
         $instance['body'] = strip_tags($new_instance['body']);
-        $instance['apsw_widget_custom_args'] = $new_instance['apsw_widget_custom_args'];
-        $instance['apsw_title_custom_args'] = $new_instance['apsw_title_custom_args'];
-        $instance['apsw_body_custom_args'] = $new_instance['apsw_body_custom_args'];
-        $instance['before_widget'] = $new_instance['before_widget'];
-        $instance['after_widget'] = $new_instance['after_widget'];
-        $instance['before_title'] = $new_instance['before_title'];
-        $instance['after_title'] = $new_instance['after_title'];
-        $instance['before_body'] = $new_instance['before_body'];
-        $instance['after_body'] = $new_instance['after_body'];
+        if ($this->apsw_options_serialized->is_display_custom_html_for_widgets) {
+            $instance['apsw_widget_custom_args'] = $new_instance['apsw_widget_custom_args'];
+            $instance['apsw_title_custom_args'] = $new_instance['apsw_title_custom_args'];
+            $instance['apsw_body_custom_args'] = $new_instance['apsw_body_custom_args'];
+            $instance['before_widget'] = $new_instance['before_widget'];
+            $instance['after_widget'] = $new_instance['after_widget'];
+            $instance['before_title'] = $new_instance['before_title'];
+            $instance['after_title'] = $new_instance['after_title'];
+            $instance['before_body'] = $new_instance['before_body'];
+            $instance['after_body'] = $new_instance['after_body'];
+        }
         return $instance;
     }
 
@@ -123,8 +119,8 @@ class APSW_Statistic_Widget extends WP_Widget {
     function form($instance) {
         //Set up some default widget settings.
         $defaults = array(
-            'title' => __('Author &amp; Post Statistics', APSW_Core::$text_domain),
-            'body' => __('The Widget Body', APSW_Core::$text_domain),
+            'title' => __('Author &amp; Post Statistics', APSW_Core::$APSW_TEXT_DOMAIN),
+            'body' => __('The Widget Body', APSW_Core::$APSW_TEXT_DOMAIN),
             'apsw_widget_custom_args' => '',
             'apsw_title_custom_args' => '',
             'apsw_body_custom_args' => ''

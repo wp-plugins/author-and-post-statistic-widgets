@@ -53,54 +53,40 @@ class APSW_Helper {
         return $ip;
     }
 
-    public static function get_date_intervals($date_interval, $date_format) {
+    public static function get_blog_reg_date() {
+        $blogusers = get_users('orderby=registered&order=asc');
+        $first_user = $blogusers[0];
+        $time = get_user_option('user_registered', $first_user->ID);
+        $blog_reg_date = date('Y-m-d', strtotime($time));
+        return $blog_reg_date;
+    }
+
+    public static function get_now() {
+        return current_time('Y-m-d');
+    }
+
+    public static function get_dynamic_date_intervals($last, $date_format) {
         $interval = array();
-        switch ($date_interval) {
-            case '1':
-                $interval['from'] = current_time($date_format);
-                $datetime = new DateTime($interval['from']);
-                $datetime->modify('+1 day');
-                $interval['to'] = $datetime->format($date_format);
-                break;
-            case '2':
-                $datetime = new DateTime(current_time($date_format));
-                $datetime->modify('-1 day');
-                $interval['from'] = $datetime->format($date_format);
-                $interval['to'] = current_time($date_format);
-                break;
-            case '3':
-                $datetime = new DateTime(current_time($date_format));
-                $datetime->modify('-7 day');
-                $interval['from'] = $datetime->format($date_format);
-                $interval['to'] = current_time($date_format);
-                break;
-            case '4':
-                $datetime = new DateTime(current_time($date_format));
-                $datetime->modify('-30 day');
-                $interval['from'] = $datetime->format($date_format);
-                $interval['to'] = current_time($date_format);
-                break;
-            case '5':
-                $datetime = new DateTime(current_time($date_format));
-                $datetime->modify('-90 day');
-                $interval['from'] = $datetime->format($date_format);
-                $interval['to'] = current_time($date_format);
-                break;
-            case '6':
-                $datetime = new DateTime(current_time($date_format));
-                $datetime->modify('-365 day');
-                $interval['from'] = $datetime->format($date_format);
-                $interval['to'] = current_time($date_format);
-                break;
-            default:
-                $blogusers = get_users('orderby=registered&order=asc');
-                $first_user = $blogusers[0];
-                $date_format = 'Y-m-d';
-                $time = get_user_option('user_registered', $first_user->ID);
-                $interval['from'] = date($date_format, strtotime($time));
-                $interval['to'] = current_time($date_format);
-                break;
+
+        if ($last != '' && intval($last) === 0) { // today
+            $interval['from'] = current_time($date_format);
+            $datetime = new DateTime($interval['from']);
+            $datetime->modify('+1 day');
+            $interval['to'] = $datetime->format($date_format);
+        } else if ($last != '' && intval($last) > 0) { // last X days 
+            $datetime = new DateTime(current_time($date_format));
+            $modify = '-' . abs($last) . ' day';
+            $datetime->modify($modify);
+            $interval['from'] = $datetime->format($date_format);
+            $interval['to'] = current_time($date_format);
+        } else { // all time
+            $blogusers = get_users('orderby=registered&order=asc');
+            $first_user = $blogusers[0];
+            $time = get_user_option('user_registered', $first_user->ID);
+            $interval['from'] = date($date_format, strtotime($time));
+            $interval['to'] = current_time($date_format);
         }
+
         return $interval;
     }
 
@@ -120,12 +106,8 @@ class APSW_Helper {
                 global $userpro;
                 $wc_profile_url = $userpro->permalink($user->ID);
             } else if (class_exists('UM_API')) {
-                $wc_profile_url = apply_filters('get_comment_author_link', $wc_profile_url);
-                if (preg_match('|<a[^\<\>]*href=[\'\"]+([^\"\']+)[\'\"]+[^\<\>]*>|is', $wc_profile_url, $wc_profile_arr)) {
-                    $wc_profile_url = $wc_profile_arr[1];
-                } else {
-                    $wc_profile_url = '';
-                }
+                um_fetch_user($user->ID);
+                $wc_profile_url = um_user_profile_url();
             } else {
                 if (count_user_posts($user->ID)) {
                     $wc_profile_url = get_author_posts_url($user->ID);

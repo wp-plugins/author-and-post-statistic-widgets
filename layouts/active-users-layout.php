@@ -1,19 +1,12 @@
 <div class="separate-wrapper">   
     <?php
-    $blogusers = get_users('orderby=registered&order=asc');
-    $first_user = $blogusers[0];
-    $date_format = 'Y-m-d';
-    $time = get_user_option('user_registered', $first_user->ID);
-    $blog_reg_date = date($date_format, strtotime($time));
-    $now = current_time($date_format);
-
     $authors_limit = $this->apsw_options_serialized->popular_authors_limit;
 
-    if (empty($from)) {
-        $from = $blog_reg_date;
+    if (!$from) {
+        $from = APSW_Helper::get_blog_reg_date();
     }
-    if (empty($to)) {
-        $to = $now;
+    if (!$to) {
+        $to = APSW_Helper::get_now();
     }
     ?>
     <div class="stats-block stats-author-block">        
@@ -29,13 +22,13 @@
                         $author_profile_url = APSW_Helper::get_profile_url(get_user_by('id', $author_id));
                         ?>
                         <li class="stats-author-posts-count">
-                            <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$text_domain); ?>">
+                            <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$APSW_TEXT_DOMAIN); ?>">
                                 <span class="stats-label">
                                     <?php echo $author_user_name; ?>
                                 </span>
                             </a>
-                            <span class="stats-value" title="<?php echo __('Posts count:', APSW_Core::$text_domain) . ' ' . $author_posts_count; ?>">
-                                <?php echo $author_posts_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_posts.png') ?>" title="<?php _e('posts', APSW_Core::$text_domain) ?>" alt="<?php _e('posts', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-posts-img" />								
+                            <span class="stats-value" title="<?php echo __('Posts count:', APSW_Core::$APSW_TEXT_DOMAIN) . ' ' . $author_posts_count; ?>">
+                                <?php echo $author_posts_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_posts.png') ?>" title="<?php _e('posts', APSW_Core::$APSW_TEXT_DOMAIN) ?>" alt="<?php _e('posts', APSW_Core::$APSW_TEXT_DOMAIN) ?>" align="absmiddle" class="apsw-posts-img" />								
                             </span>
 
                         </li>
@@ -44,7 +37,7 @@
                 } else {
                     ?>
                     <span class="empty_data">
-                        <?php _e('There are no data between selected dates', APSW_Core::$text_domain); ?>
+                        <?php _e('There are no data between selected dates', APSW_Core::$APSW_TEXT_DOMAIN); ?>
                     </span>
                     <?php
                 }
@@ -58,13 +51,13 @@
                         $author_profile_url = APSW_Helper::get_profile_url(get_user_by('id', $author_id));
                         ?>
                         <li class="stats-author-posts-count">
-                            <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$text_domain); ?>">
+                            <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$APSW_TEXT_DOMAIN); ?>">
                                 <span class="stats-label">
                                     <?php echo $author_user_name; ?>
                                 </span>
                             </a>
-                            <span class="stats-value" title="<?php echo __('Posts views:', APSW_Core::$text_domain) . ' ' . $author_posts_views_count; ?>">
-                                <?php echo $author_posts_views_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$text_domain) ?>" alt="<?php _e('views', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-views-img" />                                
+                            <span class="stats-value" title="<?php echo __('Posts views:', APSW_Core::$APSW_TEXT_DOMAIN) . ' ' . $author_posts_views_count; ?>">
+                                <?php echo $author_posts_views_count ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_views.png') ?>" title="<?php _e('views', APSW_Core::$APSW_TEXT_DOMAIN) ?>" alt="<?php _e('views', APSW_Core::$APSW_TEXT_DOMAIN) ?>" align="absmiddle" class="apsw-views-img" />                                
                             </span>
 
                         </li>
@@ -73,7 +66,7 @@
                 } else {
                     ?>
                     <span class="empty_data">
-                        <?php _e('There are no data between selected dates', APSW_Core::$text_domain); ?>
+                        <?php _e('There are no data between selected dates', APSW_Core::$APSW_TEXT_DOMAIN); ?>
                     </span>
                     <?php
                 }
@@ -87,13 +80,13 @@
                         $author_profile_url = APSW_Helper::get_profile_url(get_user_by('id', $author_id));
                         ?>
                         <li class="stats-author-posts-count">
-                            <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$text_domain); ?>">
+                            <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$APSW_TEXT_DOMAIN); ?>">
                                 <span class="stats-label">
                                     <?php echo $author_user_name; ?>
                                 </span>
                             </a>
-                            <span class="stats-value" title="<?php echo __('Posts comments count:', APSW_Core::$text_domain) . ' ' . $author_posts_comments_count; ?>">
-                                <?php echo $author_posts_comments_count; ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_comments.png') ?>" title="<?php _e('comments', APSW_Core::$text_domain) ?>" alt="<?php _e('comments', APSW_Core::$text_domain) ?>" align="absmiddle" class="apsw-comments-img" />                                
+                            <span class="stats-value" title="<?php echo __('Posts comments count:', APSW_Core::$APSW_TEXT_DOMAIN) . ' ' . $author_posts_comments_count; ?>">
+                                <?php echo $author_posts_comments_count; ?> <img src="<?php echo plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon_comments.png') ?>" title="<?php _e('comments', APSW_Core::$APSW_TEXT_DOMAIN) ?>" alt="<?php _e('comments', APSW_Core::$APSW_TEXT_DOMAIN) ?>" align="absmiddle" class="apsw-comments-img" />                                
                             </span>
 
                         </li>
@@ -102,7 +95,7 @@
                 } else {
                     ?>
                     <span class="empty_data">
-                        <?php _e('There are no data between selected dates', APSW_Core::$text_domain); ?>
+                        <?php _e('There are no data between selected dates', APSW_Core::$APSW_TEXT_DOMAIN); ?>
                     </span>
                     <?php
                 }

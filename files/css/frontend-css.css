@@ -14,6 +14,9 @@
 .stats_tabs ul.tabs-menu li {
     list-style-type: none;
     line-height: 1;
+    padding: 13px 15px;
+    margin: 0 4px 0 0;
+    color: #000;
 }
 
 .stats_tabs a, .separate-wrapper a {text-decoration: none; display:inline!important; }
@@ -43,7 +46,7 @@
 }
 
 .stats_tabs ul.stats-posts-list, ul.stats-author-list {
-	border:none;
+    border:none;
     list-style-type: none;
     margin: 5px !important;
     padding: 0 !important;
@@ -51,7 +54,7 @@
 
 .stats_tabs ul.stats-author-list > li, 
 .stats_tabs ul.stats-posts-list > li {
-	border:none;
+    border:none;
     border-bottom: 1px dotted #ccc !important;
     margin: 5px 0;
     text-align: right;
@@ -68,13 +71,13 @@
 }
 
 .stats_tabs ul.nested-list {
-	border:none;
+    border:none;
     list-style-type: none;
     margin: 10px 0 10px 30px;
 }
 
 .stats_tabs ul.nested-list li {
-	border:none;
+    border:none;
     border-top: 1px dotted #ddd !important;
     margin: 5px 0;
 }

@@ -9,11 +9,11 @@ class APSW_Options_Serialize {
      * or separate blocks      
      */
     public $is_stats_together;
-    
+
     /**
      * display author/user statistics on all pages if logged-in 
      */
-    public $is_stats_on_all_pages; 
+    public $is_stats_on_all_pages;
 
     /*
      * post types for statistics
@@ -74,7 +74,19 @@ class APSW_Options_Serialize {
      */
     public $is_display_daily_views;
 
-    /* ===== STYLES SETTINGS ===== */    
+    /* ===== STYLES SETTINGS ===== */
+
+    /**
+     * allow to use custom html for:
+     *      before / after widget title
+     *      before / after widget content
+     *      before / after widget
+     */
+    public $is_display_custom_html_for_widgets;
+
+    /**
+     * custom CSS code to include in header
+     */
     public $custom_css;
 
     function __construct() {
@@ -95,7 +107,8 @@ class APSW_Options_Serialize {
             'popular_authors_limit' => '10', // by default display 10 authors
             'popular_posts_limit' => '10', // by default display 10 posts
             'is_post_view_by_ip' => '1', // default - by ip
-            'is_display_daily_views' => '1', // default - display daily views count
+            'is_display_daily_views' => '1', // default - display daily views count            
+            'is_display_custom_html_for_widgets' => '1', // default - display custom html for widgets
             'custom_css' => '', // default - empty
         );
         add_option($this->apsw_options_page_slug, $options);
@@ -106,7 +119,7 @@ class APSW_Options_Serialize {
         $this->is_stats_together = isset($options['is_stats_together']) ? $options['is_stats_together'] : 1;
         $this->is_stats_on_all_pages = isset($options['is_stats_on_all_pages']) ? $options['is_stats_on_all_pages'] : 0;
         $this->post_types = isset($options['post_types']) ? $options['post_types'] : array("post", "page");
-        $this->custom_taxonomy_types = isset($options['custom_taxonomy_types']) ? $options['custom_taxonomy_types'] : array();        
+        $this->custom_taxonomy_types = isset($options['custom_taxonomy_types']) ? $options['custom_taxonomy_types'] : array();
         $this->is_display_author_name = $options['is_display_author_name'];
         $this->is_display_author_avatar = $options['is_display_author_avatar'];
         $this->is_author_popular_by_post_count = $options['is_author_popular_by_post_count'];
@@ -114,7 +127,8 @@ class APSW_Options_Serialize {
         $this->popular_authors_limit = $options['popular_authors_limit'];
         $this->popular_posts_limit = $options['popular_posts_limit'];
         $this->is_post_view_by_ip = isset($options['is_post_view_by_ip']) ? $options['is_post_view_by_ip'] : 1;
-        $this->is_display_daily_views = isset($options['is_display_daily_views']) ? $options['is_display_daily_views'] : 0;        
+        $this->is_display_daily_views = isset($options['is_display_daily_views']) ? $options['is_display_daily_views'] : 0;
+        $this->is_display_custom_html_for_widgets = isset($options['is_display_custom_html_for_widgets']) ? $options['is_display_custom_html_for_widgets'] : 0;
         $this->custom_css = $options['custom_css'];
     }
 
@@ -135,7 +149,8 @@ class APSW_Options_Serialize {
             'popular_authors_limit' => $this->popular_authors_limit,
             'popular_posts_limit' => $this->popular_posts_limit,
             'is_post_view_by_ip' => $this->is_post_view_by_ip,
-            'is_display_daily_views' => $this->is_display_daily_views,            
+            'is_display_daily_views' => $this->is_display_daily_views,
+            'is_display_custom_html_for_widgets' => $this->is_display_custom_html_for_widgets,
             'custom_css' => $this->custom_css
         );
         return $options;

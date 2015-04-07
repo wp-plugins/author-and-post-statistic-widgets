@@ -3,23 +3,23 @@
         <tbody>
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Show author and post statistics in:', APSW_Core::$text_domain); ?>
+                    <?php _e('Show author and post statistics in:', APSW_Core::$APSW_TEXT_DOMAIN); ?>
                 </th>
                 <td>                                
                     <label>
                         <input type="radio" <?php checked($this->apsw_options_serialized->is_stats_together == '1') ?> value="1" name="is_stats_together" id="is_stats_tabbed" />
-                        <span><?php _e('Tabs', APSW_Core::$text_domain); ?></span>
+                        <span><?php _e('Tabs', APSW_Core::$APSW_TEXT_DOMAIN); ?></span>
                     </label><br/>
                     <label>
                         <input type="radio" <?php checked($this->apsw_options_serialized->is_stats_together == '2') ?> value="2" name="is_stats_together" id="is_stats_separate" />
-                        <span><?php _e('Separate blocks', APSW_Core::$text_domain); ?></span>
+                        <span><?php _e('Separate blocks', APSW_Core::$APSW_TEXT_DOMAIN); ?></span>
                     </label>
                 </td>
             </tr>
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Display author/user statistic on all pages', APSW_Core::$text_domain); ?>
+                    <?php _e('Display author/user statistic on all pages', APSW_Core::$APSW_TEXT_DOMAIN); ?>
                 </th>
                 <td>       
                     <label for="apsw_is_stats_on_all_pages">
@@ -30,7 +30,7 @@
 
             <tr valign="top">
                 <th scope="row">
-                    <?php _e('Create statistic for post and taxonomy types:', APSW_Core::$text_domain); ?>
+                    <?php _e('Create statistic for post and taxonomy types:', APSW_Core::$APSW_TEXT_DOMAIN); ?>
                 </th>
                 <td>                                
                     <?php

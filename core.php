@@ -3,7 +3,7 @@
 /*
   Plugin Name: Author and Post Statistic Widgets
   Description: Adds awesome statistic widgets for displaying authors activity and posts popularity. This plugin displays adaptive statistical information depending on current opened category, post and page.
-  Version: 1.4.6
+  Version: 1.4.7
   Author: gVectors Team (Gagik Zakaryan & Hakob Martirosyan)
   Author URI: http://gvectors.com
   Plugin URI: http://gvectors.com/author-and-post-statistic-widgets/
@@ -42,13 +42,13 @@ include_once 'apsw-css.php';
 
 class APSW_Core {
 
-    public static $text_domain = 'apsw';
     public $apsw_options;
     public $apsw_options_serialized;
     public $apsw_db_helper;
     public $w_author;
     public $apsw_css;
     public $apsw_version = 'apsw_version';
+    public static $APSW_TEXT_DOMAIN = 'apsw';
     public static $PLUGIN_DIRECTORY;
 
     function __construct() {
@@ -127,12 +127,12 @@ class APSW_Core {
             return do_shortcode($content);
         }
         $date_format = 'Y-m-d';
-        $alltime_interval = APSW_Helper::get_date_intervals(7, $date_format);
+        $alltime_interval = APSW_Helper::get_dynamic_date_intervals(0, $date_format);
         $alltime_from = $alltime_interval['from'];
         $alltime_to = $alltime_interval['to'];
         $alltime_views = $this->apsw_db_helper->get_post_views_count($post->ID, $alltime_from, $alltime_to);
 
-        $daily_interval = APSW_Helper::get_date_intervals(1, $date_format);
+        $daily_interval = APSW_Helper::get_dynamic_date_intervals(1, $date_format);
         $daily_from = $daily_interval['from'];
         $daily_to = $daily_interval['to'];
         $daily_views = $this->apsw_db_helper->get_post_views_count($post->ID, $daily_from, $daily_to);
@@ -140,12 +140,12 @@ class APSW_Core {
         $html = '<div class="apsw_views_count_wrapper">';
         $html .= '<div class="apsw_views_all_time">';
 
-        $html .= '<div class="apsw_post_views_title"><img src="' . plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon-stat.gif') . '" align="absmiddle" class="apsw-stat-img-views_all" /> ' . __('Views All Time', APSW_Core::$text_domain) . '</div>';
+        $html .= '<div class="apsw_post_views_title"><img src="' . plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon-stat.gif') . '" align="absmiddle" class="apsw-stat-img-views_all" /> ' . __('Views All Time', APSW_Core::$APSW_TEXT_DOMAIN) . '</div>';
         $html .= '<div class="apsw_post_views_value">' . $alltime_views . '</div>';
         $html .= '<div style="clear:both"></div>';
         $html .= '</div>';
         $html .= '<div class="apsw_views_daily">';
-        $html .= '<div class="apsw_post_views_title"><img src="' . plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon-stat-today.gif') . '" align="absmiddle" class="apsw-stat-img-views_today" /> ' . __('Views Today', APSW_Core::$text_domain) . '</div>';
+        $html .= '<div class="apsw_post_views_title"><img src="' . plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/img/icon-stat-today.gif') . '" align="absmiddle" class="apsw-stat-img-views_today" /> ' . __('Views Today', APSW_Core::$APSW_TEXT_DOMAIN) . '</div>';
         $html .= '<div class="apsw_post_views_value">' . $daily_views . '</div>';
         $html .= '<div style="clear:both"></div>';
         $html .= '</div>';
@@ -191,7 +191,7 @@ class APSW_Core {
         wp_enqueue_style('jquery-ui-theme-options');
 
         wp_enqueue_script('apsw-ajax-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/ajax-delete.js'), array('jquery'), get_option($this->apsw_version), false);
-        wp_enqueue_script('apsw-cookie-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/jquery.cookie.js'), array('jquery'), '1.4.1', false);
+        wp_enqueue_script('apsw-cookie-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/jquery.cookie.js'), array('jquery'), get_option($this->apsw_version), false);
         wp_enqueue_script('apsw-widgets-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/js/widgets-js.js'), array('jquery'), get_option($this->apsw_version), false);
 
         wp_enqueue_script('apsw-easy-responsive-tabs-js', plugins_url(APSW_Core::$PLUGIN_DIRECTORY . '/files/third-party/easy-responsive-tabs/js/easy-responsive-tabs.js'), array('jquery'), get_option($this->apsw_version));
@@ -243,20 +243,20 @@ class APSW_Core {
         $all = isset($_POST['all']) ? $_POST['all'] : 0;
         $from = isset($_POST['from']) ? $_POST['from'] : APSW_Helper::get_blog_reg_date();
         $to = isset($_POST['to']) ? $_POST['to'] : APSW_Helper::get_now();
-        echo ($this->apsw_db_helper->delete_statistics($all, $from, $to) ? __('Statistic data has been removed', APSW_Core::$text_domain) : __('Failed to delete statistic data', APSW_Core::$text_domain));
+        echo ($this->apsw_db_helper->delete_statistics($all, $from, $to) ? __('Statistical data has been removed', APSW_Core::$APSW_TEXT_DOMAIN) : __('Failed to delete statistical data', APSW_Core::$APSW_TEXT_DOMAIN));
         exit();
     }
 
-    public function show_post_statistics($from, $to) {
+    public function apsw_popular_posts_static_widget($from, $to) {
         global $post;
         include 'layouts/post-stats-layout.php';
     }
 
-    public function show_active_users_statistics($from, $to) {
+    public function apsw_active_users_static_widget($from, $to) {
         include 'layouts/active-users-layout.php';
     }
 
-    public function show_all_statistics() {
+    public function apsw_post_and_author_widget() {
         global $post;
         global $current_user;
         get_currentuserinfo();
@@ -279,6 +279,14 @@ class APSW_Core {
         }
     }
 
+    public function apsw_popular_posts_dynamic_widget($last = -1) {
+        include 'layouts' . DIRECTORY_SEPARATOR . 'popular-posts-list.php';
+    }
+
+    public function apsw_popular_authors_dynamic_widget($last = -1) {
+        include 'layouts' . DIRECTORY_SEPARATOR . 'popular-authors-list.php';
+    }
+
     public function init_plugin_dir_name() {
         $plugin_dir_path = plugin_dir_path(__FILE__);
         $path_array = array_values(array_filter(explode(DIRECTORY_SEPARATOR, $plugin_dir_path)));
@@ -298,26 +306,53 @@ class APSW_Core {
 $apsw_core = new APSW_Core();
 
 /**
- * @param type $from Date - 2010-05-16
- * @param type $to Date - 2014-05-16
+ * display popular posts statistics by given time period 
+ * example: $from = '2014-05-16' $to = '2015-01-01'
  */
-function show_stats_post($from, $to) {
+function apsw_pp_static_date_widget($from, $to) {
     global $apsw_core;
-    $apsw_core->show_post_statistics($from, $to);
+    $apsw_core->apsw_popular_posts_static_widget($from, $to);
 }
 
 /**
- * @param type $from Date - 2010-05-16
- * @param type $to Date - 2014-05-16
+ * display active users statistics by given time period
+ * example: $from = '2014-05-16' $to = '2015-01-01'
  */
-function show_stats_author($from, $to) {
+function apsw_au_static_date_widget($from, $to) {
     global $apsw_core;
-    $apsw_core->show_active_users_statistics($from, $to);
+    $apsw_core->apsw_active_users_static_widget($from, $to);
 }
 
-function show_stats() {
+/**
+ * display posts and users widget
+ */
+function apsw_pu_widget() {
     global $apsw_core;
-    $apsw_core->show_all_statistics();
+    $apsw_core->apsw_post_and_author_widget();
+}
+
+/**
+ * display popular posts list for last X days
+ * examples 
+ *     set last = -1 to display statistics for all time
+ *     set last = 0 to display statistics for current day
+ *     set last = 7  to display statistics for a week (30 for a month, etc...)
+ */
+function apsw_pp_dynamic_date_widget($last = -1) {
+    global $apsw_core;
+    $apsw_core->apsw_popular_posts_dynamic_widget();
+}
+
+/**
+ * display popular authors list for last X days
+ * examples 
+ *     set last = -1 to display statistics for all time
+ *     set last = 0 to display statistics for current day
+ *     set last = 7  to display statistics for a week (30 for a month, etc...)
+ */
+function apsw_pa_dynamic_date_widget($last = -1) {
+    global $apsw_core;
+    $apsw_core->apsw_popular_authors_dynamic_widget();
 }
 
 ?>

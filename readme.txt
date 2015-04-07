@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: popular authors widget, popular post widget, author widget, post widget, author activity, statistics, statistic widget, post statistic, post views, author, post, widget, author posts, author comments, user activity, popular posts, popular authors
 Requires at least: 2.7.0
 Tested up to: 4.1.1
-Stable tag: 1.4.6
+Stable tag: 1.4.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,28 +101,30 @@ Here you can manage all widgets. There are 5 tabs with widget settings options:
 
 = APSW Template tags ( Free & Pro Versions ) =
 
-**You can use these template tags add statistic information directly in template files.**
+You can use these template tags add statistic information directly in template files.
+
+
+**Displays Popular Users and Posts widget**
 `
 <?php apsw_pu_widget() ?> 
 `
-**Displays Popular Users and Posts widget**
 
+**Displays popular posts statistics for certain date period**
 `
 <?php apsw_pp_static_date_widget($from, $to) ?>
 `
-**Displays popular posts statistics for certain date period**
 Example: `apsw_pp_static_date_widget('2014-01-16', '2015-01-16')`
 
+**Displays most active users statistic for certain date period**
 `
 <?php apsw_au_static_date_widget($from, $to) ?> 
 `
-**Displays most active users statistic for certain date period**
 Example: `apsw_au_static_date_widget('2014-01-16', '2015-01-16')`
 
+**Display popular posts list for last X days**
 `
 <?php apsw_pp_dynamic_date_widget($last) ?> 
 `
-**Display popular posts list for last X days**
 Options:
 
 * set $last = 1 to display popular posts for yesterday
@@ -131,10 +133,10 @@ Options:
 * set $last = 0 to display popular posts for current day
 * set $last = -1 or empty to display popular posts for all time
 
+**Displays popular authors list for last X days**
 `
 <?php apsw_pa_dynamic_date_widget($last = -1) ?> 
 `
-**Displays popular authors list for last X days**
 Options:
 
 * set $last = 1 to display popular authors for yesterday
@@ -152,53 +154,58 @@ You can use these shortcodes to display different statistic information directly
 [apsw_postviews last="7" user="21"] 
 `
 **Displays post views of certain user for certain date period.**
-"last" - the number of past days
-If this attribute is not set, it displays post views for all time.
-If this attribute is set "0", it displays post views for current day.
-"user" - user id
-If this attribute is not set this shortcode displays current logged in users' post views statistic
+
+* "last" - the number of past days
+* If this attribute is not set, it displays post views for all time.
+* If this attribute is set "0", it displays post views for current day.
+* "user" - user id
+* If this attribute is not set this shortcode displays current logged in users' post views statistic
 
 `
 [apsw_postcount last="7" user="21"] 
 `
 **Displays posts count of certain user for certain date period.**
-"last" - the number of past days
-If this attribute is not set, it displays posts count for all time.
-If this attribute is set "0", it displays posts count for current day.
-"user" - user id
-If this attribute is not set this shortcode displays current logged in users' posts count statistic
+
+* "last" - the number of past days
+* If this attribute is not set, it displays posts count for all time.
+* If this attribute is set "0", it displays posts count for current day.
+* "user" - user id
+* If this attribute is not set this shortcode displays current logged in users' posts count statistic
 
 `
 [apsw_popularpost last="7" user="21" by="comments"] 
 `
 **Displays popular posts of certain user for certain date period based on post comments or views.**
-"last" - the number of past days
-If this attribute is not set, it displays popular posts for all time.
-If this attribute is set "0", it displays popular posts for current day.
-"user" - user id
-If this attribute is not set, it displays current logged in users' popular posts statistic
-"by" - the base for counting and choosing popular posts ( values: "comments" or "views" )
-If this attribute is not set, it takes "comments" as a base.
+
+* "last" - the number of past days
+* If this attribute is not set, it displays popular posts for all time.
+* If this attribute is set "0", it displays popular posts for current day.
+* "user" - user id
+* If this attribute is not set, it displays current logged in users' popular posts statistic
+* "by" - the base for counting and choosing popular posts ( values: "comments" or "views" )
+* If this attribute is not set, it takes "comments" as a base.
 
 `
 [apsw_activeusers last="7" by="posts"] 
 `
 **Displays most active users statistic for certain date period based on users' posts, comments, or posts' views.**
-"last" - the number of past days
-If this attribute is not set, it displays active users for all time.
-If this attribute is set "0", it displays active users for current day.
-"by" - the base for counting and choosing active users ( values: "comments", "post counts" or "views" )
-If this attribute is not set, it takes "comments" as a base.
+
+* "last" - the number of past days
+* If this attribute is not set, it displays active users for all time.
+* If this attribute is set "0", it displays active users for current day.
+* "by" - the base for counting and choosing active users ( values: "comments", "post counts" or "views" )
+* If this attribute is not set, it takes "comments" as a base.
 
 `
 [apsw_visitors last="7" user="21"] 
 `
 **Displays number of posts visitors (with countries) for certain users posts.**
-"last" - the number of past days
-If this attribute is not set, it displays visitors for all time.
-If this attribute is set "0", it displays visitors for current day.
-"user" - user id
-If this attribute is not set, it displays current logged in users' posts visitors statistic
+
+* "last" - the number of past days
+* If this attribute is not set, it displays visitors for all time.
+* If this attribute is set "0", it displays visitors for current day.
+* "user" - user id
+* If this attribute is not set, it displays current logged in users' posts visitors statistic
 
 
 = Also Please Check the Following Resources =
@@ -207,12 +214,24 @@ If this attribute is not set, it displays current logged in users' posts visitor
 
 == Changelog ==
 
+= 1.4.7 =
+* Added: Template Tags to locate widget information in template files
+`
+function apsw_pp_static_date_widget($from, $to)
+function apsw_au_static_date_widget($from, $to)
+function apsw_pu_widget()
+function apsw_pp_dynamic_date_widget($last = -1)
+function apsw_pa_dynamic_date_widget($last = -1)
+`
+* Added: Option to hide/show custom html fields on widget settings area
+* Fixed Bug: Issues with unicode characters
+
 = 1.4.6 =
 * Fixed Bug: Ultimate Member Integration problem on WEB Servers w/o DomObject support
 
 = 1.4.5 =
-* Changed: jQuery UI widget tabs to better and moder tab layout 
-* Changed: jQuery UI admin section tabs to better and moder tab layout 
+* Changed: jQuery UI widget tabs to better and modern tab layout 
+* Changed: jQuery UI admin section tabs to better and modern tab layout 
 * Added: Integration with User Profile Plugins
 	- BuddyPress, Ultimate Member, Users Ultra, UserPro
 
