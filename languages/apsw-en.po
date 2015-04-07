@@ -1,0 +1,641 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Author and Post Statistic Widgets\n"
+"POT-Creation-Date: 2015-04-07 20:56+0400\n"
+"PO-Revision-Date: 2015-04-07 20:57+0400\n"
+"Last-Translator: advancedcoding <advancedcoding@mail.ru>\n"
+"Language-Team: advancedcoding <advancedcoding@mail.ru>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.5\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: core.php:143
+msgid "Views All Time"
+msgstr ""
+
+#: core.php:148
+msgid "Views Today"
+msgstr ""
+
+#: core.php:246
+msgid "Statistical data has been removed"
+msgstr ""
+
+#: core.php:246
+msgid "Failed to delete statistical data"
+msgstr ""
+
+#: core.php:299
+msgid "Settings"
+msgstr ""
+
+#: layouts/active-users-layout.php:25 layouts/active-users-layout.php:54
+#: layouts/active-users-layout.php:83
+#: layouts/all-stats-separately-not-single.php:23
+#: layouts/all-stats-separately-not-single.php:51
+#: layouts/all-stats-separately-not-single.php:79
+#: layouts/all-stats-separately-single.php:30
+#: layouts/all-stats-separately-single.php:47
+#: layouts/all-stats-separately-single.php:65
+#: layouts/all-stats-tabbed-not-single.php:29
+#: layouts/all-stats-tabbed-not-single.php:50
+#: layouts/all-stats-tabbed-not-single.php:71
+#: layouts/all-stats-tabbed-single.php:36
+#: layouts/all-stats-tabbed-single.php:53
+#: layouts/all-stats-tabbed-single.php:70
+#: layouts/popular-authors-list.php:23
+msgid "View user profile page"
+msgstr ""
+
+#: layouts/active-users-layout.php:30
+msgid "Posts count:"
+msgstr ""
+
+#: layouts/active-users-layout.php:31
+#: layouts/all-stats-separately-not-single.php:29
+#: layouts/all-stats-tabbed-not-single.php:35
+msgid "posts"
+msgstr ""
+
+#: layouts/active-users-layout.php:40 layouts/active-users-layout.php:69
+#: layouts/active-users-layout.php:98 layouts/post-stats-layout.php:38
+#: layouts/post-stats-layout.php:74
+msgid "There are no data between selected dates"
+msgstr ""
+
+#: layouts/active-users-layout.php:59
+msgid "Posts views:"
+msgstr ""
+
+#: layouts/active-users-layout.php:60
+#: layouts/all-stats-separately-not-single.php:57
+#: layouts/all-stats-separately-not-single.php:121
+#: layouts/all-stats-separately-single.php:160
+#: layouts/all-stats-tabbed-not-single.php:56
+#: layouts/all-stats-tabbed-not-single.php:104
+#: layouts/all-stats-tabbed-single.php:163 layouts/popular-posts-list.php:33
+#: layouts/post-stats-layout.php:30
+msgid "views"
+msgstr ""
+
+#: layouts/active-users-layout.php:88
+msgid "Posts comments count:"
+msgstr ""
+
+#: layouts/active-users-layout.php:89
+#: layouts/all-stats-separately-not-single.php:85
+#: layouts/all-stats-separately-not-single.php:151
+#: layouts/all-stats-separately-not-single.php:156
+#: layouts/all-stats-separately-single.php:182
+#: layouts/all-stats-separately-single.php:187
+#: layouts/all-stats-tabbed-not-single.php:77
+#: layouts/all-stats-tabbed-not-single.php:126
+#: layouts/all-stats-tabbed-not-single.php:131
+#: layouts/all-stats-tabbed-single.php:185
+#: layouts/all-stats-tabbed-single.php:190 layouts/post-stats-layout.php:60
+#: layouts/post-stats-layout.php:65
+msgid "comments"
+msgstr ""
+
+#: layouts/all-stats-separately-not-single.php:10
+#: layouts/all-stats-tabbed-not-single.php:17
+msgid "Popular Authors"
+msgstr ""
+
+#: layouts/all-stats-separately-not-single.php:37
+#: layouts/all-stats-separately-not-single.php:65
+#: layouts/all-stats-separately-not-single.php:93
+#: layouts/all-stats-separately-not-single.php:129
+#: layouts/all-stats-separately-not-single.php:165
+msgid "There are no data"
+msgstr ""
+
+#: layouts/all-stats-separately-not-single.php:103
+#: layouts/all-stats-tabbed-not-single.php:87 options/apsw-options.php:95
+#: widget/widget-post.php:110
+msgid "Popular Posts"
+msgstr ""
+
+#: layouts/all-stats-separately-not-single.php:115
+#: layouts/all-stats-separately-not-single.php:143
+#: layouts/all-stats-separately-single.php:154
+#: layouts/all-stats-separately-single.php:174
+#: layouts/all-stats-tabbed-not-single.php:98
+#: layouts/all-stats-tabbed-not-single.php:118
+#: layouts/all-stats-tabbed-single.php:157
+#: layouts/all-stats-tabbed-single.php:177 layouts/popular-posts-list.php:22
+#: layouts/post-stats-layout.php:24 layouts/post-stats-layout.php:52
+msgid "View"
+msgstr ""
+
+#: layouts/all-stats-separately-not-single.php:120
+msgid "Post views count:"
+msgstr ""
+
+#: layouts/all-stats-separately-not-single.php:149
+#: layouts/all-stats-separately-single.php:180
+#: layouts/all-stats-tabbed-not-single.php:124
+#: layouts/all-stats-tabbed-single.php:183 layouts/post-stats-layout.php:58
+msgid "Comment on"
+msgstr ""
+
+#: layouts/all-stats-separately-not-single.php:155
+#: layouts/all-stats-separately-single.php:186
+#: layouts/all-stats-tabbed-not-single.php:130
+#: layouts/all-stats-tabbed-single.php:189 layouts/post-stats-layout.php:64
+msgid "Comments are closed on this post"
+msgstr ""
+
+#: layouts/all-stats-separately-single.php:19
+#: layouts/all-stats-tabbed-single.php:26
+msgid "Current User Statistic"
+msgstr ""
+
+#: layouts/all-stats-separately-single.php:21
+#: layouts/all-stats-tabbed-single.php:28
+msgid "Post Author Statistic"
+msgstr ""
+
+#: layouts/all-stats-separately-single.php:67
+#: layouts/all-stats-separately-single.php:72
+#: layouts/all-stats-tabbed-single.php:72
+#: layouts/all-stats-tabbed-single.php:77
+msgid "Total Posts"
+msgstr ""
+
+#: layouts/all-stats-separately-single.php:78
+#: layouts/all-stats-tabbed-single.php:83
+msgid "Total Comments"
+msgstr ""
+
+#: layouts/all-stats-separately-single.php:82
+#: layouts/all-stats-tabbed-single.php:87
+msgid "Total Categories"
+msgstr ""
+
+#: layouts/all-stats-separately-single.php:87
+#: layouts/all-stats-tabbed-single.php:92
+msgid "Categories List"
+msgstr ""
+
+#: layouts/all-stats-separately-single.php:92
+#: layouts/all-stats-tabbed-single.php:97
+msgid "View all posts in category"
+msgstr ""
+
+#: layouts/all-stats-separately-single.php:104
+#: layouts/all-stats-tabbed-single.php:108
+msgid "Tags List"
+msgstr ""
+
+#: layouts/all-stats-separately-single.php:109
+#: layouts/all-stats-tabbed-single.php:114
+msgid "View all posts tagged as"
+msgstr ""
+
+#: layouts/all-stats-separately-single.php:122
+#: layouts/all-stats-tabbed-single.php:126
+msgid "Custom Taxonomies List"
+msgstr ""
+
+#: layouts/all-stats-separately-single.php:128
+#: layouts/all-stats-tabbed-single.php:132
+msgid "View all posts under"
+msgstr ""
+
+#: layouts/all-stats-separately-single.php:143
+msgid "Posts Statistics"
+msgstr ""
+
+#: layouts/all-stats-tabbed-not-single.php:3
+msgid "Authors"
+msgstr ""
+
+#: layouts/all-stats-tabbed-not-single.php:4
+#: layouts/all-stats-tabbed-single.php:5
+msgid "Posts"
+msgstr ""
+
+#: layouts/all-stats-tabbed-single.php:3
+msgid "Author"
+msgstr ""
+
+#: layouts/all-stats-tabbed-single.php:146
+msgid "Author Popular Posts"
+msgstr ""
+
+#: layouts/popular-authors-list.php:29
+msgid "Comments count"
+msgstr ""
+
+#: layouts/popular-authors-list.php:33
+msgid "Posts count"
+msgstr ""
+
+#: layouts/popular-posts-list.php:28
+msgid "Post comments count"
+msgstr ""
+
+#: layouts/popular-posts-list.php:32
+msgid "Post views count"
+msgstr ""
+
+#: options/apsw-options.php:42
+msgid "Hacker?"
+msgstr ""
+
+#: options/apsw-options.php:69
+msgid "Author &amp; Post Statistic Widgets Settings"
+msgstr ""
+
+#: options/apsw-options.php:93
+msgid "General"
+msgstr ""
+
+#: options/apsw-options.php:94 widget/widget-active-users.php:111
+msgid "Active Users"
+msgstr ""
+
+#: options/apsw-options.php:96
+msgid "View counter for posts"
+msgstr ""
+
+#: options/apsw-options.php:97
+msgid "Styles"
+msgstr ""
+
+#: options/apsw-options.php:98
+msgid "Reset Statistics"
+msgstr ""
+
+#: options/apsw-options.php:99
+msgid "Functions and Shortcodes"
+msgstr ""
+
+#: options/apsw-options.php:161
+msgid "Save Changes"
+msgstr ""
+
+#: options/apsw-options.php:162
+msgid "Reset Options"
+msgstr ""
+
+#: options/layouts/settings-active-users.php:6
+msgid "Display user full name:"
+msgstr ""
+
+#: options/layouts/settings-active-users.php:17
+msgid "Display user avatar:"
+msgstr ""
+
+#: options/layouts/settings-active-users.php:27
+msgid "Show active users by posts:"
+msgstr ""
+
+#: options/layouts/settings-active-users.php:35
+msgid "Count"
+msgstr ""
+
+#: options/layouts/settings-active-users.php:39
+#: options/layouts/settings-popular-posts.php:13
+msgid "Views"
+msgstr ""
+
+#: options/layouts/settings-active-users.php:43
+#: options/layouts/settings-popular-posts.php:17
+msgid "Comment Count"
+msgstr ""
+
+#: options/layouts/settings-active-users.php:50
+msgid "Active users limit:"
+msgstr ""
+
+#: options/layouts/settings-general.php:6
+msgid "Show author and post statistics in:"
+msgstr ""
+
+#: options/layouts/settings-general.php:11
+msgid "Tabs"
+msgstr ""
+
+#: options/layouts/settings-general.php:15
+msgid "Separate blocks"
+msgstr ""
+
+#: options/layouts/settings-general.php:22
+msgid "Display author/user statistic on all pages"
+msgstr ""
+
+#: options/layouts/settings-general.php:33
+msgid "Create statistic for post and taxonomy types:"
+msgstr ""
+
+#: options/layouts/settings-popular-posts.php:5
+msgid "Show popular posts by:"
+msgstr ""
+
+#: options/layouts/settings-popular-posts.php:24
+msgid "Popular posts limit:"
+msgstr ""
+
+#: options/layouts/settings-reset-statistics.php:5
+msgid "Delete Statistics"
+msgstr ""
+
+#: options/layouts/settings-reset-statistics.php:10
+msgid "From Date"
+msgstr ""
+
+#: options/layouts/settings-reset-statistics.php:11
+#: widget/form/active-users-widget-form.php:19
+#: widget/form/post-statistics-widget-form.php:19
+msgid "From Date:"
+msgstr ""
+
+#: options/layouts/settings-reset-statistics.php:12
+#: widget/form/active-users-widget-form.php:25
+#: widget/form/post-statistics-widget-form.php:25
+msgid "Example: 2014-06-25 (Y-m-d)"
+msgstr ""
+
+#: options/layouts/settings-reset-statistics.php:15
+msgid "To Date"
+msgstr ""
+
+#: options/layouts/settings-reset-statistics.php:16
+#: widget/form/active-users-widget-form.php:29
+#: widget/form/post-statistics-widget-form.php:29
+msgid "To Date:"
+msgstr ""
+
+#: options/layouts/settings-reset-statistics.php:17
+#: widget/form/active-users-widget-form.php:35
+#: widget/form/post-statistics-widget-form.php:35
+msgid "Example: 2014-07-25 (Y-m-d)"
+msgstr ""
+
+#: options/layouts/settings-reset-statistics.php:20
+msgid "Delete All Statistics"
+msgstr ""
+
+#: options/layouts/settings-styles.php:5
+msgid "Display widgets' custom html areas"
+msgstr ""
+
+#: options/layouts/settings-styles.php:13
+msgid "Custom CSS to include in header:"
+msgstr ""
+
+#: options/layouts/settings-styles.php:16
+msgid "Write here your css to include in header:"
+msgstr ""
+
+#: options/layouts/settings-view-counter.php:5
+msgid "Count post view by:"
+msgstr ""
+
+#: options/layouts/settings-view-counter.php:13
+msgid "IP (for each day)"
+msgstr ""
+
+#: options/layouts/settings-view-counter.php:17
+msgid "Page Reload"
+msgstr ""
+
+#: options/layouts/settings-view-counter.php:23
+msgid "Display posts' daily views count"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:10
+#: widget/form/all-statistics-widget-form.php:10
+#: widget/form/popular-authors-list-form.php:10
+#: widget/form/popular-posts-list-form.php:10
+#: widget/form/post-statistics-widget-form.php:10
+msgid "Title:"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:41
+#: widget/form/all-statistics-widget-form.php:20
+#: widget/form/popular-authors-list-form.php:33
+#: widget/form/popular-posts-list-form.php:33
+#: widget/form/post-statistics-widget-form.php:40
+msgid "Use widget custom before/after html:"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:50
+#: widget/form/all-statistics-widget-form.php:29
+#: widget/form/popular-authors-list-form.php:42
+#: widget/form/popular-posts-list-form.php:42
+#: widget/form/post-statistics-widget-form.php:49
+msgid "Before Widget:"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:51
+#: widget/form/all-statistics-widget-form.php:30
+#: widget/form/popular-authors-list-form.php:43
+#: widget/form/popular-posts-list-form.php:43
+#: widget/form/post-statistics-widget-form.php:50
+msgid "HTML before the widget"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:57
+#: widget/form/all-statistics-widget-form.php:36
+#: widget/form/popular-authors-list-form.php:49
+#: widget/form/popular-posts-list-form.php:49
+#: widget/form/post-statistics-widget-form.php:56
+msgid "After Widget:"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:58
+#: widget/form/all-statistics-widget-form.php:37
+#: widget/form/popular-authors-list-form.php:50
+#: widget/form/popular-posts-list-form.php:50
+#: widget/form/post-statistics-widget-form.php:57
+msgid "HTML after the widget"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:68
+#: widget/form/all-statistics-widget-form.php:47
+#: widget/form/popular-authors-list-form.php:60
+#: widget/form/popular-posts-list-form.php:60
+#: widget/form/post-statistics-widget-form.php:67
+msgid "Use title custom before/after html:"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:77
+#: widget/form/all-statistics-widget-form.php:56
+#: widget/form/popular-authors-list-form.php:69
+#: widget/form/popular-posts-list-form.php:69
+#: widget/form/post-statistics-widget-form.php:76
+msgid "Before Title:"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:78
+#: widget/form/all-statistics-widget-form.php:57
+#: widget/form/popular-authors-list-form.php:70
+#: widget/form/popular-posts-list-form.php:70
+#: widget/form/post-statistics-widget-form.php:77
+msgid "HTML before the title"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:84
+#: widget/form/all-statistics-widget-form.php:63
+#: widget/form/popular-authors-list-form.php:76
+#: widget/form/popular-posts-list-form.php:76
+#: widget/form/post-statistics-widget-form.php:83
+msgid "After Title:"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:85
+#: widget/form/all-statistics-widget-form.php:64
+#: widget/form/popular-authors-list-form.php:77
+#: widget/form/popular-posts-list-form.php:77
+#: widget/form/post-statistics-widget-form.php:84
+msgid "HTML after the title"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:95
+#: widget/form/all-statistics-widget-form.php:74
+#: widget/form/popular-authors-list-form.php:88
+#: widget/form/popular-posts-list-form.php:88
+#: widget/form/post-statistics-widget-form.php:94
+msgid "Use body custom before/after html:"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:104
+#: widget/form/all-statistics-widget-form.php:83
+#: widget/form/popular-authors-list-form.php:97
+#: widget/form/popular-posts-list-form.php:97
+#: widget/form/post-statistics-widget-form.php:103
+msgid "Before Body:"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:105
+#: widget/form/all-statistics-widget-form.php:84
+#: widget/form/popular-authors-list-form.php:98
+#: widget/form/popular-posts-list-form.php:98
+#: widget/form/post-statistics-widget-form.php:104
+msgid "HTML before the body"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:111
+#: widget/form/all-statistics-widget-form.php:90
+#: widget/form/popular-authors-list-form.php:104
+#: widget/form/popular-posts-list-form.php:104
+#: widget/form/post-statistics-widget-form.php:110
+msgid "After Body:"
+msgstr ""
+
+#: widget/form/active-users-widget-form.php:112
+#: widget/form/all-statistics-widget-form.php:91
+#: widget/form/popular-authors-list-form.php:105
+#: widget/form/popular-posts-list-form.php:105
+#: widget/form/post-statistics-widget-form.php:111
+msgid "HTML after the body"
+msgstr ""
+
+#: widget/form/popular-authors-list-form.php:19
+#: widget/form/popular-posts-list-form.php:19
+msgid "Select date interval:"
+msgstr ""
+
+#: widget/form/popular-authors-list-form.php:21
+#: widget/form/popular-posts-list-form.php:21
+msgid "Today"
+msgstr ""
+
+#: widget/form/popular-authors-list-form.php:22
+#: widget/form/popular-posts-list-form.php:22
+msgid "Yesterday"
+msgstr ""
+
+#: widget/form/popular-authors-list-form.php:23
+#: widget/form/popular-posts-list-form.php:23
+msgid "Last 7 Days"
+msgstr ""
+
+#: widget/form/popular-authors-list-form.php:24
+#: widget/form/popular-posts-list-form.php:24
+msgid "Last 30 Days"
+msgstr ""
+
+#: widget/form/popular-authors-list-form.php:25
+#: widget/form/popular-posts-list-form.php:25
+msgid "Last 90 Days"
+msgstr ""
+
+#: widget/form/popular-authors-list-form.php:26
+#: widget/form/popular-posts-list-form.php:26
+msgid "Last 365 Days"
+msgstr ""
+
+#: widget/form/popular-authors-list-form.php:27
+#: widget/form/popular-posts-list-form.php:27
+msgid "All Time"
+msgstr ""
+
+#: widget/widget-active-users.php:21
+msgid "This Widget displays active users statistic information"
+msgstr ""
+
+#: widget/widget-active-users.php:25
+msgid "APSW - Active Users"
+msgstr ""
+
+#: widget/widget-popular-author-list.php:21
+msgid "This Widget displays popular authors list on all pages"
+msgstr ""
+
+#: widget/widget-popular-author-list.php:25
+msgid "APSW - Popular Authors List"
+msgstr ""
+
+#: widget/widget-popular-author-list.php:107
+msgid "Popular Authors List"
+msgstr ""
+
+#: widget/widget-popular-post-list.php:21
+msgid "This Widget displays popular posts list on all pages"
+msgstr ""
+
+#: widget/widget-popular-post-list.php:25
+msgid "APSW - Popular Posts List"
+msgstr ""
+
+#: widget/widget-popular-post-list.php:106
+msgid "Popular Posts List"
+msgstr ""
+
+#: widget/widget-post.php:21
+msgid "This Widget displays popular posts statistic information"
+msgstr ""
+
+#: widget/widget-post.php:25
+msgid "APSW - Popular Posts"
+msgstr ""
+
+#: widget/widget-statistics.php:20
+msgid "This Widget displays author and post statistic information."
+msgstr ""
+
+#: widget/widget-statistics.php:24
+msgid "APSW - Author &amp; Post Statistics"
+msgstr ""
+
+#: widget/widget-statistics.php:122
+msgid "Author &amp; Post Statistics"
+msgstr ""
+
+#: widget/widget-statistics.php:123
+msgid "The Widget Body"
+msgstr ""
