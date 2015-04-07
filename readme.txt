@@ -17,45 +17,39 @@ APSW is an easy solution to display authors' activity and popular posts statisti
 
 = Features =
 * | Free | Widget - Author & Popular Post Statistics
-* | Free | Dynamic Widget - Popular Authors
-* | Free | Dynamic Widget - Popular Posts
-* | Free | General Widget - Popular Authors
-* | Free | General Widget - Popular Posts
+* | Free | Widget - Popular Authors ( limited by from/to dates )
+* | Free | Widget - Popular Authors ( for current and last day, week, month, year... )
+* | Free | Widget - Popular Posts ( limited by from/to dates )
+* | Free | Widget - Popular Posts ( for current and last day, week, month, year... )
 * | Free | Page views statistic under post content
 * | Free | Dashboard: General Settings
 * | Free | Dashboard: Popular Authors Widget Settings
 * | Free | Dashboard: Popular Posts Widget Settings
 * | Free | Dashboard: Widget Styles Settings
 * | Free | Dashboard: Reset Statistics
-* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab1) | Dashboard: Own Published Posts Statistic
-* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab2) | Dashboard: Own Posts' Views Statistic
-* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab3) | Dashboard: Own Posts Popularity Statistic by Views and Comments
-* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab4) | Dashboard: Own Posts' Readers Statistic by Countries
+* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab1) | Dashboard: Own Published Posts Graphical Statistic
+* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab2) | Dashboard: Own Posts' Views Graphical Statistic
+* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab3) | Dashboard: Own Posts Popularity Graphical Statistic
+* | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab4) | Dashboard: Own Posts' Readers Graphical Statistic by Countries
 * | [Pro](http://www.gvectors.com/author-and-post-statistic-widgets/#tab5) | Dashboard: If you're the admin, there is also a statistic for all authors activity and posts popularity
 
 
 **WIDGET - Author & Popular Post Statistics** :
-This is a smart widget with two tabs | Author(s) | and | Posts |, which shows different statistic information on different pages, there are two cases: 
+This is a smart widget with two tabs | Author(s) | and | Posts |, which show different statistic information on different pages, there are two cases: 
 
 **If you're on a single post page**: 
 
 * In | Author | tab it displays current post's author avatar, name and his(her) posting activity statistic:
-    - Total Posts
-    - Total Comments
-    - Total Categories
-    - Number of posts in different categories
-* And in | Posts | tab it displays current author's most popular posts' titles with number of views or comments.
+* In | Posts  | tab it displays current author's most popular posts' titles with number of views or comments.
 
-**If you're on non-single post page**, for example you're on category page, 
+**If you're on non-single post page**:
 
 * In | Author | tab it displays in tab a list of most active authors with number of published posts
 * In | Posts | tab it displays most popular post titles with number of views and comments.
 
-**WIDGET - Popular Authors** :  
-This widget only shows most popular author names with number of published posts.
+**WIDGET - Popular Authors**:  This widget only shows most popular author names with number of published posts.
 
-**WIDGET - Popular Posts** : 
-This widget only shows most popular post titles with number of views or comments.
+**WIDGET - Popular Posts**:  This widget only shows most popular post titles with number of views or comments.
 
 = DASHBOARD =
 
@@ -105,7 +99,109 @@ Here you can manage all widgets. There are 5 tabs with widget settings options:
 
 == Frequently Asked Questions ==
 
-= Please Check the Following Resources =
+= APSW Template tags ( Free & Pro Versions ) =
+
+**You can use these template tags add statistic information directly in template files.**
+`
+<?php apsw_pu_widget() ?> 
+`
+**Displays Popular Users and Posts widget**
+
+`
+<?php apsw_pp_static_date_widget($from, $to) ?>
+`
+**Displays popular posts statistics for certain date period**
+Example: `apsw_pp_static_date_widget('2014-01-16', '2015-01-16')`
+
+`
+<?php apsw_au_static_date_widget($from, $to) ?> 
+`
+**Displays most active users statistic for certain date period**
+Example: `apsw_au_static_date_widget('2014-01-16', '2015-01-16')`
+
+`
+<?php apsw_pp_dynamic_date_widget($last) ?> 
+`
+**Display popular posts list for last X days**
+Options:
+
+* set $last = 1 to display popular posts for yesterday
+* set $last = 7 to display popular posts for past week
+* set $last = 30 to display popular posts for past month
+* set $last = 0 to display popular posts for current day
+* set $last = -1 or empty to display popular posts for all time
+
+`
+<?php apsw_pa_dynamic_date_widget($last = -1) ?> 
+`
+**Displays popular authors list for last X days**
+Options:
+
+* set $last = 1 to display popular authors for yesterday
+* set $last = 7 to display popular authors for past week
+* set $last = 30 to display popular authors for past month
+* set $last = 0 to display popular authors for current day
+* set $last = -1 or empty to display popular authors for all time
+
+
+= APSW Shortcodes | Graphical Statistic ( Pro Version ) =
+
+You can use these shortcodes to display different statistic information directly on posts and pages.
+
+`
+[apsw_postviews last="7" user="21"] 
+`
+**Displays post views of certain user for certain date period.**
+"last" - the number of past days
+If this attribute is not set, it displays post views for all time.
+If this attribute is set "0", it displays post views for current day.
+"user" - user id
+If this attribute is not set this shortcode displays current logged in users' post views statistic
+
+`
+[apsw_postcount last="7" user="21"] 
+`
+**Displays posts count of certain user for certain date period.**
+"last" - the number of past days
+If this attribute is not set, it displays posts count for all time.
+If this attribute is set "0", it displays posts count for current day.
+"user" - user id
+If this attribute is not set this shortcode displays current logged in users' posts count statistic
+
+`
+[apsw_popularpost last="7" user="21" by="comments"] 
+`
+**Displays popular posts of certain user for certain date period based on post comments or views.**
+"last" - the number of past days
+If this attribute is not set, it displays popular posts for all time.
+If this attribute is set "0", it displays popular posts for current day.
+"user" - user id
+If this attribute is not set, it displays current logged in users' popular posts statistic
+"by" - the base for counting and choosing popular posts ( values: "comments" or "views" )
+If this attribute is not set, it takes "comments" as a base.
+
+`
+[apsw_activeusers last="7" by="posts"] 
+`
+**Displays most active users statistic for certain date period based on users' posts, comments, or posts' views.**
+"last" - the number of past days
+If this attribute is not set, it displays active users for all time.
+If this attribute is set "0", it displays active users for current day.
+"by" - the base for counting and choosing active users ( values: "comments", "post counts" or "views" )
+If this attribute is not set, it takes "comments" as a base.
+
+`
+[apsw_visitors last="7" user="21"] 
+`
+**Displays number of posts visitors (with countries) for certain users posts.**
+"last" - the number of past days
+If this attribute is not set, it displays visitors for all time.
+If this attribute is set "0", it displays visitors for current day.
+"user" - user id
+If this attribute is not set, it displays current logged in users' posts visitors statistic
+
+
+= Also Please Check the Following Resources =
 * Plugin Page: <http://www.gvectors.com/author-and-post-statistic-widgets/>
 * Support Forum: <http://gvectors.com/questions/>
 
