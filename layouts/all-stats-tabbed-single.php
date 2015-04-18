@@ -1,7 +1,7 @@
 <div style="padding-bottom:10px;" id="allStatisticSTab" class="stats_tabs">
     <ul class="css-tabs tabs-menu resp-tabs-list hor_1">
         <li><?php _e('Author', APSW_Core::$APSW_TEXT_DOMAIN); ?></li>
-        <?php if (!in_array('subscriber', $apsw_user->roles)) { ?>
+        <?php if (is_array($apsw_user->roles) && !in_array('subscriber', $apsw_user->roles)) { ?>
             <li><?php _e('Posts', APSW_Core::$APSW_TEXT_DOMAIN) ?></li>
         <?php } ?>
     </ul>
@@ -9,6 +9,7 @@
     $from = APSW_Helper::get_blog_reg_date();
     $to = APSW_Helper::get_now();
 
+    $authors_posts = $this->apsw_db_helper->get_author_all_posts_count($apsw_user_id, $from, $to);
     $author_cats = $this->apsw_db_helper->get_author_posts_categories($apsw_user_id);
     $author_tags = $this->apsw_db_helper->get_author_posts_tags($apsw_user_id);
     $author_profile_url = APSW_Helper::get_profile_url(get_user_by('id', $apsw_user_id));
@@ -22,7 +23,7 @@
     ?>
     <div class="resp-tabs-container hor_1">
         <div><!-- Author Tab -->
-            <?php if (in_array('subscriber', $apsw_user->roles) || ($this->apsw_options_serialized->is_stats_on_all_pages && is_user_logged_in())) { ?>
+            <?php if ((is_array($apsw_user->roles) && in_array('subscriber', $apsw_user->roles)) || ($this->apsw_options_serialized->is_stats_on_all_pages && is_user_logged_in())) { ?>
                 <span class="inner-title"><?php _e('Current User Statistic', APSW_Core::$APSW_TEXT_DOMAIN); ?></span>
             <?php } else { ?>
                 <span class="inner-title"><?php _e('Post Author Statistic', APSW_Core::$APSW_TEXT_DOMAIN); ?></span>
@@ -32,7 +33,7 @@
                 if ($this->apsw_options_serialized->is_display_author_avatar) {
                     ?>
                     <div class="sw_author_avatar">
-                        <?php if (!in_array('subscriber', $apsw_user->roles)) { ?>
+                        <?php if (is_array($apsw_user->roles) && !in_array('subscriber', $apsw_user->roles)) { ?>
                             <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$APSW_TEXT_DOMAIN); ?>">
                                 <?php echo get_avatar($apsw_user_id, 48); ?>
                             </a>
@@ -49,7 +50,7 @@
                     ?>
                     <div class="sw_author_name">
                         <span class="inner-title">
-                            <?php if (!in_array('subscriber', $apsw_user->roles)) { ?>
+                            <?php if (is_array($apsw_user->roles) && !in_array('subscriber', $apsw_user->roles)) { ?>
                                 <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$APSW_TEXT_DOMAIN); ?>">
                                     <?php echo get_userdata($apsw_user_id)->display_name; ?>
                                 </a>
@@ -65,29 +66,25 @@
                 ?>  
             </div>
             <ul class="stats-author-list">
-                <li class="stats-author-posts-count">
-                    <?php if (!in_array('subscriber', $apsw_user->roles)) { ?>
+                <?php if ($authors_posts) { ?>
+                    <li class="stats-author-posts-count">
                         <a href="<?php echo $author_profile_url; ?>" title="<?php echo __('View user profile page', APSW_Core::$APSW_TEXT_DOMAIN); ?>">
                             <span class="stats-label">
                                 <?php _e('Total Posts', APSW_Core::$APSW_TEXT_DOMAIN); ?>
                             </span>
                         </a>
-                    <?php } else { ?>
-                        <span class="stats-label">
-                            <?php _e('Total Posts', APSW_Core::$APSW_TEXT_DOMAIN); ?>
-                        </span>
-                    <?php } ?>
-                    <span class="stats-value"><?php echo $this->apsw_db_helper->get_author_all_posts_count($apsw_user_id, $from, $to); ?></span>
-                </li>
+                        <span class="stats-value"><?php echo $this->apsw_db_helper->get_author_all_posts_count($apsw_user_id, $from, $to); ?></span>
+                    </li>
+                <?php } ?>
                 <li class="stats-author-comments-count">
                     <span class="stats-label"><?php _e('Total Comments', APSW_Core::$APSW_TEXT_DOMAIN); ?></span>
                     <span class="stats-value"><?php echo $this->apsw_db_helper->get_comments_count_by_author($apsw_user_id); ?></span>
                 </li>
-                <li class="stats-author-categories-count">
-                    <span class="stats-label"><?php _e('Total Categories', APSW_Core::$APSW_TEXT_DOMAIN); ?></span>
-                    <span class="stats-value"><?php echo count($author_cats); ?></span>
-                </li>
                 <?php if ($author_cats) { ?>
+                    <li class="stats-author-categories-count">
+                        <span class="stats-label"><?php _e('Total Categories', APSW_Core::$APSW_TEXT_DOMAIN); ?></span>
+                        <span class="stats-value"><?php echo count($author_cats); ?></span>
+                    </li>
                     <li class="stats-author-categories-list">
                         <span class="stats-label"><?php _e('Categories List', APSW_Core::$APSW_TEXT_DOMAIN); ?></span>
                         <span class="stats-value">&nbsp;</span>
@@ -141,7 +138,7 @@
                 <?php } ?>
             </ul>
         </div>
-        <?php if (!in_array('subscriber', $apsw_user->roles)) { ?>
+        <?php if (is_array($apsw_user->roles) && !in_array('subscriber', $apsw_user->roles)) { ?>
             <div><!-- Post Tab -->
                 <span class="inner-title"><?php _e('Author Popular Posts', APSW_Core::$APSW_TEXT_DOMAIN); ?></span>
                 <ul class="stats-posts-list">

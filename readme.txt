@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: popular authors widget, popular post widget, author widget, post widget, author activity, statistics, statistic widget, post statistic, post views, author, post, widget, author posts, author comments, user activity, popular posts, popular authors
 Requires at least: 2.7.0
 Tested up to: 4.1.1
-Stable tag: 1.4.7
+Stable tag: 1.4.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -213,6 +213,8 @@ You can use these shortcodes to display different statistic information directly
 * Support Forum: <http://gvectors.com/questions/>
 
 == Changelog ==
+= 1.4.8 =
+Fixed Bug: Invalid argument issue in "Author & Post" Widget
 
 = 1.4.7 =
 * Added: Template Tags to locate widget information in template files
