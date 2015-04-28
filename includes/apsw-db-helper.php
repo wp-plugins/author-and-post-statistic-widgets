@@ -16,7 +16,7 @@ class APSW_DB_Helper {
         $this->ips_table = $this->db->prefix . 'sw_ips';
         $this->stats_table = $this->db->prefix . 'sw_statistics';
         $this->apsw_options_serialized = new APSW_Options_Serialize();
-        $this->post_types = APSW_Helper::init_string_from_array($this->apsw_options_serialized->post_types);        
+        $this->post_types = APSW_Helper::init_string_from_array($this->apsw_options_serialized->post_types);
     }
 
     /**
@@ -271,9 +271,9 @@ class APSW_DB_Helper {
         foreach ($post_ids as $id) {
             foreach ($selected_taxonomies as $sel_taxonomy) {
                 $taxonomies = get_the_terms($id, $sel_taxonomy);
-                if ($taxonomies) {
+                if ($taxonomies && !is_wp_error($taxonomies)) {
                     foreach ($taxonomies as $tax) {
-                        if (array_key_exists($tax->term_id, $tax_statistic)) {
+                        if ($tax->term_id && array_key_exists($tax->term_id, $tax_statistic)) {
                             $count = $tax_statistic[$tax->term_id]['count'];
                             $count++;
                             $tax_statistic[$tax->term_id]['count'] = $count;
