@@ -215,7 +215,7 @@ You can use these shortcodes to display different statistic information directly
 == Changelog ==
 
 = 1.5.0 =
-Fixed Bug: Posts' incorrect daily views count
+Fixed Bug: Incorrect daily views count
 
 = 1.4.9 =
 Fixed Bug: Compatibility with WordPress 4.2 version
