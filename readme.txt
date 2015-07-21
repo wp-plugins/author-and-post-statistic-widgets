@@ -4,8 +4,8 @@ Contributors: gVectors Team
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U22KJYA4VVBME
 Tags: popular authors widget, popular post widget, author widget, post widget, author activity, statistics, statistic widget, post statistic, post views, author, post, widget, author posts, author comments, user activity, popular posts, popular authors
 Requires at least: 2.7.0
-Tested up to: 4.2.1
-Stable tag: 1.4.9
+Tested up to: 4.2.2
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -213,6 +213,9 @@ You can use these shortcodes to display different statistic information directly
 * Support Forum: <http://gvectors.com/questions/>
 
 == Changelog ==
+
+= 1.5.0 =
+Fixed Bug: Posts' incorrect daily views count
 
 = 1.4.9 =
 Fixed Bug: Compatibility with WordPress 4.2 version

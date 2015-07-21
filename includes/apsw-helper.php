@@ -68,12 +68,12 @@ class APSW_Helper {
     public static function get_dynamic_date_intervals($last, $date_format) {
         $interval = array();
 
-        if ($last != '' && intval($last) === 0) { // today
+        if ($last !== '' && intval($last) === 0) { // today
             $interval['from'] = current_time($date_format);
             $datetime = new DateTime($interval['from']);
             $datetime->modify('+1 day');
             $interval['to'] = $datetime->format($date_format);
-        } else if ($last != '' && intval($last) > 0) { // last X days 
+        } else if ($last !== '' && intval($last) > 0) { // last X days 
             $datetime = new DateTime(current_time($date_format));
             $modify = '-' . abs($last) . ' day';
             $datetime->modify($modify);
