@@ -213,7 +213,6 @@ You can use these shortcodes to display different statistic information directly
 * Support Forum: <http://gvectors.com/questions/>
 
 == Changelog ==
-
 = 1.5.0 =
 Fixed Bug: Incorrect daily views count
 
