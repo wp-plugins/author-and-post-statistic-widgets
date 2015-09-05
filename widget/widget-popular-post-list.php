@@ -22,7 +22,7 @@ class APSW_Popular_Posts_List extends WP_Widget {
         );
 
         $control_ops = array();
-        $this->WP_Widget('popular_posts_list_widget', __('APSW - Popular Posts List', APSW_Core::$APSW_TEXT_DOMAIN), $widget_ops, $control_ops);
+        parent::__construct('popular_posts_list_widget', __('APSW - Popular Posts List', APSW_Core::$APSW_TEXT_DOMAIN), $widget_ops, $control_ops);
     }
 
     /**

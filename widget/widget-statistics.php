@@ -21,7 +21,7 @@ class APSW_Statistic_Widget extends WP_Widget {
         );
 
         $control_ops = array();
-        $this->WP_Widget('a_stats_widget', __('APSW - Author &amp; Post Statistics', APSW_Core::$APSW_TEXT_DOMAIN), $widget_ops, $control_ops);
+        parent::__construct('a_stats_widget', __('APSW - Author &amp; Post Statistics', APSW_Core::$APSW_TEXT_DOMAIN), $widget_ops, $control_ops);
     }
 
     /**

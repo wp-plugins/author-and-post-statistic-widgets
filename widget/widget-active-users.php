@@ -10,7 +10,6 @@ class APSW_Active_Users_Widget extends WP_Widget {
     public $apsw_db_helper;
 
     public function __construct() {
-
         $this->apsw_options_serialized = new APSW_Options_Serialize();
         $this->apsw_db_helper = new APSW_DB_Helper();
         /**
@@ -22,7 +21,7 @@ class APSW_Active_Users_Widget extends WP_Widget {
         );
 
         $control_ops = array();
-        $this->WP_Widget('active_users_widget', __('APSW - Active Users', APSW_Core::$APSW_TEXT_DOMAIN), $widget_ops, $control_ops);
+        parent::__construct('active_users_widget', __('APSW - Active Users', APSW_Core::$APSW_TEXT_DOMAIN), $widget_ops, $control_ops);
     }
 
     /**
