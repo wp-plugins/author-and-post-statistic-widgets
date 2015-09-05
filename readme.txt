@@ -215,7 +215,7 @@ You can use these shortcodes to display different statistic information directly
 == Changelog ==
 
 = 1.5.1 =
-Fixed Bug: Wordpress 4.3 Compability
+Wordpress 4.3 Compability
 
 = 1.5.0 =
 Fixed Bug: Incorrect daily views count
